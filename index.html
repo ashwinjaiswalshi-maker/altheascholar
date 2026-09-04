@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>Althea Scholar by Shree — Home & Online Tuition, Study Material, Entrance Exam Prep | Pan India</title>
   <meta name="description" content="Althea Scholar by Shree connects students with verified home & online tutors across India. Free CBSE study material (Class 6–12), entrance exam prep (JNVST, Sainik School), hobby & language classes, and teacher registration.">
   <meta name="keywords" content="home tuition, online tuition, tutor near me, CBSE study material, entrance exam preparation, Sainik School, JNVST, teacher registration, Althea Scholar">
@@ -25,8 +22,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@600;700;800&family=Merriweather:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
@@ -96,7 +91,7 @@
       --shade6: #7BBDE8;
       --shade7: #BDD8E9;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -124,7 +119,7 @@
     }
     .nav-wrap {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 24px; max-width: 1200px; margin: 0 auto;
+      padding: 10px 24px; max-width: 1360px; margin: 0 auto;
     }
     .logo { display: flex; align-items: center; gap: 12px; }
     .logo-icon {
@@ -735,6 +730,12 @@
     .mini-toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gray); }
     .img-thumb-sm { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--primary-light); }
     .max3-note { font-size: 11.5px; color: var(--accent); font-weight: 600; margin: 6px 0 10px; }
+    .visibility-save-bar {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: #fff3e0; border: 1px solid #f6c98a; color: #8a5300;
+      padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; font-size: 13px; font-weight: 600;
+    }
+    .visibility-save-bar .pending-note { flex: 1; min-width: 180px; }
     .premium-leads-grid { grid-template-columns: repeat(3,1fr); }
     @media (max-width: 900px) { .premium-leads-grid { grid-template-columns: 1fr; } }
     .premium-leads-grid .offer-card { text-align: left; }
@@ -1855,6 +1856,11 @@
         <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;font-weight:600;color:var(--secondary);"><input type="checkbox" id="tp_visible" checked style="width:16px;height:16px;"> Show this profile on the website</label>
         <button class="btn btn-green" id="tp_submit_btn" onclick="addOrUpdateTeacherProfile()" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Teacher Profile</button>
       </div>
+      <div class="visibility-save-bar" id="teacherProfiles_save_bar" style="display:none;">
+        <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('teacherProfiles', renderAdminTeacherProfiles)">Cancel</button>
+        <button type="button" class="btn btn-green btn-sm" id="teacherProfiles_save_btn" onclick="saveVisibilityChanges('teacherProfiles','visible', renderAdminTeacherProfiles, [renderPublicTeacherProfiles, renderHomepageTeacherPreview])">Save Changes</button>
+      </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
           <thead><tr><th>Photo</th><th>Name</th><th>Category</th><th>Plan</th><th>Medal</th><th>Fee</th><th>Visible</th><th>Action</th></tr></thead>
@@ -1880,6 +1886,11 @@
         <textarea id="an_desc" placeholder="Short description" style="width:100%;margin-top:12px;min-height:70px;"></textarea>
         <button class="btn btn-green" onclick="addAnnouncement()" style="margin-top:12px;"><i class="fas fa-plus"></i> Publish Announcement</button>
       </div>
+      <div class="visibility-save-bar" id="announcements_save_bar" style="display:none;">
+        <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('announcements', renderAdminAnnouncements)">Cancel</button>
+        <button type="button" class="btn btn-green btn-sm" id="announcements_save_btn" onclick="saveVisibilityChanges('announcements','visible', renderAdminAnnouncements, [renderHomepageAnnouncements])">Save Changes</button>
+      </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
           <thead><tr><th>Type</th><th>Title</th><th>Description</th><th>Date</th><th>Visible</th><th>Action</th></tr></thead>
@@ -1891,7 +1902,7 @@
     <!-- Parent Feedback Tab -->
     <div class="admin-tab" id="admin-feedback">
       <h3>💬 Parent Feedback / Testimonials</h3>
-      <p class="max3-note"><i class="fas fa-info-circle"></i> Maximum 3 feedbacks can be shown on the homepage at a time — use the Show/Hide toggle to choose.</p>
+      <p class="max3-note"><i class="fas fa-info-circle"></i> Maximum 6 feedbacks can be shown on the homepage at a time — use the Show/Hide toggle to choose, then click Save Changes.</p>
       <div class="admin-form">
         <div class="form-grid">
           <input type="text" id="fb_name" placeholder="Parent Name *">
@@ -1905,6 +1916,11 @@
         <div style="margin-top:10px;"><label style="font-size:13px;font-weight:600;color:var(--secondary);display:block;margin-bottom:6px;">Parent Photo (optional)</label><input type="file" id="fb_photo" accept="image/*"></div>
         <textarea id="fb_review" placeholder="Feedback / review text *" style="width:100%;margin-top:12px;min-height:70px;"></textarea>
         <button class="btn btn-green" onclick="addFeedback()" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Feedback</button>
+      </div>
+      <div class="visibility-save-bar" id="parentFeedbacks_save_bar" style="display:none;">
+        <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('parentFeedbacks', renderAdminFeedback)">Cancel</button>
+        <button type="button" class="btn btn-green btn-sm" id="parentFeedbacks_save_btn" onclick="saveVisibilityChanges('parentFeedbacks','showOnHome', renderAdminFeedback, [renderHomepageTestimonials])">Save Changes</button>
       </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
@@ -3150,6 +3166,14 @@ function fsSettingsGet(key) {
   fsSettingsListen(key);
   return Object.prototype.hasOwnProperty.call(_fsSettingsCache, key) ? _fsSettingsCache[key] : null;
 }
+// Tells us whether the real value has actually arrived from Firestore yet,
+// vs. still being unknown. Used by things like the Festival Popup so we
+// never assume a default (e.g. "enabled") before we've actually checked —
+// that assumption was what caused the popup to flash on even when the
+// admin had turned it off, on a slow connection.
+function fsSettingsLoaded(key) {
+  return Object.prototype.hasOwnProperty.call(_fsSettingsCache, key);
+}
 function fsSettingsSave(key, value) {
   _fsSettingsCache[key] = value;
   fsDb.collection('settings').doc(key).set({ value }).catch(err => {
@@ -3204,6 +3228,70 @@ function updateData(key, id, updates) {
     showToast('⚠️ Update failed online — check your internet connection.', 'error');
   });
   return true;
+}
+
+// ================================================================
+// Show/Hide staging for homepage sections (Announcements, Teacher
+// Profiles, Parent Feedback/Testimonials). Toggling a checkbox in
+// the admin table only "stages" the change locally — nothing is
+// saved to Firestore until "Save Changes" is clicked, and "Cancel"
+// discards staged changes and reverts the checkboxes. This avoids
+// the old behavior where every click fired an instant, unconfirmed
+// write (which is why show/hide sometimes silently failed to stick).
+// ================================================================
+const _pendingVisibility = {}; // "collection:id" -> boolean
+
+function stageVisibilityChange(collection, id, checked, renderFn) {
+  _pendingVisibility[collection + ':' + id] = checked;
+  renderFn();
+  const bar = document.getElementById(collection + '_save_bar');
+  if (bar) bar.style.display = 'flex';
+}
+
+function getPendingOrActual(collection, id, actualValue) {
+  const key = collection + ':' + id;
+  return Object.prototype.hasOwnProperty.call(_pendingVisibility, key) ? _pendingVisibility[key] : !!actualValue;
+}
+
+function cancelVisibilityChanges(collection, renderFn) {
+  Object.keys(_pendingVisibility).forEach(k => { if (k.startsWith(collection + ':')) delete _pendingVisibility[k]; });
+  const bar = document.getElementById(collection + '_save_bar');
+  if (bar) bar.style.display = 'none';
+  renderFn();
+  showToast('Changes discarded — nothing was saved.');
+}
+
+async function saveVisibilityChanges(collection, fieldName, renderFn, extraRenderFns) {
+  const keys = Object.keys(_pendingVisibility).filter(k => k.startsWith(collection + ':'));
+  if (!keys.length) { showToast('No changes to save.'); return; }
+  const btn = document.getElementById(collection + '_save_btn');
+  const originalBtnHtml = btn ? btn.innerHTML : '';
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...'; }
+
+  const results = await Promise.allSettled(keys.map(k => {
+    const id = Number(k.split(':')[1]);
+    const checked = _pendingVisibility[k];
+    return fsDb.collection(collection).doc(String(id)).set({ [fieldName]: checked }, { merge: true }).then(() => {
+      const arr = _fsCache[collection] || [];
+      const idx = arr.findIndex(item => item.id === id);
+      if (idx !== -1) arr[idx][fieldName] = checked;
+    });
+  }));
+
+  const failedCount = results.filter(r => r.status === 'rejected').length;
+  keys.forEach(k => delete _pendingVisibility[k]);
+  if (btn) { btn.disabled = false; btn.innerHTML = originalBtnHtml; }
+  const bar = document.getElementById(collection + '_save_bar');
+  if (bar) bar.style.display = 'none';
+
+  renderFn();
+  if (extraRenderFns) extraRenderFns.forEach(fn => fn());
+
+  if (failedCount === 0) {
+    showToast('✅ Changes saved successfully!');
+  } else {
+    showToast('⚠️ ' + failedCount + ' of ' + keys.length + ' change(s) could not be saved — check your internet connection and try again.', 'error');
+  }
 }
 
 let isAdminLoggedIn = false;
@@ -4676,7 +4764,7 @@ function renderAdminAnnouncements() {
       <td><strong>${a.title}</strong></td>
       <td>${a.desc || '-'}</td>
       <td>${new Date(a.date).toLocaleDateString()}</td>
-      <td><label class="mini-toggle-row"><input type="checkbox" ${a.visible ? 'checked' : ''} onchange="updateData('announcements', ${a.id}, {visible: this.checked})"> ${a.visible ? 'Visible' : 'Hidden'}</label></td>
+      <td><label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('announcements', a.id, a.visible) ? 'checked' : ''} onchange="stageVisibilityChange('announcements', ${a.id}, this.checked, renderAdminAnnouncements)"> ${getPendingOrActual('announcements', a.id, a.visible) ? 'Visible' : 'Hidden'}</label></td>
       <td><button class="btn btn-outline btn-sm" onclick="editAnnouncement(${a.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="deleteData('announcements', ${a.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
@@ -4749,13 +4837,15 @@ async function addFeedback() {
 
 function toggleFeedbackShow(id, checked) {
   const items = getData('parentFeedbacks');
-  const shownCount = items.filter(f => f.showOnHome && f.id !== id).length;
+  // Count how many would be "shown" after this change, taking any other
+  // staged-but-unsaved toggles into account too (not just what's saved).
+  const shownCount = items.filter(f => f.id !== id && getPendingOrActual('parentFeedbacks', f.id, f.showOnHome)).length;
   if (checked && shownCount >= 6) {
     showToast('⚠️ Maximum 6 feedbacks can be shown on homepage. Unselect one first.', 'error');
     renderAdminFeedback();
     return;
   }
-  updateData('parentFeedbacks', id, { showOnHome: checked });
+  stageVisibilityChange('parentFeedbacks', id, checked, renderAdminFeedback);
 }
 
 function renderAdminFeedback() {
@@ -4769,7 +4859,7 @@ function renderAdminFeedback() {
       <td>${f.location || '-'}</td>
       <td>${'⭐'.repeat(f.rating || 5)}</td>
       <td style="max-width:220px;">${(f.review || '').slice(0, 80)}${(f.review || '').length > 80 ? '…' : ''}</td>
-      <td><label class="mini-toggle-row"><input type="checkbox" ${f.showOnHome ? 'checked' : ''} onchange="toggleFeedbackShow(${f.id}, this.checked)"> ${f.showOnHome ? 'Shown' : 'Hidden'}</label></td>
+      <td><label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('parentFeedbacks', f.id, f.showOnHome) ? 'checked' : ''} onchange="toggleFeedbackShow(${f.id}, this.checked)"> ${getPendingOrActual('parentFeedbacks', f.id, f.showOnHome) ? 'Shown' : 'Hidden'}</label></td>
       <td><button class="btn btn-outline btn-sm" onclick="editFeedback(${f.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="deleteData('parentFeedbacks', ${f.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
@@ -4885,13 +4975,19 @@ function renderFestivalPopupContent(p) {
 function maybeShowFestivalPopup() {
   const overlay = document.getElementById('festivalPopupOverlay');
   if (!overlay) return;
+  // Don't decide anything until the real setting has actually arrived from
+  // Firestore — assuming "enabled" as a default while still loading was
+  // the bug that made the popup appear even when an admin had turned it
+  // off (worse on a slow connection). fsSettingsListen's onRemoteChange
+  // calls this function again the moment real data arrives.
+  if (!fsSettingsLoaded('festivalPopup')) { fsSettingsListen('festivalPopup', maybeShowFestivalPopup); return; }
   const p = getFestivalPopup();
   if (!p.enabled || _festivalPopupDismissedThisSession) { overlay.classList.remove('show'); return; }
   renderFestivalPopupContent(p);
   if (!overlay.classList.contains('show')) {
     setTimeout(() => {
-      // Re-check right before revealing — real Firestore data may have
-      // arrived (or the admin may have changed it) in the meantime.
+      // Re-check right before revealing — the admin may have changed it
+      // in the meantime.
       const latest = getFestivalPopup();
       if (latest.enabled && !_festivalPopupDismissedThisSession) overlay.classList.add('show');
     }, 600);
@@ -5587,8 +5683,7 @@ function cancelEditTeacherProfile() {
 }
 
 function toggleTeacherProfileVisible(id, checked) {
-  updateData('teacherProfiles', id, { visible: checked });
-  renderPublicTeacherProfiles(); renderHomepageTeacherPreview();
+  stageVisibilityChange('teacherProfiles', id, checked, renderAdminTeacherProfiles);
 }
 
 function deleteTeacherProfileConfirm(id) {
@@ -5610,7 +5705,7 @@ function renderAdminTeacherProfiles() {
       <td>${p.plan === 'premium' ? '⭐ Premium' : 'Basic'}</td>
       <td>${MEDAL_ICONS[p.medal] || '-'}</td>
       <td>${p.fee || '-'}</td>
-      <td><label class="mini-toggle-row"><input type="checkbox" ${p.visible ? 'checked' : ''} onchange="toggleTeacherProfileVisible(${p.id}, this.checked)"> ${p.visible ? 'Visible' : 'Hidden'}</label></td>
+      <td><label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('teacherProfiles', p.id, p.visible) ? 'checked' : ''} onchange="toggleTeacherProfileVisible(${p.id}, this.checked)"> ${getPendingOrActual('teacherProfiles', p.id, p.visible) ? 'Visible' : 'Hidden'}</label></td>
       <td><button class="btn btn-outline btn-sm" onclick="editTeacherProfile(${p.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="deleteTeacherProfileConfirm(${p.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
@@ -5707,7 +5802,7 @@ function renderHomepageTestimonials() {
     grid.innerHTML = Array(3).fill('<div class="skel-card"><div class="skel skel-line" style="width:40%;"></div><div class="skel skel-line" style="width:95%;"></div><div class="skel skel-line" style="width:80%;"></div><div class="skel skel-circle" style="width:40px;height:40px;margin:10px 0 0;"></div></div>').join('');
     return;
   }
-  const items = getData('parentFeedbacks').filter(f => f.showOnHome).slice(0, 3);
+  const items = getData('parentFeedbacks').filter(f => f.showOnHome).slice(0, 6);
   if (!items.length) { wrap.style.display = 'none'; grid.innerHTML = ''; return; }
   wrap.style.display = 'block';
   grid.innerHTML = items.map(f => `
@@ -6113,5 +6208,10 @@ deleteData = function(key, id) {
   setInterval(scan, 1500); // catches cards rendered later from Firestore data
 })();
 </script>
+<!-- Heavy PDF-export libraries — only needed when the admin downloads a
+     registration summary as PDF, so they're loaded last (after everything
+     visitors actually see) instead of blocking the page at the top. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 </body>
 </html>
