@@ -23,7 +23,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Althea Scholar by Shree">
   <meta name="twitter:description" content="Verified home & online tutors, free CBSE study material, entrance exam prep and hobby/language classes — all in one platform.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E">
+  <meta property="og:image" content="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
+  <meta name="twitter:image" content="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
+  <!-- Static favicon (the real logo, hardcoded directly rather than only
+       set via JS) — Google's favicon crawler and some browsers fetch this
+       without running any JavaScript, so the JS-driven update in
+       applyBranding() alone wasn't reliably picked up for search results. -->
+  <link rel="icon" href="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@600;700;800&family=Merriweather:wght@600;700&display=swap" rel="stylesheet">
@@ -798,6 +805,29 @@
     .teacher-card .bio { font-size: 10.5px; color: #4a5a72; line-height: 1.4; margin: 6px 0; min-height: 28px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .teacher-card .fee { font-weight: 800; color: var(--secondary); font-size: 12px; margin-top: 2px; }
     .teacher-card .btn-sm { padding: 6px 10px; font-size: 11px; }
+    /* Homepage "Meet Our Teachers" preview only — a single scrollable row
+       (not the full grid used on the dedicated "Our Teachers" page), so
+       15-20 cards fit in the same vertical space as before; swipe or use
+       the arrow buttons to see the rest. */
+    #homepageTeacherPreviewGrid {
+      display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 14px;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      padding-bottom: 6px;
+    }
+    #homepageTeacherPreviewGrid::-webkit-scrollbar { display: none; }
+    #homepageTeacherPreviewGrid .teacher-card { flex: 0 0 210px; scroll-snap-align: start; }
+    @media (max-width: 480px) { #homepageTeacherPreviewGrid .teacher-card { flex-basis: 190px; } }
+    /* Section heading + left/right arrow buttons, reused by every
+       horizontal-scroll section (Teachers, Testimonials, Premium Leads). */
+    .hscroll-nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .hscroll-nav-wrap .section-title { margin-bottom: 0; }
+    .hscroll-arrow-btns { display: flex; gap: 8px; flex: none; }
+    .hscroll-arrow-btns button {
+      width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
+      background: #fff; color: var(--primary); cursor: pointer; font-size: 13px;
+      display: flex; align-items: center; justify-content: center; transition: 0.2s;
+    }
+    .hscroll-arrow-btns button:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     /* ===== What We Offer banner (image, admin-editable) ===== */
     .offer-banner-wrap { margin: 6px 0 26px; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(11,43,94,0.08); }
@@ -816,8 +846,14 @@
     .skel-circle { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 10px; }
     /* ===== Parent Feedback / Testimonials ===== */
     .testimonials { background: var(--primary-light); padding: 24px 0; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 20px; }
-    @media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
+    .testimonial-grid {
+      display: flex; flex-wrap: nowrap; gap: 18px; margin-top: 20px; overflow-x: auto;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      padding-bottom: 6px;
+    }
+    .testimonial-grid::-webkit-scrollbar { display: none; }
+    .testimonial-grid .testimonial-card { flex: 0 0 300px; scroll-snap-align: start; }
+    @media (max-width: 480px) { .testimonial-grid .testimonial-card { flex-basis: 250px; } }
     .testimonial-card { background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 8px 24px rgba(11,43,94,0.06); }
     .testimonial-card .stars { color: #f6a93a; font-size: 13px; margin-bottom: 10px; }
     .testimonial-card .review { font-size: 13.5px; color: #33455e; line-height: 1.6; margin-bottom: 16px; min-height: 60px; }
@@ -836,10 +872,15 @@
       padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; font-size: 13px; font-weight: 600;
     }
     .visibility-save-bar .pending-note { flex: 1; min-width: 180px; }
-    .premium-leads-grid { grid-template-columns: repeat(3,1fr); }
-    @media (max-width: 900px) { .premium-leads-grid { grid-template-columns: 1fr; } }
-    .premium-leads-grid .offer-card { text-align: left; }
+    .premium-leads-grid {
+      display: flex; flex-wrap: nowrap; gap: 16px; overflow-x: auto;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      padding-bottom: 6px;
+    }
+    .premium-leads-grid::-webkit-scrollbar { display: none; }
+    .premium-leads-grid .offer-card { flex: 0 0 260px; scroll-snap-align: start; text-align: left; }
     .premium-leads-grid .offer-card .ic { margin: 0 0 10px; }
+    @media (max-width: 480px) { .premium-leads-grid .offer-card { flex-basis: 230px; } }
 
     .login-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.6);
@@ -1340,7 +1381,13 @@
 
   <section class="offer" id="homepageTeacherPreview" style="display:none;">
     <div class="container">
-      <h2 class="section-title">Meet Our Teachers</h2>
+      <div class="hscroll-nav-wrap">
+        <h2 class="section-title">Meet Our Teachers</h2>
+        <div class="hscroll-arrow-btns">
+          <button type="button" onclick="scrollRow('homepageTeacherPreviewGrid', -1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" onclick="scrollRow('homepageTeacherPreviewGrid', 1)" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
       <div class="teacher-grid" id="homepageTeacherPreviewGrid"></div>
       <div style="text-align:center;margin-top:24px;"><a class="btn btn-outline" onclick="showPage('page-teachers')">View All Teachers <i class="fas fa-arrow-right"></i></a></div>
     </div>
@@ -1381,7 +1428,13 @@
 
   <section class="testimonials" id="testimonialsSection" style="display:none;">
     <div class="container">
-      <h2 class="section-title">What Parents Say</h2>
+      <div class="hscroll-nav-wrap">
+        <h2 class="section-title">What Parents Say</h2>
+        <div class="hscroll-arrow-btns">
+          <button type="button" onclick="scrollRow('testimonialGrid', -1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" onclick="scrollRow('testimonialGrid', 1)" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
       <div class="testimonial-grid" id="testimonialGrid"></div>
     </div>
   </section>
@@ -2521,6 +2574,13 @@
       <h4><i class="fas fa-crown"></i> Not a Premium Teacher yet?</h4>
       <p style="font-size:13.5px;color:#4a3200;margin-bottom:10px;">Upgrade to Premium Membership (<span id="premiumLeadsPageFee">₹999</span> / <span id="premiumLeadsPageDuration">12 months</span>) to get priority access, apply directly to these leads, and unlock the ⭐ Premium badge on your profile.</p>
       <a class="btn btn-accent" onclick="showPage('page-teacher-form')"><i class="fas fa-arrow-up"></i> Become a Premium Teacher</a>
+    </div>
+    <div class="hscroll-nav-wrap" style="margin-bottom:6px;">
+      <span></span>
+      <div class="hscroll-arrow-btns">
+        <button type="button" onclick="scrollRow('publicPremiumLeadsGrid', -1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <button type="button" onclick="scrollRow('publicPremiumLeadsGrid', 1)" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
     <div class="offer-grid premium-leads-grid" id="publicPremiumLeadsGrid"></div>
   </section>
@@ -4031,7 +4091,7 @@ function viewLeadDetails(id) {
 }
 
 function renderLeadSidebar() {
-  const leads = getData('leads').filter(l => l.status !== 'Closed');
+  const leads = getData('leads').filter(l => l.status !== 'Closed').concat(DUMMY_LIVE_LEADS);
   const body = document.getElementById('leadBody');
   if (!body) return;
   body.innerHTML = leads.length === 0 ? '<p style="text-align:center;color:var(--gray);padding:40px 0;">No open leads</p>' :
@@ -4060,6 +4120,16 @@ function toggleLeads(open) {
   document.getElementById('leadSidebar').classList.toggle('open', open);
   document.getElementById('leadOverlay').classList.toggle('show', open);
   if (open) renderLeadSidebar();
+}
+
+// Scrolls a horizontal-scroll row (Teachers / Testimonials / Premium
+// Leads / Live Leads) one card's width left or right — used by the
+// arrow buttons next to each of those sections.
+function scrollRow(id, dir) {
+  const el = document.getElementById(id);
+  if (!el || !el.firstElementChild) return;
+  const amount = el.firstElementChild.getBoundingClientRect().width + 14;
+  el.scrollBy({ left: dir * amount, behavior: 'smooth' });
 }
 
 // Uploads a file to Cloudinary (unsigned preset — no secret key needed in
@@ -5276,7 +5346,21 @@ function getBranding() {
   const saved = fsSettingsGet('branding');
   return { ...BRANDING_DEFAULT, ...(saved || {}) };
 }
+// Firestore's offline cache can reply almost instantly with whatever
+// branding value it last had stored locally, then correct itself a
+// beat later once the real server value comes back — on a device whose
+// local cache still remembered an earlier upload, that showed up as the
+// old logo(s) flashing on screen for a frame before the current one took
+// over. Debouncing so only the LAST snapshot within a short window is
+// ever actually painted removes that flash: nothing renders until things
+// have settled.
+let _brandingApplyTimer = null;
 function applyBranding() {
+  clearTimeout(_brandingApplyTimer);
+  _brandingApplyTimer = setTimeout(_applyBrandingNow, 120);
+}
+let _lastAppliedLogoImage; // avoids re-doing the logo DOM swap when nothing actually changed
+function _applyBrandingNow() {
   const b = getBranding();
   document.documentElement.style.setProperty('--primary', b.color_primary);
   document.documentElement.style.setProperty('--secondary', b.color_secondary);
@@ -5288,27 +5372,30 @@ function applyBranding() {
   // graduation-cap icon if no logo has been uploaded yet.
   const favicon = document.querySelector('link[rel="icon"]');
   if (favicon) {
-    favicon.href = b.logo_image || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E";
+    favicon.href = b.logo_image || "https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg";
   }
 
   document.querySelectorAll('.logo-text .top').forEach(el => { el.textContent = b.logo_text_top; });
   document.querySelectorAll('.logo-text .bottom').forEach(el => { el.textContent = b.logo_text_bottom; });
-  document.querySelectorAll('.logo-icon').forEach(el => {
-    // The .logo-text sitting next to this icon (if any) — always kept
-    // visible, whether the icon is our default mark or an uploaded logo
-    // image, so "Althea Scholar / by Shree" never disappears from the
-    // header or footer.
-    const wrap = el.closest('.logo, .footer-logo-row');
-    const textNode = wrap ? wrap.querySelector('.logo-text') : null;
-    if (b.logo_image) {
-      el.innerHTML = `<img src="${b.logo_image}" alt="${b.logo_text_top}" style="height:100%;width:auto;max-width:220px;object-fit:contain;display:block;">`;
-      el.classList.remove('logo-icon-svg'); el.classList.add('logo-icon-custom');
-    } else {
-      el.innerHTML = DEFAULT_LOGO_SVG;
-      el.classList.remove('logo-icon-custom'); el.classList.add('logo-icon-svg');
-    }
-    if (textNode) textNode.style.display = '';
-  });
+  if (b.logo_image !== _lastAppliedLogoImage) {
+    _lastAppliedLogoImage = b.logo_image;
+    document.querySelectorAll('.logo-icon').forEach(el => {
+      // The .logo-text sitting next to this icon (if any) — always kept
+      // visible, whether the icon is our default mark or an uploaded logo
+      // image, so "Althea Scholar / by Shree" never disappears from the
+      // header or footer.
+      const wrap = el.closest('.logo, .footer-logo-row');
+      const textNode = wrap ? wrap.querySelector('.logo-text') : null;
+      if (b.logo_image) {
+        el.innerHTML = `<img src="${b.logo_image}" alt="${b.logo_text_top}" style="height:100%;width:auto;max-width:220px;object-fit:contain;display:block;">`;
+        el.classList.remove('logo-icon-svg'); el.classList.add('logo-icon-custom');
+      } else {
+        el.innerHTML = DEFAULT_LOGO_SVG;
+        el.classList.remove('logo-icon-custom'); el.classList.add('logo-icon-svg');
+      }
+      if (textNode) textNode.style.display = '';
+    });
+  }
 }
 function populateBrandingForm() {
   const b = getBranding();
@@ -5948,6 +6035,97 @@ function renderAdminTeacherProfiles() {
   `).join('') : '<tr><td colspan="8" style="text-align:center;color:var(--gray);">No teacher profiles yet.</td></tr>';
 }
 
+// ================================================================
+// Placeholder / demo cards — shown together with any real submissions
+// so these sections always have enough cards to fill a proper
+// horizontal scroll row, even before real teachers/parents/leads have
+// come in. These live only in this file (not in Firestore) — safe to
+// trim or delete individual entries any time real content replaces them.
+// ================================================================
+const DUMMY_HOME_TEACHERS = [
+  { name: 'Priya Sharma', plan: 'premium', qualification: 'M.Sc Mathematics', experience: '8 yrs', rating: 5, reviewCount: 62, location: 'Rohini Sector 9, Delhi', expertise: 'Mathematics, Physics', fee: '₹600/hr' },
+  { name: 'Rohit Verma', plan: 'basic', qualification: 'B.Tech, B.Ed', experience: '4 yrs', rating: 4, reviewCount: 24, location: 'Andheri West, Mumbai', expertise: 'Physics, Chemistry', fee: '₹450/hr' },
+  { name: 'Ananya Iyer', plan: 'premium', qualification: 'M.A. English', experience: '10 yrs', rating: 5, reviewCount: 88, location: 'Koramangala, Bengaluru', expertise: 'English, Social Science', fee: '₹550/hr' },
+  { name: 'Vikram Singh', plan: 'basic', qualification: 'M.Com', experience: '6 yrs', rating: 4, reviewCount: 31, location: 'Malviya Nagar, Jaipur', expertise: 'Accountancy, Economics', fee: '₹500/hr' },
+  { name: 'Neha Gupta', plan: 'basic', qualification: 'M.Sc Chemistry', experience: '5 yrs', rating: 5, reviewCount: 40, location: 'Gomti Nagar, Lucknow', expertise: 'Chemistry, Biology', fee: '₹480/hr' },
+  { name: 'Arjun Nair', plan: 'premium', qualification: 'Ph.D Physics', experience: '12 yrs', rating: 5, reviewCount: 103, location: 'Adyar, Chennai', expertise: 'Physics, Mathematics', fee: '₹700/hr' },
+  { name: 'Kavya Reddy', plan: 'basic', qualification: 'M.A. Hindi', experience: '3 yrs', rating: 4, reviewCount: 15, location: 'Banjara Hills, Hyderabad', expertise: 'Hindi, Sanskrit', fee: '₹350/hr' },
+  { name: 'Siddharth Rao', plan: 'basic', qualification: 'M.Tech CS', experience: '6 yrs', rating: 5, reviewCount: 47, location: 'Kothrud, Pune', expertise: 'Computer Science, IT', fee: '₹650/hr' },
+  { name: 'Meera Joshi', plan: 'premium', qualification: 'M.A. Fine Arts', experience: '9 yrs', rating: 5, reviewCount: 71, location: 'Satellite, Ahmedabad', expertise: 'Art & Craft, Drawing', fee: '₹400/hr' },
+  { name: 'Rahul Kapoor', plan: 'basic', qualification: 'B.A. Music', experience: '7 yrs', rating: 4, reviewCount: 29, location: 'Sector 35, Chandigarh', expertise: 'Guitar, Music', fee: '₹500/hr' },
+  { name: 'Sneha Pillai', plan: 'basic', qualification: 'M.Sc Biology', experience: '5 yrs', rating: 4, reviewCount: 22, location: 'Kakkanad, Kochi', expertise: 'Biology, Science', fee: '₹450/hr' },
+  { name: 'Aditya Malhotra', plan: 'premium', qualification: 'MBA Finance', experience: '8 yrs', rating: 5, reviewCount: 55, location: 'Sector 56, Gurugram', expertise: 'Economics, Accountancy', fee: '₹600/hr' },
+  { name: 'Pooja Desai', plan: 'basic', qualification: 'Kathak Visharad', experience: '11 yrs', rating: 5, reviewCount: 66, location: 'Vijay Nagar, Indore', expertise: 'Kathak, Classical Dance', fee: '₹500/hr' },
+  { name: 'Karan Mehta', plan: 'basic', qualification: 'M.A. French', experience: '4 yrs', rating: 4, reviewCount: 18, location: 'Sector 62, Noida', expertise: 'French, German', fee: '₹550/hr' },
+  { name: 'Divya Menon', plan: 'premium', qualification: 'M.Sc Mathematics', experience: '9 yrs', rating: 5, reviewCount: 80, location: 'Salt Lake, Kolkata', expertise: 'Mathematics, Computer Science', fee: '₹600/hr' },
+  { name: 'Sanjay Kulkarni', plan: 'basic', qualification: 'B.P.Ed', experience: '6 yrs', rating: 4, reviewCount: 20, location: 'Dharampeth, Nagpur', expertise: 'Chess, Life Skills', fee: '₹400/hr' },
+  { name: 'Ritika Bansal', plan: 'basic', qualification: 'M.A. Psychology', experience: '5 yrs', rating: 5, reviewCount: 33, location: 'Arera Colony, Bhopal', expertise: 'English, Social Science', fee: '₹450/hr' },
+  { name: 'Manoj Tiwari', plan: 'premium', qualification: 'M.Sc Physics', experience: '13 yrs', rating: 5, reviewCount: 96, location: 'Boring Road, Patna', expertise: 'Physics, Chemistry, Mathematics', fee: '₹700/hr' }
+];
+
+const DUMMY_TESTIMONIALS = [
+  { name: 'Ritu Sharma', rating: 5, review: 'Found a wonderful Maths tutor for my daughter within 2 days. The verification process gave us real confidence.', location: 'Rohini, Delhi' },
+  { name: 'Anil Kumar', rating: 5, review: 'Very smooth registration and the teacher matched exactly what we needed for Class 10 Science.', location: 'Sector 62, Noida' },
+  { name: 'Priya Verma', rating: 4, review: 'Good platform, quick response from tutors. Would recommend to other parents.', location: 'DLF Phase 3, Gurugram' },
+  { name: 'Sanjay Mehta', rating: 5, review: "My son's Physics scores improved a lot within just two months of classes.", location: 'Vaishali Nagar, Jaipur' },
+  { name: 'Kavita Nair', rating: 4, review: 'Easy online tuition setup, teacher was punctual and well prepared every class.', location: 'Edappally, Kochi' },
+  { name: 'Deepak Joshi', rating: 5, review: 'Excellent support from the Althea team throughout the registration process.', location: 'Hazratganj, Lucknow' },
+  { name: 'Sunita Rao', rating: 5, review: 'My daughter loves her Hindi tutor — patient, friendly and very knowledgeable.', location: 'MP Nagar, Bhopal' },
+  { name: 'Manish Agarwal', rating: 4, review: 'Reasonable fees and a good variety of subjects to choose from.', location: 'Civil Lines, Kanpur' },
+  { name: 'Rekha Iyer', rating: 5, review: 'The home tutor arrangement was hassle-free and safe — background verification really helped.', location: 'T Nagar, Chennai' },
+  { name: 'Vivek Malhotra', rating: 5, review: 'Great experience finding a Guitar teacher for my son through this platform.', location: 'Sector 22, Chandigarh' },
+  { name: 'Anjali Singh', rating: 4, review: 'Study material provided was very useful for board exam preparation.', location: 'Kankarbagh, Patna' },
+  { name: 'Rajesh Pillai', rating: 5, review: 'Teacher registration process was simple and support team responded quickly.', location: 'Baner, Pune' },
+  { name: 'Neeta Bhatt', rating: 5, review: 'Switched from another platform — much better tutor quality here.', location: 'Navrangpura, Ahmedabad' },
+  { name: 'Amit Chawla', rating: 4, review: 'Online classes have been smooth and well-scheduled every week.', location: 'Palasia, Indore' },
+  { name: 'Suman Reddy', rating: 5, review: 'Happy with the entrance exam prep material for JNVST.', location: 'Gachibowli, Hyderabad' },
+  { name: 'Farhan Sheikh', rating: 5, review: 'Our tutor for Class 12 Chemistry is fantastic — very approachable.', location: 'Bandra, Mumbai' },
+  { name: 'Geeta Kulkarni', rating: 4, review: 'Good communication from teachers, timely updates about progress.', location: 'Sadar, Nagpur' },
+  { name: 'Om Prakash', rating: 5, review: 'My son enjoys his Chess classes a lot — teacher is very engaging.', location: 'Ballygunge, Kolkata' }
+];
+
+const DUMMY_PREMIUM_LEADS = [
+  { id: 900001, class: 'Class 10', subject: 'Mathematics', location: 'Rohini Sector 11, Delhi', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹10,000', requirement: 'Needs help with Algebra & Geometry.', status: 'Active' },
+  { id: 900002, class: 'Class 8', subject: 'Science', location: 'Andheri East, Mumbai', board: 'ICSE', tuitionType: 'Online', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,500', requirement: 'Focus on Physics fundamentals.', status: 'Active' },
+  { id: 900003, class: 'Class 12', subject: 'Physics', location: 'Indiranagar, Bengaluru', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹14,000', requirement: 'JEE preparation support needed.', status: 'Active' },
+  { id: 900004, class: 'Class 6', subject: 'English', location: 'Viman Nagar, Pune', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu', budget: '₹8,000', requirement: 'Grammar & spoken English focus.', status: 'Active' },
+  { id: 900005, class: 'Class 9', subject: 'Chemistry', location: 'Anna Nagar, Chennai', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹9,500', requirement: 'Weak in organic chemistry basics.', status: 'Active' },
+  { id: 900006, class: 'Class 11', subject: 'Accountancy', location: 'Jubilee Hills, Hyderabad', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Mon, Wed, Fri', budget: '₹9,000', requirement: 'Needs regular practice sessions.', status: 'Active' },
+  { id: 900007, class: 'Nursery', subject: 'All Subjects', location: 'C-Scheme, Jaipur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹8,000', requirement: 'Foundational learning support.', status: 'Active' },
+  { id: 900008, class: 'Class 7', subject: 'Hindi', location: 'Indira Nagar, Lucknow', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu, Sat', budget: '₹8,200', requirement: 'Improve reading & writing skills.', status: 'Active' },
+  { id: 900009, class: 'Class 10', subject: 'Social Science', location: 'Salt Lake Sector 5, Kolkata', board: 'ICSE', tuitionType: 'Online', timing: 'Evening', days: 'Mon-Fri', budget: '₹8,800', requirement: 'Board exam revision needed.', status: 'Active' },
+  { id: 900010, class: 'Class 12', subject: 'Biology', location: 'Vastrapur, Ahmedabad', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹13,500', requirement: 'NEET preparation support.', status: 'Active' },
+  { id: 900011, class: 'Class 5', subject: 'Mathematics', location: 'Sector 44, Chandigarh', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,000', requirement: 'Building strong number sense.', status: 'Active' },
+  { id: 900012, class: 'Class 9', subject: 'Computer Science', location: 'Sector 18, Noida', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Tue, Thu', budget: '₹9,800', requirement: 'Python basics required.', status: 'Active' },
+  { id: 900013, class: 'Class 8', subject: 'French', location: 'Sector 49, Gurugram', board: 'CBSE', tuitionType: 'Online', timing: 'Evening', days: 'Sat, Sun', budget: '₹8,800', requirement: 'Beginner-level conversational French.', status: 'Active' },
+  { id: 900014, class: 'Class 6', subject: 'Guitar', location: 'Palasia, Indore', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Complete beginner, wants to learn basics.', status: 'Active' },
+  { id: 900015, class: 'Class 11', subject: 'Physics', location: 'Arera Colony, Bhopal', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹11,500', requirement: 'Numericals practice required.', status: 'Active' },
+  { id: 900016, class: 'Class 4', subject: 'All Subjects', location: 'Civil Lines, Nagpur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,200', requirement: 'General academic support.', status: 'Active' },
+  { id: 900017, class: 'Class 12', subject: 'Economics', location: 'Rajendra Nagar, Patna', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹9,500', requirement: 'Board exam scoring strategy needed.', status: 'Active' },
+  { id: 900018, class: 'Class 3', subject: 'Chess', location: 'Swaroop Nagar, Kanpur', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Wants to learn from scratch.', status: 'Active' }
+];
+
+const DUMMY_LIVE_LEADS = [
+  { id: 910001, name: 'Ramesh Iyer', status: 'Open', pref: 'Female Teacher', cls: 'Class 10', subj: 'Mathematics', city: 'Rohini Sector 9, Delhi', mode: 'Home Tuition', daysPerWeek: '3', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon, Wed, Fri', budget: '₹6000/month' },
+  { id: 910002, name: 'Sunita Kapoor', status: 'New', pref: 'Any', cls: 'Class 8', subj: 'Science', city: 'Powai, Mumbai', mode: 'Online', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Weekend', specificDays: 'Sat, Sun', budget: '₹4500/month' },
+  { id: 910003, name: 'Arvind Nair', status: 'Open', pref: 'Male Teacher', cls: 'Class 12', subj: 'Physics', city: 'Whitefield, Bengaluru', mode: 'Online', daysPerWeek: '5', hoursPerDay: '1.5 hr', timeSlot: 'Morning', specificDays: 'Mon-Fri', budget: '₹8000/month' },
+  { id: 910004, name: 'Kiran Desai', status: 'New', pref: 'Any', cls: 'Class 6', subj: 'English', city: 'Aundh, Pune', mode: 'Home Tuition', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Tue, Thu', budget: '₹3500/month' },
+  { id: 910005, name: 'Meena Pillai', status: 'Open', pref: 'Female Teacher', cls: 'Class 9', subj: 'Chemistry', city: 'Velachery, Chennai', mode: 'Home Tuition', daysPerWeek: '5', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon-Fri', budget: '₹5500/month' },
+  { id: 910006, name: 'Gopal Rao', status: 'New', pref: 'Any', cls: 'Class 11', subj: 'Accountancy', city: 'Madhapur, Hyderabad', mode: 'Online', daysPerWeek: '3', hoursPerDay: '1 hr', timeSlot: 'Afternoon', specificDays: 'Mon, Wed, Fri', budget: '₹5000/month' },
+  { id: 910007, name: 'Alok Sharma', status: 'Open', pref: 'Any', cls: 'Nursery', subj: 'All Subjects', city: 'Mansarovar, Jaipur', mode: 'Home Tuition', daysPerWeek: '7', hoursPerDay: '1 hr', timeSlot: 'Morning', specificDays: 'Daily', budget: '₹3000/month' },
+  { id: 910008, name: 'Nisha Verma', status: 'New', pref: 'Female Teacher', cls: 'Class 7', subj: 'Hindi', city: 'Alambagh, Lucknow', mode: 'Home Tuition', daysPerWeek: '3', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Tue, Thu, Sat', budget: '₹3200/month' },
+  { id: 910009, name: 'Tarun Ghosh', status: 'Open', pref: 'Any', cls: 'Class 10', subj: 'Social Science', city: 'Ballygunge, Kolkata', mode: 'Online', daysPerWeek: '5', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon-Fri', budget: '₹4200/month' },
+  { id: 910010, name: 'Falguni Shah', status: 'New', pref: 'Any', cls: 'Class 12', subj: 'Biology', city: 'Satellite, Ahmedabad', mode: 'Home Tuition', daysPerWeek: '7', hoursPerDay: '1.5 hr', timeSlot: 'Morning', specificDays: 'Daily', budget: '₹7500/month' },
+  { id: 910011, name: 'Harpreet Singh', status: 'Open', pref: 'Male Teacher', cls: 'Class 5', subj: 'Mathematics', city: 'Sector 35, Chandigarh', mode: 'Home Tuition', daysPerWeek: '3', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon, Wed, Fri', budget: '₹3000/month' },
+  { id: 910012, name: 'Ritika Jain', status: 'New', pref: 'Any', cls: 'Class 9', subj: 'Computer Science', city: 'Sector 137, Noida', mode: 'Online', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Afternoon', specificDays: 'Tue, Thu', budget: '₹4800/month' },
+  { id: 910013, name: 'Sameer Khan', status: 'Open', pref: 'Any', cls: 'Class 8', subj: 'French', city: 'Sector 56, Gurugram', mode: 'Online', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Weekend', specificDays: 'Sat, Sun', budget: '₹3800/month' },
+  { id: 910014, name: 'Payal Mishra', status: 'New', pref: 'Any', cls: 'Class 6', subj: 'Guitar', city: 'Vijay Nagar, Indore', mode: 'Home Tuition', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Weekend', specificDays: 'Sat, Sun', budget: '₹2500/month' },
+  { id: 910015, name: 'Dinesh Yadav', status: 'Open', pref: 'Male Teacher', cls: 'Class 11', subj: 'Physics', city: 'MP Nagar, Bhopal', mode: 'Home Tuition', daysPerWeek: '5', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon-Fri', budget: '₹6500/month' },
+  { id: 910016, name: 'Usha Kulkarni', status: 'New', pref: 'Any', cls: 'Class 4', subj: 'All Subjects', city: 'Dharampeth, Nagpur', mode: 'Home Tuition', daysPerWeek: '3', hoursPerDay: '1 hr', timeSlot: 'Evening', specificDays: 'Mon, Wed, Fri', budget: '₹3200/month' },
+  { id: 910017, name: 'Vinod Thakur', status: 'Open', pref: 'Any', cls: 'Class 12', subj: 'Economics', city: 'Boring Road, Patna', mode: 'Online', daysPerWeek: '7', hoursPerDay: '1 hr', timeSlot: 'Morning', specificDays: 'Daily', budget: '₹5800/month' },
+  { id: 910018, name: 'Bhavna Saxena', status: 'New', pref: 'Any', cls: 'Class 3', subj: 'Chess', city: 'Swaroop Nagar, Kanpur', mode: 'Home Tuition', daysPerWeek: '2', hoursPerDay: '1 hr', timeSlot: 'Weekend', specificDays: 'Sat, Sun', budget: '₹2000/month' }
+];
+
 function teacherProfileCardHtml(p) {
   const stars = '★'.repeat(Math.round(p.rating || 5)) + '☆'.repeat(5 - Math.round(p.rating || 5));
   const tags = (p.expertise || '').split(',').map(t => t.trim()).filter(Boolean);
@@ -5987,7 +6165,7 @@ function renderHomepageTeacherPreview() {
     grid.innerHTML = Array(4).fill('<div class="skel-card"><div class="skel skel-circle"></div><div class="skel skel-line" style="width:70%;margin:0 auto 6px;"></div><div class="skel skel-line" style="width:50%;margin:0 auto;"></div></div>').join('');
     return;
   }
-  const items = getData('teacherProfiles').filter(p => p.visible).slice().sort((a, b) => (b.plan === 'premium') - (a.plan === 'premium')).slice(0, 4);
+  const items = getData('teacherProfiles').filter(p => p.visible).concat(DUMMY_HOME_TEACHERS).slice().sort((a, b) => (b.plan === 'premium') - (a.plan === 'premium')).slice(0, 20);
   if (items.length === 0) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'block';
   grid.innerHTML = items.map(teacherProfileCardHtml).join('');
@@ -6044,7 +6222,7 @@ function renderHomepageTestimonials() {
     grid.innerHTML = Array(3).fill('<div class="skel-card"><div class="skel skel-line" style="width:40%;"></div><div class="skel skel-line" style="width:95%;"></div><div class="skel skel-line" style="width:80%;"></div><div class="skel skel-circle" style="width:40px;height:40px;margin:10px 0 0;"></div></div>').join('');
     return;
   }
-  const items = getData('parentFeedbacks').filter(f => f.showOnHome).slice(0, 6);
+  const items = getData('parentFeedbacks').filter(f => f.showOnHome).concat(DUMMY_TESTIMONIALS).slice(0, 20);
   if (!items.length) { wrap.style.display = 'none'; grid.innerHTML = ''; return; }
   wrap.style.display = 'block';
   grid.innerHTML = items.map(f => `
@@ -6065,7 +6243,7 @@ function renderHomepageTestimonials() {
 function renderPublicPremiumLeads() {
   const grid = document.getElementById('publicPremiumLeadsGrid');
   if (!grid) return;
-  const leads = getData('premiumLeads').filter(l => l.status === 'Active');
+  const leads = getData('premiumLeads').filter(l => l.status === 'Active').concat(DUMMY_PREMIUM_LEADS);
   grid.innerHTML = leads.length ? leads.map(l => `
     <div class="offer-card">
       <div class="ic"><i class="fas fa-star"></i></div>
