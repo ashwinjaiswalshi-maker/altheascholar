@@ -872,15 +872,18 @@
       padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; font-size: 13px; font-weight: 600;
     }
     .visibility-save-bar .pending-note { flex: 1; min-width: 180px; }
-    .premium-leads-grid {
-      display: flex; flex-wrap: nowrap; gap: 16px; overflow-x: auto;
-      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding-bottom: 6px;
+    .premium-leads-grid { grid-template-columns: repeat(3,1fr); }
+    @media (max-width: 900px) { .premium-leads-grid { grid-template-columns: 1fr; } }
+    .premium-leads-grid .offer-card {
+      text-align: left; position: relative; border-top: 4px solid #e6a12a;
+      background: linear-gradient(180deg, #fffaf0 0%, #ffffff 22%);
     }
-    .premium-leads-grid::-webkit-scrollbar { display: none; }
-    .premium-leads-grid .offer-card { flex: 0 0 260px; scroll-snap-align: start; text-align: left; }
-    .premium-leads-grid .offer-card .ic { margin: 0 0 10px; }
-    @media (max-width: 480px) { .premium-leads-grid .offer-card { flex-basis: 230px; } }
+    .premium-leads-grid .offer-card .ic { margin: 0 0 10px; background: linear-gradient(135deg,#f6c94a,#e6a12a); color: #4a3200; }
+    .premium-leads-grid .offer-card .lead-status-badge {
+      position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 800; letter-spacing: 0.3px;
+      padding: 4px 11px; border-radius: 20px; color: #fff; background: linear-gradient(135deg,#2fbf71,#1f9c5a);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
 
     .login-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.6);
@@ -928,11 +931,9 @@
     .admin-tab { display: none; margin-top: 20px; }
     .admin-tab.active { display: block; }
     .admin-tab-bar {
-      display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden;
-      margin: 20px 0; padding: 6px 2px 12px; scrollbar-width: thin;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 20px 0; padding: 6px 2px 12px;
     }
-    .admin-tab-bar::-webkit-scrollbar { height: 6px; }
-    .admin-tab-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
     .admin-tab-bar .btn { white-space: nowrap; flex: none; opacity: 0.72; transform: scale(0.97); transition: 0.18s; }
     .admin-tab-bar .admin-tab-btn.active-tab { opacity: 1; transform: scale(1); box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--secondary); }
     .admin-stats {
@@ -947,6 +948,18 @@
     .stat-card .label { font-size: 14px; color: var(--gray); }
 
     .admin-table-wrap { overflow-x: auto; background: #fff; border-radius: 16px; border: 1px solid var(--border); }
+    .study-breadcrumb { font-size: 13.5px; font-weight: 700; color: var(--gray); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .study-breadcrumb a { color: var(--primary); cursor: pointer; text-decoration: none; }
+    .study-breadcrumb a:hover { text-decoration: underline; }
+    .study-breadcrumb i { font-size: 10px; color: var(--border); }
+    .study-breadcrumb span { color: var(--secondary); }
+    .study-step-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-bottom: 26px; }
+    .study-pick-btn {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 10px;
+      font-weight: 700; font-size: 14px; color: var(--secondary); cursor: pointer; transition: 0.18s;
+      text-align: center; font-family: inherit;
+    }
+    .study-pick-btn:hover { border-color: var(--primary); background: var(--primary-light); color: var(--primary); transform: translateY(-3px); }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .admin-table th {
       background: var(--primary); color: #fff; padding: 12px 10px;
@@ -1038,16 +1051,18 @@
     }
     .lead-body { padding: 18px; overflow-y: auto; flex: 1; background: #f5f9ff; }
     .lead-card {
-      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      background: #fff; border: 1px solid var(--border); border-left: 5px solid var(--accent); border-radius: 14px;
       padding: 16px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
+    .lead-card.status-open { border-left-color: var(--green); }
+    .lead-card.status-closed { border-left-color: #9aa5b1; }
     .lead-card .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
     .lead-card .lead-id { font-weight: 700; font-size: 12px; color: var(--primary); background: var(--primary-light); padding: 2px 10px; border-radius: 12px; }
     .lead-card .name { font-weight: 700; font-size: 15px; color: var(--secondary); }
-    .lead-tag { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-    .tag-new { background: #fdede0; color: var(--accent); }
-    .tag-open { background: #E4EFF9; color: var(--green); }
-    .tag-closed { background: #e9ecef; color: #6c757d; }
+    .lead-tag { font-size: 10.5px; font-weight: 800; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.3px; color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+    .tag-new { background: linear-gradient(135deg,#ff8a3d,#e6621a); }
+    .tag-open { background: linear-gradient(135deg,#2fbf71,#1f9c5a); }
+    .tag-closed { background: linear-gradient(135deg,#9aa5b1,#6c757d); }
     .lead-card .meta { font-size: 12.5px; color: var(--gray); display: flex; gap: 6px; align-items: center; margin-bottom: 2px; }
     .lead-card .pref { font-size: 12px; color: var(--secondary); background: #eef2ff; padding: 2px 10px; border-radius: 12px; display: inline-block; margin-top: 4px; }
     .lead-card .budget { font-size: 14px; font-weight: 700; color: var(--primary); margin-top: 6px; }
@@ -1645,11 +1660,13 @@
     </div>
   </section>
   <section class="container">
-    <div class="study-picker-row">
-      <div class="form-row"><label>Class</label><select id="study-class-select" onchange="selectStudyClass(this.value)"><option value="">Select Class</option></select></div>
-      <div class="form-row" id="study-subject-row" style="display:none;"><label>Subject</label><select id="study-subject-select" onchange="selectStudySubject(this.value)"><option value="">Select Subject</option></select></div>
-      <div class="form-row" id="study-chapter-row" style="display:none;"><label>Chapter</label><select id="study-chapter-select" onchange="selectStudyChapterDropdown(this.value)"><option value="">Select Chapter</option></select></div>
-    </div>
+    <h3 style="color:var(--secondary);margin-bottom:4px;font-size:16px;"><i class="fas fa-external-link-alt"></i> NCERT Books (Class 1 – 12)</h3>
+    <p style="font-size:12.5px;color:var(--gray);margin-bottom:14px;">Opens the official NCERT website in a new tab.</p>
+    <div class="study-step-grid" id="ncert-books-grid"></div>
+  </section>
+  <section class="container" style="padding-top:0;">
+    <div class="study-breadcrumb" id="study-breadcrumb"></div>
+    <div class="study-step-grid" id="study-step-grid"></div>
     <div id="study-chapter-section" style="display:none;">
       <div class="res-panel">
         <h3 id="study-chapter-title">Chapter</h3>
@@ -1713,6 +1730,7 @@
       <button class="btn btn-primary admin-tab-btn" data-tab="students" onclick="showAdminTab('students')"><i class="fas fa-user-graduate"></i> Students</button>
       <button class="btn btn-primary admin-tab-btn" data-tab="leads" onclick="showAdminTab('leads')"><i class="fas fa-bolt"></i> Leads</button>
       <button class="btn btn-primary admin-tab-btn" data-tab="study-content" onclick="showAdminTab('study-content')"><i class="fas fa-book"></i> Study Content</button>
+      <button class="btn btn-primary admin-tab-btn" data-tab="ncert-books" onclick="showAdminTab('ncert-books')"><i class="fas fa-external-link-alt"></i> NCERT Books</button>
       <button class="btn btn-primary admin-tab-btn" data-tab="entrance-content" onclick="showAdminTab('entrance-content')"><i class="fas fa-clipboard-list"></i> Entrance Content</button>
       <button class="btn btn-primary admin-tab-btn" data-tab="homepage" onclick="showAdminTab('homepage')"><i class="fas fa-home"></i> Homepage Content</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="premium" onclick="showAdminTab('premium')"><i class="fas fa-star"></i> Premium Management</button>
@@ -1842,6 +1860,16 @@
           <thead><tr><th>Class</th><th>Subject</th><th>Chapter</th><th>Title</th><th>Type</th><th>Action</th></tr></thead>
           <tbody id="adminContentTable"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- NCERT Books Tab -->
+    <div class="admin-tab" id="admin-ncert-books">
+      <h3>📘 NCERT Books — per-class link</h3>
+      <p style="font-size:12.5px;color:var(--gray);margin:-6px 0 14px;">Each class's "View Book" button on the public Study Material page opens the link set here in a new tab. All 12 default to the official NCERT textbook page — edit any class individually if you get a more specific link for it.</p>
+      <div class="admin-form">
+        <div class="form-grid" id="ncertBooksAdminGrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));"></div>
+        <button class="btn btn-green" onclick="saveNcertBooks()" style="margin-top:14px;"><i class="fas fa-save"></i> Save NCERT Book Links</button>
       </div>
     </div>
 
@@ -2038,7 +2066,7 @@
             <option value="language">Language Classes</option>
           </select>
         </div>
-        <div style="margin-top:10px;"><label style="font-size:13px;font-weight:600;color:var(--secondary);display:block;margin-bottom:6px;">Profile Photo</label><input type="file" id="tp_photo" accept="image/*" onchange="teacherProfileImageUpload(this)"><img id="tp_photo_preview" src="" style="display:none;width:70px;height:70px;object-fit:cover;border-radius:50%;margin-top:6px;"></div>
+        <div style="margin-top:10px;"><label style="font-size:13px;font-weight:600;color:var(--secondary);display:block;margin-bottom:6px;">Profile Photo</label><input type="file" id="tp_photo" accept="image/*" onchange="teacherProfileImageUpload(this)"><br><img id="tp_photo_preview" src="" style="display:none;width:70px;height:70px;object-fit:cover;border-radius:50%;margin-top:6px;"><button type="button" id="tp_photo_remove_btn" onclick="removeTeacherProfilePhoto()" class="btn btn-outline btn-sm" style="display:none;margin-top:6px;margin-left:8px;vertical-align:top;"><i class="fas fa-trash"></i> Remove Photo</button></div>
         <input type="text" id="tp_expertise" placeholder="Expertise tags, comma separated (e.g. Maths, Physics, Dance, Spanish)" style="width:100%;margin-top:12px;">
         <textarea id="tp_bio" placeholder="Short passage about the teacher (shown on profile card)" style="width:100%;margin-top:12px;min-height:80px;"></textarea>
         <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;font-weight:600;color:var(--secondary);"><input type="checkbox" id="tp_visible" checked style="width:16px;height:16px;"> Show this profile on the website</label>
@@ -2575,13 +2603,6 @@
       <p style="font-size:13.5px;color:#4a3200;margin-bottom:10px;">Upgrade to Premium Membership (<span id="premiumLeadsPageFee">₹999</span> / <span id="premiumLeadsPageDuration">12 months</span>) to get priority access, apply directly to these leads, and unlock the ⭐ Premium badge on your profile.</p>
       <a class="btn btn-accent" onclick="showPage('page-teacher-form')"><i class="fas fa-arrow-up"></i> Become a Premium Teacher</a>
     </div>
-    <div class="hscroll-nav-wrap" style="margin-bottom:6px;">
-      <span></span>
-      <div class="hscroll-arrow-btns">
-        <button type="button" onclick="scrollRow('publicPremiumLeadsGrid', -1)" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-        <button type="button" onclick="scrollRow('publicPremiumLeadsGrid', 1)" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
     <div class="offer-grid premium-leads-grid" id="publicPremiumLeadsGrid"></div>
   </section>
 </div>
@@ -2957,24 +2978,24 @@ async function loadDefaultData() {
     const tpSnap = await fsDb.collection('teacherProfiles').get();
     if (tpSnap.empty) {
       const teachers = [
-        { name: 'Priya Sharma', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.Sc Mathematics', experience: '8 yrs', rating: 5, reviewCount: 62, location: 'Rohini Sector 9, Delhi', expertise: 'Mathematics, Physics', bio: 'Patient and result-focused Maths & Physics tutor for Classes 9-12.', fee: '₹600/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=47' },
-        { name: 'Rohit Verma', plan: 'basic', medal: 'none', category: 'academic', qualification: 'B.Tech, B.Ed', experience: '4 yrs', rating: 4, reviewCount: 24, location: 'Andheri West, Mumbai', expertise: 'Physics, Chemistry', bio: 'Makes Physics & Chemistry concepts easy with real-life examples.', fee: '₹450/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=12' },
-        { name: 'Ananya Iyer', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.A. English', experience: '10 yrs', rating: 5, reviewCount: 88, location: 'Koramangala, Bengaluru', expertise: 'English, Social Science', bio: 'Specialist in spoken English and board-exam writing skills.', fee: '₹550/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=45' },
-        { name: 'Vikram Singh', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.Com', experience: '6 yrs', rating: 4, reviewCount: 31, location: 'Malviya Nagar, Jaipur', expertise: 'Accountancy, Economics', bio: 'Commerce faculty focused on Class 11-12 board & CA foundation.', fee: '₹500/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=13' },
-        { name: 'Neha Gupta', plan: 'basic', medal: 'bronze', category: 'academic', qualification: 'M.Sc Chemistry', experience: '5 yrs', rating: 5, reviewCount: 40, location: 'Gomti Nagar, Lucknow', expertise: 'Chemistry, Biology', bio: 'Simplifies Chemistry & Biology with diagrams and practice tests.', fee: '₹480/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=32' },
-        { name: 'Arjun Nair', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'Ph.D Physics', experience: '12 yrs', rating: 5, reviewCount: 103, location: 'Adyar, Chennai', expertise: 'Physics, Mathematics', bio: 'Ex-JEE mentor, focuses on concept clarity and numericals.', fee: '₹700/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=14' },
-        { name: 'Kavya Reddy', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.A. Hindi', experience: '3 yrs', rating: 4, reviewCount: 15, location: 'Banjara Hills, Hyderabad', expertise: 'Hindi, Sanskrit', bio: 'Friendly Hindi & Sanskrit tutor for Classes 6-10.', fee: '₹350/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=48' },
-        { name: 'Siddharth Rao', plan: 'basic', medal: 'silver', category: 'academic', qualification: 'M.Tech CS', experience: '6 yrs', rating: 5, reviewCount: 47, location: 'Kothrud, Pune', expertise: 'Computer Science, IT', bio: 'Teaches Python, coding basics and board CS practicals.', fee: '₹650/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=15' },
-        { name: 'Meera Joshi', plan: 'premium', medal: 'silver', category: 'hobby', qualification: 'M.A. Fine Arts', experience: '9 yrs', rating: 5, reviewCount: 71, location: 'Satellite, Ahmedabad', expertise: 'Art & Craft, Drawing', bio: 'Encourages creativity through drawing, painting and craft projects.', fee: '₹400/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=44' },
-        { name: 'Rahul Kapoor', plan: 'basic', medal: 'none', category: 'hobby', qualification: 'B.A. Music', experience: '7 yrs', rating: 4, reviewCount: 29, location: 'Sector 35, Chandigarh', expertise: 'Guitar, Music', bio: 'Guitar and music theory for absolute beginners to intermediate.', fee: '₹500/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=16' },
-        { name: 'Sneha Pillai', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.Sc Biology', experience: '5 yrs', rating: 4, reviewCount: 22, location: 'Kakkanad, Kochi', expertise: 'Biology, Science', bio: 'NEET-focused Biology tutor with a diagram-first teaching style.', fee: '₹450/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=33' },
-        { name: 'Aditya Malhotra', plan: 'premium', medal: 'bronze', category: 'academic', qualification: 'MBA Finance', experience: '8 yrs', rating: 5, reviewCount: 55, location: 'Sector 56, Gurugram', expertise: 'Economics, Accountancy', bio: 'Helps students build strong fundamentals in Commerce subjects.', fee: '₹600/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=17' },
-        { name: 'Pooja Desai', plan: 'basic', medal: 'gold', category: 'hobby', qualification: 'Kathak Visharad', experience: '11 yrs', rating: 5, reviewCount: 66, location: 'Vijay Nagar, Indore', expertise: 'Kathak, Classical Dance', bio: 'Trained Kathak performer teaching classical dance to all ages.', fee: '₹500/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=43' },
-        { name: 'Karan Mehta', plan: 'basic', medal: 'none', category: 'language', qualification: 'M.A. French', experience: '4 yrs', rating: 4, reviewCount: 18, location: 'Sector 62, Noida', expertise: 'French, German', bio: 'Conversational French & German for beginners and travellers.', fee: '₹550/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=18' },
-        { name: 'Divya Menon', plan: 'premium', medal: 'silver', category: 'academic', qualification: 'M.Sc Mathematics', experience: '9 yrs', rating: 5, reviewCount: 80, location: 'Salt Lake, Kolkata', expertise: 'Mathematics, Computer Science', bio: 'Combines Maths logic with coding for a well-rounded approach.', fee: '₹600/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=41' },
-        { name: 'Sanjay Kulkarni', plan: 'basic', medal: 'none', category: 'hobby', qualification: 'B.P.Ed', experience: '6 yrs', rating: 4, reviewCount: 20, location: 'Dharampeth, Nagpur', expertise: 'Chess, Life Skills', bio: 'Chess coach who also builds focus & strategic thinking skills.', fee: '₹400/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=19' },
-        { name: 'Ritika Bansal', plan: 'basic', medal: 'bronze', category: 'academic', qualification: 'M.A. Psychology', experience: '5 yrs', rating: 5, reviewCount: 33, location: 'Arera Colony, Bhopal', expertise: 'English, Social Science', bio: 'Combines language skills with an understanding, patient approach.', fee: '₹450/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=38' },
-        { name: 'Manoj Tiwari', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.Sc Physics', experience: '13 yrs', rating: 5, reviewCount: 96, location: 'Boring Road, Patna', expertise: 'Physics, Chemistry, Mathematics', bio: 'Veteran Science faculty for board exams & competitive prep.', fee: '₹700/hr', visible: true, photo: 'https://i.pravatar.cc/300?img=51' }
+        { name: 'Priya Sharma', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.Sc Mathematics', experience: '8 yrs', rating: 5, reviewCount: 62, location: 'Rohini Sector 9, Delhi', expertise: 'Mathematics, Physics', bio: 'Patient and result-focused Maths & Physics tutor for Classes 9-12.', fee: '₹600/hr', visible: true },
+        { name: 'Rohit Verma', plan: 'basic', medal: 'none', category: 'academic', qualification: 'B.Tech, B.Ed', experience: '4 yrs', rating: 4, reviewCount: 24, location: 'Andheri West, Mumbai', expertise: 'Physics, Chemistry', bio: 'Makes Physics & Chemistry concepts easy with real-life examples.', fee: '₹450/hr', visible: true },
+        { name: 'Ananya Iyer', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.A. English', experience: '10 yrs', rating: 5, reviewCount: 88, location: 'Koramangala, Bengaluru', expertise: 'English, Social Science', bio: 'Specialist in spoken English and board-exam writing skills.', fee: '₹550/hr', visible: true },
+        { name: 'Vikram Singh', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.Com', experience: '6 yrs', rating: 4, reviewCount: 31, location: 'Malviya Nagar, Jaipur', expertise: 'Accountancy, Economics', bio: 'Commerce faculty focused on Class 11-12 board & CA foundation.', fee: '₹500/hr', visible: true },
+        { name: 'Neha Gupta', plan: 'basic', medal: 'bronze', category: 'academic', qualification: 'M.Sc Chemistry', experience: '5 yrs', rating: 5, reviewCount: 40, location: 'Gomti Nagar, Lucknow', expertise: 'Chemistry, Biology', bio: 'Simplifies Chemistry & Biology with diagrams and practice tests.', fee: '₹480/hr', visible: true },
+        { name: 'Arjun Nair', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'Ph.D Physics', experience: '12 yrs', rating: 5, reviewCount: 103, location: 'Adyar, Chennai', expertise: 'Physics, Mathematics', bio: 'Ex-JEE mentor, focuses on concept clarity and numericals.', fee: '₹700/hr', visible: true },
+        { name: 'Kavya Reddy', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.A. Hindi', experience: '3 yrs', rating: 4, reviewCount: 15, location: 'Banjara Hills, Hyderabad', expertise: 'Hindi, Sanskrit', bio: 'Friendly Hindi & Sanskrit tutor for Classes 6-10.', fee: '₹350/hr', visible: true },
+        { name: 'Siddharth Rao', plan: 'basic', medal: 'silver', category: 'academic', qualification: 'M.Tech CS', experience: '6 yrs', rating: 5, reviewCount: 47, location: 'Kothrud, Pune', expertise: 'Computer Science, IT', bio: 'Teaches Python, coding basics and board CS practicals.', fee: '₹650/hr', visible: true },
+        { name: 'Meera Joshi', plan: 'premium', medal: 'silver', category: 'hobby', qualification: 'M.A. Fine Arts', experience: '9 yrs', rating: 5, reviewCount: 71, location: 'Satellite, Ahmedabad', expertise: 'Art & Craft, Drawing', bio: 'Encourages creativity through drawing, painting and craft projects.', fee: '₹400/hr', visible: true },
+        { name: 'Rahul Kapoor', plan: 'basic', medal: 'none', category: 'hobby', qualification: 'B.A. Music', experience: '7 yrs', rating: 4, reviewCount: 29, location: 'Sector 35, Chandigarh', expertise: 'Guitar, Music', bio: 'Guitar and music theory for absolute beginners to intermediate.', fee: '₹500/hr', visible: true },
+        { name: 'Sneha Pillai', plan: 'basic', medal: 'none', category: 'academic', qualification: 'M.Sc Biology', experience: '5 yrs', rating: 4, reviewCount: 22, location: 'Kakkanad, Kochi', expertise: 'Biology, Science', bio: 'NEET-focused Biology tutor with a diagram-first teaching style.', fee: '₹450/hr', visible: true },
+        { name: 'Aditya Malhotra', plan: 'premium', medal: 'bronze', category: 'academic', qualification: 'MBA Finance', experience: '8 yrs', rating: 5, reviewCount: 55, location: 'Sector 56, Gurugram', expertise: 'Economics, Accountancy', bio: 'Helps students build strong fundamentals in Commerce subjects.', fee: '₹600/hr', visible: true },
+        { name: 'Pooja Desai', plan: 'basic', medal: 'gold', category: 'hobby', qualification: 'Kathak Visharad', experience: '11 yrs', rating: 5, reviewCount: 66, location: 'Vijay Nagar, Indore', expertise: 'Kathak, Classical Dance', bio: 'Trained Kathak performer teaching classical dance to all ages.', fee: '₹500/hr', visible: true },
+        { name: 'Karan Mehta', plan: 'basic', medal: 'none', category: 'language', qualification: 'M.A. French', experience: '4 yrs', rating: 4, reviewCount: 18, location: 'Sector 62, Noida', expertise: 'French, German', bio: 'Conversational French & German for beginners and travellers.', fee: '₹550/hr', visible: true },
+        { name: 'Divya Menon', plan: 'premium', medal: 'silver', category: 'academic', qualification: 'M.Sc Mathematics', experience: '9 yrs', rating: 5, reviewCount: 80, location: 'Salt Lake, Kolkata', expertise: 'Mathematics, Computer Science', bio: 'Combines Maths logic with coding for a well-rounded approach.', fee: '₹600/hr', visible: true },
+        { name: 'Sanjay Kulkarni', plan: 'basic', medal: 'none', category: 'hobby', qualification: 'B.P.Ed', experience: '6 yrs', rating: 4, reviewCount: 20, location: 'Dharampeth, Nagpur', expertise: 'Chess, Life Skills', bio: 'Chess coach who also builds focus & strategic thinking skills.', fee: '₹400/hr', visible: true },
+        { name: 'Ritika Bansal', plan: 'basic', medal: 'bronze', category: 'academic', qualification: 'M.A. Psychology', experience: '5 yrs', rating: 5, reviewCount: 33, location: 'Arera Colony, Bhopal', expertise: 'English, Social Science', bio: 'Combines language skills with an understanding, patient approach.', fee: '₹450/hr', visible: true },
+        { name: 'Manoj Tiwari', plan: 'premium', medal: 'gold', category: 'academic', qualification: 'M.Sc Physics', experience: '13 yrs', rating: 5, reviewCount: 96, location: 'Boring Road, Patna', expertise: 'Physics, Chemistry, Mathematics', bio: 'Veteran Science faculty for board exams & competitive prep.', fee: '₹700/hr', visible: true }
       ];
       await fsBatchAdd('teacherProfiles', teachers);
       totalAdded += teachers.length;
@@ -3751,7 +3772,7 @@ function showPage(id) {
   closeMobileNav();
   if (id === 'page-admin' && !isAdminLoggedIn) { openAdminLogin(); return; }
   if (id === 'page-admin' && isAdminLoggedIn) renderAll();
-  if (id === 'page-study') renderStudyClasses();
+  if (id === 'page-study') { renderStudyClasses(); renderNcertBooksPublic(); }
   if (id === 'page-entrance') renderEntranceExamGrid();
   if (id === 'page-home') { renderLeadSidebar(); renderCities('all'); renderHomepageContent(); renderHomepageAnnouncements(); renderHomepageTestimonials(); renderBlogList(); renderHomepageTeacherPreview(); }
   if (id === 'page-teachers') { renderPublicTeacherProfiles(); }
@@ -4227,7 +4248,7 @@ function renderLeadSidebar() {
   if (!body) return;
   body.innerHTML = leads.length === 0 ? '<p style="text-align:center;color:var(--gray);padding:40px 0;">No open leads</p>' :
     leads.map(l => `
-    <div class="lead-card">
+    <div class="lead-card status-${l.status.toLowerCase()}">
       <div class="top-row"><span class="name">${l.name}</span><span class="lead-id">#${l.id}</span></div>
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <span class="lead-tag tag-${l.status.toLowerCase()}">${l.status}</span>
@@ -4958,6 +4979,7 @@ function showAdminTab(tab) {
   if (tab === 'chatbot') renderAdminChatbotFaqs();
   if (tab === 'festival') populateFestivalPopupForm();
   if (tab === 'branding') populateBrandingForm();
+  if (tab === 'ncert-books') renderNcertBooksAdmin();
 }
 
 // ================================================================
@@ -5476,6 +5498,46 @@ function getBranding() {
   fsSettingsListen('branding', applyBranding);
   const saved = fsSettingsGet('branding');
   return { ...BRANDING_DEFAULT, ...(saved || {}) };
+}
+const NCERT_DEFAULT_LINK = 'https://ncert.nic.in/textbook.php';
+const NCERT_CLASSES = ['Class 1','Class 2','Class 3','Class 4','Class 5','Class 6','Class 7','Class 8','Class 9','Class 10','Class 11','Class 12'];
+const NCERT_BOOKS_DEFAULT = NCERT_CLASSES.reduce((acc, cls) => { acc[cls] = NCERT_DEFAULT_LINK; return acc; }, {});
+function getNcertBooks() {
+  fsSettingsListen('ncertBooks', renderNcertBooksPublic);
+  const saved = fsSettingsGet('ncertBooks');
+  return { ...NCERT_BOOKS_DEFAULT, ...(saved || {}) };
+}
+function renderNcertBooksPublic() {
+  const grid = document.getElementById('ncert-books-grid');
+  if (!grid) return;
+  const links = getNcertBooks();
+  grid.innerHTML = NCERT_CLASSES.map(cls => `
+    <div class="study-pick-btn" style="cursor:default;">
+      <div style="margin-bottom:8px;">${cls}</div>
+      <a class="btn btn-outline btn-sm" href="${links[cls] || NCERT_DEFAULT_LINK}" target="_blank" rel="noopener">View Book</a>
+    </div>
+  `).join('');
+}
+function renderNcertBooksAdmin() {
+  const wrap = document.getElementById('ncertBooksAdminGrid');
+  if (!wrap) return;
+  const links = getNcertBooks();
+  wrap.innerHTML = NCERT_CLASSES.map((cls, i) => `
+    <div class="form-row">
+      <label>${cls}</label>
+      <input type="text" id="ncert_link_${i}" value="${(links[cls] || NCERT_DEFAULT_LINK).replace(/"/g, '&quot;')}" placeholder="${NCERT_DEFAULT_LINK}">
+    </div>
+  `).join('');
+}
+function saveNcertBooks() {
+  const links = {};
+  NCERT_CLASSES.forEach((cls, i) => {
+    const el = document.getElementById('ncert_link_' + i);
+    links[cls] = (el && el.value.trim()) || NCERT_DEFAULT_LINK;
+  });
+  fsSettingsSave('ncertBooks', links);
+  renderNcertBooksPublic();
+  showToast('✅ NCERT Book links updated!');
 }
 let _lastAppliedLogoImage; // avoids re-doing the logo DOM swap when nothing actually changed
 function applyBranding() {
@@ -6052,6 +6114,20 @@ async function teacherProfileImageUpload(input) {
   const prev = document.getElementById('tp_photo_preview');
   prev.src = url; prev.style.display = 'block';
   prev.dataset.data = url;
+  delete prev.dataset.removed;
+  document.getElementById('tp_photo_remove_btn').style.display = 'inline-flex';
+}
+
+// Explicitly clears the teacher's photo (distinct from just not uploading a
+// new one) — without this, editing a teacher who already had a photo had
+// no way to actually remove it, only replace it with another upload.
+function removeTeacherProfilePhoto() {
+  const prev = document.getElementById('tp_photo_preview');
+  prev.src = ''; prev.style.display = 'none';
+  prev.dataset.data = '';
+  prev.dataset.removed = '1';
+  document.getElementById('tp_photo').value = '';
+  document.getElementById('tp_photo_remove_btn').style.display = 'none';
 }
 
 function addOrUpdateTeacherProfile() {
@@ -6059,6 +6135,7 @@ function addOrUpdateTeacherProfile() {
   if (!name) { showToast('⚠️ Teacher name is required!', 'error'); return; }
   const prev = document.getElementById('tp_photo_preview');
   const photoData = prev.dataset.data || '';
+  const photoRemoved = prev.dataset.removed === '1';
   const fields = {
     name,
     qualification: document.getElementById('tp_qualification').value.trim(),
@@ -6076,16 +6153,17 @@ function addOrUpdateTeacherProfile() {
   };
   if (editingTeacherProfileId !== null) {
     const existing = getData('teacherProfiles').find(p => p.id === editingTeacherProfileId);
-    fields.photo = photoData || (existing ? existing.photo : '');
+    fields.photo = photoRemoved ? '' : (photoData || (existing ? existing.photo : ''));
     updateData('teacherProfiles', editingTeacherProfileId, fields);
     showToast('✅ Teacher profile updated!');
     cancelEditTeacherProfile();
   } else {
-    fields.photo = photoData;
+    fields.photo = photoRemoved ? '' : photoData;
     addData('teacherProfiles', fields);
     showToast('✅ Teacher profile added!');
     ['tp_name','tp_qualification','tp_experience','tp_location','tp_fee','tp_review_count','tp_expertise','tp_bio'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('tp_photo').value = ''; prev.style.display = 'none'; delete prev.dataset.data;
+    document.getElementById('tp_photo').value = ''; prev.style.display = 'none'; delete prev.dataset.data; delete prev.dataset.removed;
+    document.getElementById('tp_photo_remove_btn').style.display = 'none';
   }
   renderAdminTeacherProfiles(); renderPublicTeacherProfiles(); renderHomepageTeacherPreview();
 }
@@ -6108,7 +6186,8 @@ function editTeacherProfile(id) {
   document.getElementById('tp_bio').value = p.bio || '';
   document.getElementById('tp_visible').checked = !!p.visible;
   const prev = document.getElementById('tp_photo_preview');
-  if (p.photo) { prev.src = p.photo; prev.style.display = 'block'; prev.dataset.data = p.photo; } else { prev.style.display = 'none'; delete prev.dataset.data; }
+  delete prev.dataset.removed;
+  if (p.photo) { prev.src = p.photo; prev.style.display = 'block'; prev.dataset.data = p.photo; document.getElementById('tp_photo_remove_btn').style.display = 'inline-flex'; } else { prev.style.display = 'none'; delete prev.dataset.data; document.getElementById('tp_photo_remove_btn').style.display = 'none'; }
   document.getElementById('tp_edit_banner').style.display = 'block';
   document.getElementById('tp_submit_btn').innerHTML = '<i class="fas fa-save"></i> Update Profile';
   document.getElementById('admin-teacher-profiles').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -6118,7 +6197,8 @@ function cancelEditTeacherProfile() {
   editingTeacherProfileId = null;
   ['tp_name','tp_qualification','tp_experience','tp_location','tp_fee','tp_review_count','tp_expertise','tp_bio'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('tp_photo').value = '';
-  const prev = document.getElementById('tp_photo_preview'); prev.style.display = 'none'; delete prev.dataset.data;
+  const prev = document.getElementById('tp_photo_preview'); prev.style.display = 'none'; delete prev.dataset.data; delete prev.dataset.removed;
+  document.getElementById('tp_photo_remove_btn').style.display = 'none';
   document.getElementById('tp_edit_banner').style.display = 'none';
   document.getElementById('tp_submit_btn').innerHTML = '<i class="fas fa-plus"></i> Add Teacher Profile';
 }
@@ -6273,6 +6353,7 @@ function renderPublicPremiumLeads() {
   const leads = getData('premiumLeads').filter(l => l.status === 'Active');
   grid.innerHTML = leads.length ? leads.map(l => `
     <div class="offer-card">
+      <span class="lead-status-badge"><i class="fas fa-bolt"></i> ${l.status}</span>
       <div class="ic"><i class="fas fa-star"></i></div>
       <h3>${l.class} — ${l.subject}</h3>
       <p><i class="fas fa-map-marker-alt"></i> ${l.location} &nbsp; | &nbsp; ${l.board}</p>
@@ -6295,22 +6376,57 @@ function incrementLeadApplication(id) {
 const studyClassesList = ['Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
 let studySelClass = '', studySelSub = '', studySelCh = '';
 
+function renderStudyStepGrid(items, emptyMsg) {
+  const grid = document.getElementById('study-step-grid');
+  if (!grid) return;
+  grid.innerHTML = items.length
+    ? items.map(v => `<button type="button" class="study-pick-btn" data-value="${v}">${v}</button>`).join('')
+    : `<p style="color:var(--gray);grid-column:1/-1;">${emptyMsg}</p>`;
+}
+
+function renderStudyBreadcrumb() {
+  const bc = document.getElementById('study-breadcrumb');
+  if (!bc) return;
+  let html = `<a data-step="class"><i class="fas fa-book-open"></i> Class</a>`;
+  if (studySelClass) html += `<i class="fas fa-chevron-right"></i><a data-step="subject">${studySelClass}</a>`;
+  if (studySelSub) html += `<i class="fas fa-chevron-right"></i><a data-step="chapter">${studySelSub}</a>`;
+  if (studySelCh) html += `<i class="fas fa-chevron-right"></i><span>${studySelCh}</span>`;
+  bc.innerHTML = html;
+}
+
+// One delegated listener handles every step button + breadcrumb link, so
+// re-rendering the grid (new class/subject/chapter buttons each step)
+// never loses its click handling.
+document.addEventListener('click', function(e) {
+  const pickBtn = e.target.closest('.study-pick-btn');
+  if (pickBtn && document.getElementById('study-step-grid')?.contains(pickBtn)) {
+    const value = pickBtn.dataset.value;
+    if (!studySelClass) selectStudyClass(value);
+    else if (!studySelSub) selectStudySubject(value);
+    else selectStudyChapterDropdown(value);
+    return;
+  }
+  const bcLink = e.target.closest('#study-breadcrumb a');
+  if (bcLink) {
+    const step = bcLink.dataset.step;
+    if (step === 'class') renderStudyClasses();
+    else if (step === 'subject') selectStudyClass(studySelClass);
+    else if (step === 'chapter') selectStudySubject(studySelSub);
+  }
+});
+
 function renderStudyClasses() {
-  const sel = document.getElementById('study-class-select');
-  if (!sel) return;
-  const current = sel.value;
-  sel.innerHTML = '<option value="">Select Class</option>' + studyClassesList.map(cls =>
-    `<option value="${cls}">${cls}</option>`
-  ).join('');
-  if (current) sel.value = current;
+  studySelClass = ''; studySelSub = ''; studySelCh = '';
+  const section = document.getElementById('study-chapter-section');
+  if (section) section.style.display = 'none';
+  renderStudyBreadcrumb();
+  renderStudyStepGrid(studyClassesList, 'No classes available.');
 }
 
 function selectStudyClass(cls) {
-  studySelClass = cls;
-  const subjectRow = document.getElementById('study-subject-row');
-  const chapterRow = document.getElementById('study-chapter-row');
+  studySelClass = cls; studySelSub = ''; studySelCh = '';
   document.getElementById('study-chapter-section').style.display = 'none';
-  if (!cls) { subjectRow.style.display = 'none'; chapterRow.style.display = 'none'; return; }
+  renderStudyBreadcrumb();
   // Subject list always comes from the fixed CBSE syllabus (DEFAULT_STUDY_DATA)
   // plus any extra subjects admin has added resources for — so the
   // Class/Subject/Chapter structure is always visible, even before any
@@ -6318,31 +6434,24 @@ function selectStudyClass(cls) {
   const defaultSubjects = Object.keys(DEFAULT_STUDY_DATA[cls] || {});
   const savedSubjects = [...new Set(getData('studyContent').filter(c => c.class === cls).map(c => c.subject))];
   const subjects = [...new Set([...defaultSubjects, ...savedSubjects])];
-  const subjSel = document.getElementById('study-subject-select');
-  subjSel.innerHTML = '<option value="">Select Subject</option>' + subjects.map(sub =>
-    `<option value="${sub}">${sub}</option>`
-  ).join('');
-  subjectRow.style.display = 'block';
-  chapterRow.style.display = 'none';
+  renderStudyStepGrid(subjects, 'No subjects yet for this class.');
 }
 
 function selectStudySubject(sub) {
-  studySelSub = sub;
-  const chapterRow = document.getElementById('study-chapter-row');
+  studySelSub = sub; studySelCh = '';
   document.getElementById('study-chapter-section').style.display = 'none';
-  if (!sub) { chapterRow.style.display = 'none'; return; }
+  renderStudyBreadcrumb();
   const defaultChapters = (DEFAULT_STUDY_DATA[studySelClass] && DEFAULT_STUDY_DATA[studySelClass][sub]) ? DEFAULT_STUDY_DATA[studySelClass][sub] : [];
   const savedChapters = [...new Set(getData('studyContent').filter(c => c.class === studySelClass && c.subject === sub).map(c => c.chapter))];
   const chapters = [...new Set([...defaultChapters, ...savedChapters])];
-  const chSel = document.getElementById('study-chapter-select');
-  chSel.innerHTML = '<option value="">Select Chapter</option>' + chapters.map(ch => `<option value="${ch}">${ch}</option>`).join('');
-  chapterRow.style.display = 'block';
+  renderStudyStepGrid(chapters, 'No chapters yet for this subject.');
 }
 
 function selectStudyChapterDropdown(chapterName) {
   studySelCh = chapterName;
   const section = document.getElementById('study-chapter-section');
-  if (!chapterName) { section.style.display = 'none'; return; }
+  renderStudyBreadcrumb();
+  renderStudyStepGrid([]); // chapter buttons make way for the resource panel below
   document.getElementById('study-chapter-title').textContent = `${studySelClass} — ${studySelSub} — ${chapterName}`;
   const resTypes = [
     ['notes', 'fa-sticky-note', 'Notes, Mind Map & Exercise Q&A'],
