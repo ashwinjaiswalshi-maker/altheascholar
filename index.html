@@ -953,13 +953,7 @@
     .study-breadcrumb a:hover { text-decoration: underline; }
     .study-breadcrumb i { font-size: 10px; color: var(--border); }
     .study-breadcrumb span { color: var(--secondary); }
-    .study-step-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-bottom: 26px; }
-    .study-pick-btn {
-      background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 10px;
-      font-weight: 700; font-size: 14px; color: var(--secondary); cursor: pointer; transition: 0.18s;
-      text-align: center; font-family: inherit;
-    }
-    .study-pick-btn:hover { border-color: var(--primary); background: var(--primary-light); color: var(--primary); transform: translateY(-3px); }
+    .study-step-grid.res-list div.study-pick-btn { margin: 0; }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .admin-table th {
       background: var(--primary); color: #fff; padding: 12px 10px;
@@ -1555,7 +1549,7 @@
           </div>
           <div class="form-row"><label>Transaction ID / UTR Number *</label><input type="text" id="t_premium_utr" placeholder="Enter 12-digit UTR / Transaction ID"></div>
           <div class="form-row"><label>Payment Screenshot *</label><input type="file" id="t_premium_screenshot" accept="image/*"></div>
-          <p style="font-size:12px;color:#8a5300;"><i class="fas fa-info-circle"></i> Registration submits with status "Payment Verification Pending" — Premium features activate only after admin approval. Premium Membership is valid for 12 months.</p>
+          <p style="font-size:12px;color:#8a5300;"><i class="fas fa-info-circle"></i> <span id="premiumDisclaimerNote">Registration submits with status "Payment Verification Pending" — Premium features activate only after admin approval. Premium Membership is valid for 12 months.</span></p>
         </div>
 
         <div class="form-section-title"><i class="fas fa-gavel"></i> G. Platform Policy</div>
@@ -1662,11 +1656,11 @@
   <section class="container">
     <h3 style="color:var(--secondary);margin-bottom:4px;font-size:16px;"><i class="fas fa-external-link-alt"></i> NCERT Books (Class 1 – 12)</h3>
     <p style="font-size:12.5px;color:var(--gray);margin-bottom:14px;">Opens the official NCERT website in a new tab.</p>
-    <div class="study-step-grid" id="ncert-books-grid"></div>
+    <div class="res-list" id="ncert-books-grid"></div>
   </section>
   <section class="container" style="padding-top:0;">
     <div class="study-breadcrumb" id="study-breadcrumb"></div>
-    <div class="study-step-grid" id="study-step-grid"></div>
+    <div class="res-list" id="study-step-grid"></div>
     <div id="study-chapter-section" style="display:none;">
       <div class="res-panel">
         <h3 id="study-chapter-title">Chapter</h3>
@@ -1943,6 +1937,10 @@
             <img id="pay_qr_preview" src="" style="width:70px;height:70px;border-radius:8px;border:1px solid var(--border);display:none;object-fit:contain;">
             <button type="button" class="btn btn-outline btn-sm" onclick="clearCustomQr()"><i class="fas fa-times"></i> Remove Custom QR</button>
           </div>
+        </div>
+        <div style="margin-top:12px;">
+          <label style="font-size:13px;font-weight:600;color:var(--secondary);display:block;margin-bottom:6px;">Registration Page — Disclaimer Note</label>
+          <textarea id="pay_disclaimer_note" style="width:100%;min-height:60px;" placeholder="Shown just below the payment fields on the teacher registration page."></textarea>
         </div>
         <button class="btn btn-accent" onclick="savePaymentSettings()" style="margin-top:14px;"><i class="fas fa-save"></i> Save Payment Settings</button>
       </div>
@@ -2690,8 +2688,8 @@
         </div>
         <p style="font-size:13px;color:#a0b8d4;margin-top:12px;">Connecting students with verified tutors across India.</p>
         <div class="footer-app-btns">
-          <a class="app-btn" onclick="return false;"><i class="fab fa-google-play"></i> Google Play</a>
-          <a class="app-btn" onclick="return false;"><i class="fab fa-apple"></i> App Store</a>
+          <a class="app-btn" onclick="showToast('📱 Our app is coming soon — stay tuned!'); return false;"><i class="fab fa-google-play"></i> Google Play</a>
+          <a class="app-btn" onclick="showToast('📱 Our app is coming soon — stay tuned!'); return false;"><i class="fab fa-apple"></i> App Store</a>
         </div>
       </div>
       <div><h4>Quick Links</h4>
@@ -3786,6 +3784,7 @@ function showPage(id) {
 const PAYMENT_DEFAULTS = {
   upi_id: 'altheascholar@upi', amount: '999', qr_custom: '',
   duration_value: '12', duration_unit: 'months',
+  disclaimer_note: 'Registration submits with status "Payment Verification Pending" — Premium features activate only after admin approval. Premium Membership is valid for 12 months.',
   basic_benefits: ['Normal registration', 'Normal tuition leads'],
   premium_benefits: ['⭐ Premium leads', 'Priority lead access', '⭐ Premium badge on profile', 'Priority profile visibility', 'Premium notifications']
 };
@@ -3806,6 +3805,7 @@ function renderPaymentSettings() {
   setTxt('planPremiumDuration', p.duration_value + ' ' + p.duration_unit);
   setTxt('premiumLeadsPageFee', '₹' + p.amount);
   setTxt('premiumLeadsPageDuration', p.duration_value + ' ' + p.duration_unit);
+  setTxt('premiumDisclaimerNote', p.disclaimer_note);
   const basicUl = document.getElementById('planBasicBenefits');
   if (basicUl) basicUl.innerHTML = (p.basic_benefits || []).map(b => `<li>${b}</li>`).join('');
   const premiumUl = document.getElementById('planPremiumBenefits');
@@ -3817,6 +3817,7 @@ function populatePaymentSettingsForm() {
   const amt = document.getElementById('pay_amount'); if (amt) amt.value = p.amount;
   const durVal = document.getElementById('pay_duration_value'); if (durVal) durVal.value = p.duration_value;
   const durUnit = document.getElementById('pay_duration_unit'); if (durUnit) durUnit.value = p.duration_unit;
+  const disc = document.getElementById('pay_disclaimer_note'); if (disc) disc.value = p.disclaimer_note;
   const basicTa = document.getElementById('pay_basic_benefits'); if (basicTa) basicTa.value = (p.basic_benefits || []).join('\n');
   const premiumTa = document.getElementById('pay_premium_benefits'); if (premiumTa) premiumTa.value = (p.premium_benefits || []).join('\n');
   const prev = document.getElementById('pay_qr_preview');
@@ -3847,6 +3848,7 @@ function savePaymentSettings() {
   p.amount = document.getElementById('pay_amount').value.trim() || PAYMENT_DEFAULTS.amount;
   p.duration_value = document.getElementById('pay_duration_value').value.trim() || PAYMENT_DEFAULTS.duration_value;
   p.duration_unit = document.getElementById('pay_duration_unit').value;
+  p.disclaimer_note = document.getElementById('pay_disclaimer_note').value.trim() || PAYMENT_DEFAULTS.disclaimer_note;
   const basicLines = document.getElementById('pay_basic_benefits').value.split('\n').map(s => s.trim()).filter(Boolean);
   const premiumLines = document.getElementById('pay_premium_benefits').value.split('\n').map(s => s.trim()).filter(Boolean);
   p.basic_benefits = basicLines.length ? basicLines : PAYMENT_DEFAULTS.basic_benefits;
@@ -4177,10 +4179,18 @@ function renderAdminLeads() {
         <option value="Closed" ${l.status === 'Closed' ? 'selected' : ''}>🔴 Closed</option>
       </select></td>
       <td><button class="btn btn-outline btn-sm" onclick="viewLeadDetails(${l.id})"><i class="fas fa-eye"></i></button>
+      <button class="btn ${l.hidden ? 'btn-outline' : 'btn-green'} btn-sm" onclick="toggleLeadVisibility(${l.id})" title="${l.hidden ? 'Hidden from teachers — click to show' : 'Visible to teachers — click to hide'}"><i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden' : 'Visible'}</button>
       <button class="btn btn-accent btn-sm" onclick="editLead(${l.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="deleteData('leads', ${l.id}); renderLeadSidebar();"><i class="fas fa-trash"></i></button></td>
     </tr>
   `).join('');
+}
+
+function toggleLeadVisibility(id) {
+  const l = getData('leads').find(x => x.id === id);
+  if (!l) return;
+  updateData('leads', id, { hidden: !l.hidden });
+  renderLeadSidebar();
 }
 
 let editingLeadId = null;
@@ -4243,7 +4253,7 @@ function viewLeadDetails(id) {
 }
 
 function renderLeadSidebar() {
-  const leads = getData('leads').filter(l => l.status !== 'Closed');
+  const leads = getData('leads').filter(l => l.status !== 'Closed' && !l.hidden);
   const body = document.getElementById('leadBody');
   if (!body) return;
   body.innerHTML = leads.length === 0 ? '<p style="text-align:center;color:var(--gray);padding:40px 0;">No open leads</p>' :
@@ -4638,7 +4648,7 @@ function renderAdminTeachers() {
       <td>${t.fee}</td>
       <td>${t.mode}</td>
       <td>${t.plan === 'premium' ? `<span class="badge-premium-pill">⭐ PREMIUM</span><br><span class="premium-status-pill ${premiumPillClass(t.premiumStatus)}">${t.premiumStatus || 'none'}</span>` : '<span class="premium-status-pill ps-none">Basic</span>'}</td>
-      <td><select onchange="updateData('teachers', ${t.id}, {status: this.value})" style="padding:4px 8px;border-radius:4px;border:1px solid var(--border);">
+      <td><select onchange="setTeacherRegistrationStatus(${t.id}, this.value)" style="padding:4px 8px;border-radius:4px;border:1px solid var(--border);">
         <option value="Pending" ${t.status === 'Pending' ? 'selected' : ''}>🟡 Pending</option>
         <option value="Verified" ${t.status === 'Verified' ? 'selected' : ''}>🟢 Verified</option>
         <option value="Rejected" ${t.status === 'Rejected' ? 'selected' : ''}>🔴 Rejected</option>
@@ -4647,6 +4657,42 @@ function renderAdminTeachers() {
       <button class="btn btn-danger btn-sm" onclick="deleteData('teachers', ${t.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
   `).join('');
+}
+
+// Approving a teacher (status → Verified) auto-creates their public Teacher
+// Profile card, pre-filled from their registration — admin can then edit,
+// show/hide, or add a photo/bio from the Teacher Profiles tab, exactly like
+// any manually-added profile. Re-approving (or toggling status back and
+// forth) never creates a duplicate — it's linked via sourceTeacherId.
+function setTeacherRegistrationStatus(teacherId, status) {
+  updateData('teachers', teacherId, { status });
+  if (status === 'Verified') autoCreateTeacherProfile(teacherId);
+}
+
+function autoCreateTeacherProfile(teacherId) {
+  const t = getData('teachers').find(x => x.id === teacherId);
+  if (!t) return;
+  if (getData('teacherProfiles').some(p => p.sourceTeacherId === teacherId)) return; // already linked
+  const category = t.teachAcademic ? 'academic' : (t.teachHobby ? 'hobby' : (t.teachLanguage ? 'language' : 'academic'));
+  const expertise = [t.subjects, t.hobbies, t.languages].filter(Boolean).join(', ');
+  addData('teacherProfiles', {
+    sourceTeacherId: teacherId,
+    name: t.name || '',
+    qualification: [t.degree, t.qualification].filter(Boolean).join(', '),
+    experience: t.experience || '',
+    location: t.city || '',
+    expertise: expertise,
+    fee: t.feePerHour ? `₹${t.feePerHour}/hr` : (t.fee || ''),
+    plan: t.plan || 'basic',
+    medal: 'none',
+    category: category,
+    bio: '',
+    rating: 5,
+    reviewCount: 0,
+    photo: t.photoData || '',
+    visible: true
+  });
+  showToast('✅ Teacher approved — profile auto-added to Teacher Profiles (edit, add photo, or hide it anytime from there).');
 }
 
 function premiumPillClass(status) {
@@ -4672,9 +4718,42 @@ function renderAdminStudents() {
       <td>${s.budget}</td>
       <td>${s.mode}</td>
       <td><button class="btn btn-danger btn-sm" onclick="viewStudentDetails(${s.id})"><i class="fas fa-eye"></i></button>
+      <button class="btn btn-outline btn-sm" onclick="pushStudentToLead(${s.id}, 'lead')" title="Add to Live Tuition Leads"><i class="fas fa-bolt"></i> Live Lead</button>
+      <button class="btn btn-accent btn-sm" onclick="pushStudentToLead(${s.id}, 'premium')" title="Add to Premium Leads"><i class="fas fa-star"></i> Premium Lead</button>
       <button class="btn btn-danger btn-sm" onclick="deleteData('students', ${s.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
   `).join('');
+}
+
+// Turns a parent's requirement into a real Live Lead or Premium Lead (one
+// per child student in the submission) — auto-filled from what they
+// entered, then fully editable/removable from the Leads / Premium Leads
+// admin tabs afterwards, same as any other entry there.
+function pushStudentToLead(studentId, target) {
+  const s = getData('students').find(x => x.id === studentId);
+  if (!s) return;
+  const children = (s.students && s.students.length) ? s.students : [{ class: '', subjects: '', hobbies: '', languages: '' }];
+  children.forEach(child => {
+    const subject = child.subjects || child.hobbies || child.languages || 'General';
+    if (target === 'premium') {
+      addData('premiumLeads', {
+        class: child.class || '', subject: subject, board: child.board || '', location: s.city || '',
+        tuitionType: s.mode || 'Home Tuition', timing: s.time || '', days: s.days || '',
+        budget: s.budget || '', requirement: s.specific || '',
+        expiry: new Date(Date.now() + 86400000 * 30).toISOString().slice(0, 10),
+        status: 'Active', applications: 0, createdAt: new Date().toISOString(), sourceStudentId: studentId
+      });
+    } else {
+      addData('leads', {
+        name: s.parent || '', status: 'New', pref: s.prefGender || 'Any', cls: child.class || '', subj: subject,
+        city: s.city || '', mode: s.mode || 'Home Tuition', daysPerWeek: s.classesPerWeek || '',
+        hoursPerDay: '', timeSlot: s.time || '', specificDays: s.days || '', budget: s.budget || '',
+        type: 'lead', createdAt: new Date().toISOString(), sourceStudentId: studentId
+      });
+    }
+  });
+  renderLeadSidebar();
+  showToast(`✅ Added to ${target === 'premium' ? 'Premium' : 'Live Tuition'} Leads — edit anytime from that tab.`);
 }
 
 function viewTeacherDetails(id) {
@@ -5115,9 +5194,17 @@ function renderAdminPremiumLeads() {
       <td>${l.status === 'Active' ? '🟢 Active' : '🔴 Closed'}</td>
       <td>${l.applications || 0}</td>
       <td><button class="btn btn-outline btn-sm" onclick="editPremiumLead(${l.id})"><i class="fas fa-edit"></i></button>
+      <button class="btn ${l.hidden ? 'btn-outline' : 'btn-green'} btn-sm" onclick="togglePremiumLeadVisibility(${l.id})" title="${l.hidden ? 'Hidden from visitors — click to show' : 'Visible to visitors — click to hide'}"><i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden' : 'Visible'}</button>
       <button class="btn btn-danger btn-sm" onclick="deleteData('premiumLeads', ${l.id})"><i class="fas fa-trash"></i></button></td>
     </tr>
   `).join('') : '<tr><td colspan="10" style="text-align:center;color:var(--gray);">No premium leads yet.</td></tr>';
+}
+
+function togglePremiumLeadVisibility(id) {
+  const l = getData('premiumLeads').find(x => x.id === id);
+  if (!l) return;
+  updateData('premiumLeads', id, { hidden: !l.hidden });
+  renderPublicPremiumLeads();
 }
 
 let editingPremiumLeadId = null;
@@ -6350,7 +6437,7 @@ function renderHomepageTestimonials() {
 function renderPublicPremiumLeads() {
   const grid = document.getElementById('publicPremiumLeadsGrid');
   if (!grid) return;
-  const leads = getData('premiumLeads').filter(l => l.status === 'Active');
+  const leads = getData('premiumLeads').filter(l => l.status === 'Active' && !l.hidden);
   grid.innerHTML = leads.length ? leads.map(l => `
     <div class="offer-card">
       <span class="lead-status-badge"><i class="fas fa-bolt"></i> ${l.status}</span>
@@ -6380,7 +6467,7 @@ function renderStudyStepGrid(items, emptyMsg) {
   const grid = document.getElementById('study-step-grid');
   if (!grid) return;
   grid.innerHTML = items.length
-    ? items.map(v => `<button type="button" class="study-pick-btn" data-value="${v}">${v}</button>`).join('')
+    ? items.map(v => `<div class="study-pick-btn" data-value="${v}"><i class="fas fa-book"></i> ${v}</div>`).join('')
     : `<p style="color:var(--gray);grid-column:1/-1;">${emptyMsg}</p>`;
 }
 
