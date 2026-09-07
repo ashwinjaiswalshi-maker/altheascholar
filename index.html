@@ -948,12 +948,43 @@
     .stat-card .label { font-size: 14px; color: var(--gray); }
 
     .admin-table-wrap { overflow-x: auto; background: #fff; border-radius: 16px; border: 1px solid var(--border); }
-    .study-breadcrumb { font-size: 13.5px; font-weight: 700; color: var(--gray); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .study-breadcrumb {
+      font-size: 13.5px; font-weight: 700; color: var(--gray); margin-bottom: 18px; display: flex;
+      align-items: center; gap: 8px; flex-wrap: wrap; background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 16px;
+    }
     .study-breadcrumb a { color: var(--primary); cursor: pointer; text-decoration: none; }
     .study-breadcrumb a:hover { text-decoration: underline; }
-    .study-breadcrumb i { font-size: 10px; color: var(--border); }
+    .study-breadcrumb i.fa-chevron-right { font-size: 10px; color: var(--border); }
     .study-breadcrumb span { color: var(--secondary); }
-    .study-step-grid.res-list div.study-pick-btn { margin: 0; }
+    .study-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .study-tile {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 22px 10px;
+      text-align: center; cursor: pointer; transition: 0.2s ease;
+      box-shadow: 0 2px 10px rgba(11,43,94,0.05);
+    }
+    .study-tile i { font-size: 24px; color: var(--primary); display: block; margin-bottom: 12px; }
+    .study-tile span { font-weight: 700; font-size: 14px; color: var(--secondary); }
+    .study-tile:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(11,43,94,0.2); border-color: var(--primary); }
+    .ncert-tile-grid .study-tile.ncert-tile {
+      text-decoration: none; background: #fffaf0; border-color: #f0dca6;
+    }
+    .ncert-tile-grid .study-tile.ncert-tile i { color: #c9971f; }
+    .ncert-tile-grid .study-tile.ncert-tile:hover { border-color: #c9971f; background: #fdf3dc; }
+    .ncert-tile-grid .study-tile.ncert-tile small { display: block; margin-top: 6px; font-size: 11px; font-weight: 600; color: #a6791a; }
+    .study-empty-msg { grid-column: 1/-1; text-align: center; color: var(--gray); padding: 30px 10px; background: #fff; border: 1.5px dashed var(--border); border-radius: 16px; }
+    .study-restype-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin: 4px 0 22px; }
+    .study-restype-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 10px;
+      border-radius: 16px; cursor: pointer; font-weight: 700; font-size: 13px; text-align: center;
+      border: 1.5px solid var(--border); background: #fff; color: var(--secondary); transition: 0.2s;
+    }
+    .study-restype-btn i { font-size: 21px; }
+    .study-restype-btn[data-type="notes"] i { color: #2f6fbf; }
+    .study-restype-btn[data-type="practice"] i { color: #7a3fc9; }
+    .study-restype-btn:not(.active):hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-3px); }
+    .study-restype-btn.active { background: var(--secondary); color: #fff; border-color: var(--secondary); box-shadow: 0 8px 18px -6px rgba(0,29,57,0.35); }
+    .study-restype-btn.active i { color: #fff; }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .admin-table th {
       background: var(--primary); color: #fff; padding: 12px 10px;
@@ -961,6 +992,20 @@
     }
     .admin-table td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
     .admin-table tr:hover { background: #f8faff; }
+    /* Compact icon buttons (Edit/Delete) sit on one row; the show/hide
+       control gets its own full-width row right below so it's never lost
+       among the other buttons and its current state is always obvious. */
+    .lead-action-row { display: flex; gap: 6px; margin-bottom: 6px; }
+    .lead-visibility-toggle {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: 100%; min-width: 150px; padding: 7px 10px; border-radius: 8px;
+      font-size: 12px; font-weight: 700; cursor: pointer; border: 1.5px solid transparent;
+      transition: 0.15s; white-space: nowrap;
+    }
+    .lead-visibility-toggle.visible { background: #e3f7ec; color: #1f9c5a; border-color: #b7ecce; }
+    .lead-visibility-toggle.visible:hover { background: #cdf1de; }
+    .lead-visibility-toggle.hidden { background: #f1f2f4; color: #75808c; border-color: #dfe3e8; }
+    .lead-visibility-toggle.hidden:hover { background: #e6e8eb; }
 
     .admin-form {
       background: #f8faff; padding: 20px; border-radius: 16px;
@@ -1650,27 +1695,32 @@
     <div class="container">
       <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Study Material</div>
       <h1><i class="fas fa-book-open"></i> Study Material</h1>
-      <p style="color:var(--gray);font-size:14px;">Select Class → Subject → Chapter → Resource Type</p>
+      <p style="color:var(--gray);font-size:14px;">NCERT Books, Notes, Exercises & Practice Papers — Class 6 to 12</p>
     </div>
   </section>
   <section class="container">
-    <h3 style="color:var(--secondary);margin-bottom:4px;font-size:16px;"><i class="fas fa-external-link-alt"></i> NCERT Books (Class 1 – 12)</h3>
-    <p style="font-size:12.5px;color:var(--gray);margin-bottom:14px;">Opens the official NCERT website in a new tab.</p>
-    <div class="res-list" id="ncert-books-grid"></div>
+    <h3 style="color:var(--secondary);margin-bottom:4px;font-size:16px;"><i class="fas fa-book"></i> NCERT Books (Class 1 – 12)</h3>
+    <p style="font-size:12.5px;color:var(--gray);margin-bottom:14px;">Opens the official NCERT textbook page in a new tab.</p>
+    <div class="study-tile-grid ncert-tile-grid" id="ncert-books-grid"></div>
   </section>
-  <section class="container" style="padding-top:0;">
+  <section class="container" style="padding-top:6px;">
+    <h3 style="color:var(--secondary);margin-bottom:14px;font-size:16px;"><i class="fas fa-layer-group"></i> Study Resources</h3>
     <div class="study-breadcrumb" id="study-breadcrumb"></div>
-    <div class="res-list" id="study-step-grid"></div>
+    <div class="study-tile-grid" id="study-step-grid"></div>
     <div id="study-chapter-section" style="display:none;">
       <div class="res-panel">
         <h3 id="study-chapter-title">Chapter</h3>
-        <p style="font-size:12.5px;color:var(--gray);margin:-8px 0 10px;">Choose a resource type below.</p>
-        <div class="res-list" id="study-restypes"></div>
+        <p style="font-size:12.5px;color:var(--gray);margin:-8px 0 14px;">Choose what you need below.</p>
+        <div class="study-restype-row" id="study-restypes"></div>
         <div id="study-content-display" class="content-display"></div>
       </div>
     </div>
   </section>
 </div>
+
+<!-- ================================================================ -->
+<!-- (End Study Material — Class/Subject/Chapter picker + resource types) -->
+<!-- ================================================================ -->
 
 <!-- ENTRANCE EXAMS -->
 <div class="page-inner" id="page-entrance">
@@ -1992,6 +2042,7 @@
         <h4 style="margin-bottom:10px;">➕ Create Premium Lead</h4>
         <div class="admin-form">
           <div class="form-grid">
+            <input type="text" id="pl_name" placeholder="Parent / Requirement Name *">
             <input type="text" id="pl_class" placeholder="Class *">
             <input type="text" id="pl_subject" placeholder="Subject *">
             <select id="pl_board">
@@ -2018,7 +2069,7 @@
         </div>
         <div class="admin-table-wrap">
           <table class="admin-table">
-            <thead><tr><th>Class</th><th>Subject</th><th>Board</th><th>Location</th><th>Type</th><th>Budget</th><th>Expiry</th><th>Status</th><th>Applications</th><th>Action</th></tr></thead>
+            <thead><tr><th>ID</th><th>Name</th><th>Class</th><th>Subject</th><th>Board</th><th>Location</th><th>Type</th><th>Budget</th><th>Expiry</th><th>Status</th><th>Applications</th><th>Action</th></tr></thead>
             <tbody id="adminPremiumLeadsTable"></tbody>
           </table>
         </div>
@@ -3008,24 +3059,24 @@ async function loadDefaultData() {
     if (plSnap.empty) {
       const farExpiry = new Date(Date.now() + 86400000 * 60).toISOString().slice(0, 10);
       const premiumLeads = [
-        { class: 'Class 10', subject: 'Mathematics', location: 'Rohini Sector 11, Delhi', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹10,000', requirement: 'Needs help with Algebra & Geometry.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 8', subject: 'Science', location: 'Andheri East, Mumbai', board: 'ICSE', tuitionType: 'Online', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,500', requirement: 'Focus on Physics fundamentals.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 12', subject: 'Physics', location: 'Indiranagar, Bengaluru', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹14,000', requirement: 'JEE preparation support needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 6', subject: 'English', location: 'Viman Nagar, Pune', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu', budget: '₹8,000', requirement: 'Grammar & spoken English focus.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 9', subject: 'Chemistry', location: 'Anna Nagar, Chennai', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹9,500', requirement: 'Weak in organic chemistry basics.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 11', subject: 'Accountancy', location: 'Jubilee Hills, Hyderabad', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Mon, Wed, Fri', budget: '₹9,000', requirement: 'Needs regular practice sessions.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Nursery', subject: 'All Subjects', location: 'C-Scheme, Jaipur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹8,000', requirement: 'Foundational learning support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 7', subject: 'Hindi', location: 'Indira Nagar, Lucknow', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu, Sat', budget: '₹8,200', requirement: 'Improve reading & writing skills.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 10', subject: 'Social Science', location: 'Salt Lake Sector 5, Kolkata', board: 'ICSE', tuitionType: 'Online', timing: 'Evening', days: 'Mon-Fri', budget: '₹8,800', requirement: 'Board exam revision needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 12', subject: 'Biology', location: 'Vastrapur, Ahmedabad', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹13,500', requirement: 'NEET preparation support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 5', subject: 'Mathematics', location: 'Sector 44, Chandigarh', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,000', requirement: 'Building strong number sense.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 9', subject: 'Computer Science', location: 'Sector 18, Noida', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Tue, Thu', budget: '₹9,800', requirement: 'Python basics required.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 8', subject: 'French', location: 'Sector 49, Gurugram', board: 'CBSE', tuitionType: 'Online', timing: 'Evening', days: 'Sat, Sun', budget: '₹8,800', requirement: 'Beginner-level conversational French.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 6', subject: 'Guitar', location: 'Palasia, Indore', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Complete beginner, wants to learn basics.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 11', subject: 'Physics', location: 'Arera Colony, Bhopal', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹11,500', requirement: 'Numericals practice required.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 4', subject: 'All Subjects', location: 'Civil Lines, Nagpur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,200', requirement: 'General academic support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 12', subject: 'Economics', location: 'Rajendra Nagar, Patna', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹9,500', requirement: 'Board exam scoring strategy needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
-        { class: 'Class 3', subject: 'Chess', location: 'Swaroop Nagar, Kanpur', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Wants to learn from scratch.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() }
+        { name: 'Rakesh Sharma', class: 'Class 10', subject: 'Mathematics', location: 'Rohini Sector 11, Delhi', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹10,000', requirement: 'Needs help with Algebra & Geometry.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Meena Iyer', class: 'Class 8', subject: 'Science', location: 'Andheri East, Mumbai', board: 'ICSE', tuitionType: 'Online', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,500', requirement: 'Focus on Physics fundamentals.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Suresh Bansal', class: 'Class 12', subject: 'Physics', location: 'Indiranagar, Bengaluru', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹14,000', requirement: 'JEE preparation support needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Anita Kulkarni', class: 'Class 6', subject: 'English', location: 'Viman Nagar, Pune', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu', budget: '₹8,000', requirement: 'Grammar & spoken English focus.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Vikas Rao', class: 'Class 9', subject: 'Chemistry', location: 'Anna Nagar, Chennai', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹9,500', requirement: 'Weak in organic chemistry basics.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Pooja Nair', class: 'Class 11', subject: 'Accountancy', location: 'Jubilee Hills, Hyderabad', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Mon, Wed, Fri', budget: '₹9,000', requirement: 'Needs regular practice sessions.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Alok Verma', class: 'Nursery', subject: 'All Subjects', location: 'C-Scheme, Jaipur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹8,000', requirement: 'Foundational learning support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Shalini Gupta', class: 'Class 7', subject: 'Hindi', location: 'Indira Nagar, Lucknow', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Tue, Thu, Sat', budget: '₹8,200', requirement: 'Improve reading & writing skills.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Tanvi Sen', class: 'Class 10', subject: 'Social Science', location: 'Salt Lake Sector 5, Kolkata', board: 'ICSE', tuitionType: 'Online', timing: 'Evening', days: 'Mon-Fri', budget: '₹8,800', requirement: 'Board exam revision needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Rajiv Menon', class: 'Class 12', subject: 'Biology', location: 'Vastrapur, Ahmedabad', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Morning', days: 'Daily', budget: '₹13,500', requirement: 'NEET preparation support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Deepa Choudhary', class: 'Class 5', subject: 'Mathematics', location: 'Sector 44, Chandigarh', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,000', requirement: 'Building strong number sense.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Naveen Reddy', class: 'Class 9', subject: 'Computer Science', location: 'Sector 18, Noida', board: 'CBSE', tuitionType: 'Online', timing: 'Afternoon', days: 'Tue, Thu', budget: '₹9,800', requirement: 'Python basics required.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Farida Khan', class: 'Class 8', subject: 'French', location: 'Sector 49, Gurugram', board: 'CBSE', tuitionType: 'Online', timing: 'Evening', days: 'Sat, Sun', budget: '₹8,800', requirement: 'Beginner-level conversational French.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Amit Joshi', class: 'Class 6', subject: 'Guitar', location: 'Palasia, Indore', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Complete beginner, wants to learn basics.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Sunita Pillai', class: 'Class 11', subject: 'Physics', location: 'Arera Colony, Bhopal', board: 'CBSE', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon-Fri', budget: '₹11,500', requirement: 'Numericals practice required.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Vikram Malhotra', class: 'Class 4', subject: 'All Subjects', location: 'Civil Lines, Nagpur', board: 'State Board', tuitionType: 'Home Tuition', timing: 'Evening', days: 'Mon, Wed, Fri', budget: '₹8,200', requirement: 'General academic support.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Renu Kapoor', class: 'Class 12', subject: 'Economics', location: 'Rajendra Nagar, Patna', board: 'CBSE', tuitionType: 'Online', timing: 'Morning', days: 'Daily', budget: '₹9,500', requirement: 'Board exam scoring strategy needed.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() },
+        { name: 'Sanjay Thakur', class: 'Class 3', subject: 'Chess', location: 'Swaroop Nagar, Kanpur', board: 'N/A', tuitionType: 'Home Tuition', timing: 'Weekend', days: 'Sat, Sun', budget: '₹8,000', requirement: 'Wants to learn from scratch.', expiry: farExpiry, status: 'Active', applications: 0, createdAt: new Date().toISOString() }
       ];
       await fsBatchAdd('premiumLeads', premiumLeads);
       totalAdded += premiumLeads.length;
@@ -4178,10 +4229,15 @@ function renderAdminLeads() {
         <option value="Open" ${l.status === 'Open' ? 'selected' : ''}>🟡 Open</option>
         <option value="Closed" ${l.status === 'Closed' ? 'selected' : ''}>🔴 Closed</option>
       </select></td>
-      <td><button class="btn btn-outline btn-sm" onclick="viewLeadDetails(${l.id})"><i class="fas fa-eye"></i></button>
-      <button class="btn ${l.hidden ? 'btn-outline' : 'btn-green'} btn-sm" onclick="toggleLeadVisibility(${l.id})" title="${l.hidden ? 'Hidden from teachers — click to show' : 'Visible to teachers — click to hide'}"><i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden' : 'Visible'}</button>
-      <button class="btn btn-accent btn-sm" onclick="editLead(${l.id})"><i class="fas fa-edit"></i></button>
-      <button class="btn btn-danger btn-sm" onclick="deleteData('leads', ${l.id}); renderLeadSidebar();"><i class="fas fa-trash"></i></button></td>
+      <td>
+        <div class="lead-action-row">
+          <button class="btn btn-accent btn-sm" onclick="editLead(${l.id})"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-danger btn-sm" onclick="deleteData('leads', ${l.id}); renderLeadSidebar();"><i class="fas fa-trash"></i></button>
+        </div>
+        <button class="lead-visibility-toggle ${l.hidden ? 'hidden' : 'visible'}" onclick="toggleLeadVisibility(${l.id})">
+          <i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden — click to show' : 'Visible — click to hide'}
+        </button>
+      </td>
     </tr>
   `).join('');
 }
@@ -4271,7 +4327,7 @@ function renderLeadSidebar() {
       <div class="meta"><i class="fas fa-clock"></i> ${l.timeSlot || 'Any Time'}</div>
       ${l.specificDays && l.specificDays !== 'Not Specified' ? `<div class="meta"><i class="fas fa-calendar-alt"></i> ${l.specificDays}</div>` : ''}
       <div class="budget">${l.budget || 'Budget not specified'}</div>
-      <a href="https://wa.me/918287771882?text=Hi%20Althea%20Scholar%2C%20I%20am%20a%20registered%20teacher%20and%20interested%20in%20Lead%20%23${l.id}%20for%20${l.cls}%20%7C%20${l.subj}%20%7C%20${l.city}" target="_blank" class="whatsapp-btn">
+      <a href="https://wa.me/${getHomepageContent().whatsapp}?text=Hi%20Althea%20Scholar%2C%20I%20am%20a%20registered%20teacher%20and%20interested%20in%20Lead%20%23${l.id}%20for%20${l.cls}%20%7C%20${l.subj}%20%7C%20${l.city}" target="_blank" class="whatsapp-btn">
         <i class="fab fa-whatsapp"></i> Interested — Lead #${l.id}
       </a>
     </div>
@@ -4737,7 +4793,7 @@ function pushStudentToLead(studentId, target) {
     const subject = child.subjects || child.hobbies || child.languages || 'General';
     if (target === 'premium') {
       addData('premiumLeads', {
-        class: child.class || '', subject: subject, board: child.board || '', location: s.city || '',
+        name: s.parent || '', class: child.class || '', subject: subject, board: child.board || '', location: s.city || '',
         tuitionType: s.mode || 'Home Tuition', timing: s.time || '', days: s.days || '',
         budget: s.budget || '', requirement: s.specific || '',
         expiry: new Date(Date.now() + 86400000 * 30).toISOString().slice(0, 10),
@@ -5150,6 +5206,7 @@ function rejectPremiumTeacher(id) {
 
 function addPremiumLead() {
   const data = {
+    name: document.getElementById('pl_name').value.trim(),
     class: document.getElementById('pl_class').value.trim(),
     subject: document.getElementById('pl_subject').value.trim(),
     board: document.getElementById('pl_board').value,
@@ -5184,6 +5241,8 @@ function renderAdminPremiumLeads() {
   if (!tbody) return;
   tbody.innerHTML = leads.length ? leads.map(l => `
     <tr>
+      <td><strong>#${l.id}</strong></td>
+      <td>${l.name || '-'}</td>
       <td>${l.class}</td>
       <td>${l.subject}</td>
       <td>${l.board}</td>
@@ -5193,11 +5252,17 @@ function renderAdminPremiumLeads() {
       <td>${l.expiry || '-'}</td>
       <td>${l.status === 'Active' ? '🟢 Active' : '🔴 Closed'}</td>
       <td>${l.applications || 0}</td>
-      <td><button class="btn btn-outline btn-sm" onclick="editPremiumLead(${l.id})"><i class="fas fa-edit"></i></button>
-      <button class="btn ${l.hidden ? 'btn-outline' : 'btn-green'} btn-sm" onclick="togglePremiumLeadVisibility(${l.id})" title="${l.hidden ? 'Hidden from visitors — click to show' : 'Visible to visitors — click to hide'}"><i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden' : 'Visible'}</button>
-      <button class="btn btn-danger btn-sm" onclick="deleteData('premiumLeads', ${l.id})"><i class="fas fa-trash"></i></button></td>
+      <td>
+        <div class="lead-action-row">
+          <button class="btn btn-outline btn-sm" onclick="editPremiumLead(${l.id})"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-danger btn-sm" onclick="deleteData('premiumLeads', ${l.id})"><i class="fas fa-trash"></i></button>
+        </div>
+        <button class="lead-visibility-toggle ${l.hidden ? 'hidden' : 'visible'}" onclick="togglePremiumLeadVisibility(${l.id})">
+          <i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden — click to show' : 'Visible — click to hide'}
+        </button>
+      </td>
     </tr>
-  `).join('') : '<tr><td colspan="10" style="text-align:center;color:var(--gray);">No premium leads yet.</td></tr>';
+  `).join('') : '<tr><td colspan="12" style="text-align:center;color:var(--gray);">No premium leads yet.</td></tr>';
 }
 
 function togglePremiumLeadVisibility(id) {
@@ -5212,6 +5277,7 @@ function editPremiumLead(id) {
   const l = getData('premiumLeads').find(x => x.id === id);
   if (!l) return;
   editingPremiumLeadId = id;
+  document.getElementById('pl_name').value = l.name || '';
   document.getElementById('pl_class').value = l.class || '';
   document.getElementById('pl_subject').value = l.subject || '';
   document.getElementById('pl_board').value = l.board || 'CBSE';
@@ -5599,10 +5665,11 @@ function renderNcertBooksPublic() {
   if (!grid) return;
   const links = getNcertBooks();
   grid.innerHTML = NCERT_CLASSES.map(cls => `
-    <div class="study-pick-btn" style="cursor:default;">
-      <div style="margin-bottom:8px;">${cls}</div>
-      <a class="btn btn-outline btn-sm" href="${links[cls] || NCERT_DEFAULT_LINK}" target="_blank" rel="noopener">View Book</a>
-    </div>
+    <a class="study-tile ncert-tile" href="${links[cls] || NCERT_DEFAULT_LINK}" target="_blank" rel="noopener">
+      <i class="fas fa-book"></i>
+      <span>${cls}</span>
+      <small>View Book <i class="fas fa-external-link-alt"></i></small>
+    </a>
   `).join('');
 }
 function renderNcertBooksAdmin() {
@@ -6442,12 +6509,13 @@ function renderPublicPremiumLeads() {
     <div class="offer-card">
       <span class="lead-status-badge"><i class="fas fa-bolt"></i> ${l.status}</span>
       <div class="ic"><i class="fas fa-star"></i></div>
+      <p style="font-size:11px;color:var(--gray);margin-bottom:2px;">#${l.id}${l.name ? ' · ' + l.name : ''}</p>
       <h3>${l.class} — ${l.subject}</h3>
       <p><i class="fas fa-map-marker-alt"></i> ${l.location} &nbsp; | &nbsp; ${l.board}</p>
       <p><i class="fas fa-laptop-house"></i> ${l.tuitionType} ${l.timing ? '· ' + l.timing : ''} ${l.days ? '· ' + l.days : ''}</p>
       ${l.budget ? `<p><i class="fas fa-rupee-sign"></i> ${l.budget}/month</p>` : ''}
       ${l.requirement ? `<p style="font-size:12.5px;color:var(--gray);">${l.requirement}</p>` : ''}
-      <a class="btn btn-green btn-sm" style="margin-top:8px;" href="https://wa.me/918287771882?text=${encodeURIComponent('Hi Althea Scholar, I am a Premium Teacher and interested in Premium Lead: ' + l.class + ' | ' + l.subject + ' | ' + l.location)}" target="_blank" onclick="incrementLeadApplication(${l.id})"><i class="fab fa-whatsapp"></i> Apply for Lead</a>
+      <a class="btn btn-green btn-sm" style="margin-top:8px;" href="https://wa.me/${getHomepageContent().whatsapp}?text=${encodeURIComponent('Hi Althea Scholar, I am a Premium Teacher and interested in Premium Lead: ' + l.class + ' | ' + l.subject + ' | ' + l.location)}" target="_blank" onclick="incrementLeadApplication(${l.id})"><i class="fab fa-whatsapp"></i> Apply for Lead</a>
     </div>
   `).join('') : '<p style="text-align:center;color:var(--gray);grid-column:1/-1;">No active Premium Leads right now. Check back soon!</p>';
 }
@@ -6463,12 +6531,12 @@ function incrementLeadApplication(id) {
 const studyClassesList = ['Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
 let studySelClass = '', studySelSub = '', studySelCh = '';
 
-function renderStudyStepGrid(items, emptyMsg) {
+function renderStudyStepGrid(items, emptyMsg, icon) {
   const grid = document.getElementById('study-step-grid');
   if (!grid) return;
   grid.innerHTML = items.length
-    ? items.map(v => `<div class="study-pick-btn" data-value="${v}"><i class="fas fa-book"></i> ${v}</div>`).join('')
-    : `<p style="color:var(--gray);grid-column:1/-1;">${emptyMsg}</p>`;
+    ? items.map(v => `<div class="study-tile" data-value="${v}"><i class="fas ${icon}"></i><span>${v}</span></div>`).join('')
+    : `<p class="study-empty-msg">${emptyMsg}</p>`;
 }
 
 function renderStudyBreadcrumb() {
@@ -6485,7 +6553,7 @@ function renderStudyBreadcrumb() {
 // re-rendering the grid (new class/subject/chapter buttons each step)
 // never loses its click handling.
 document.addEventListener('click', function(e) {
-  const pickBtn = e.target.closest('.study-pick-btn');
+  const pickBtn = e.target.closest('.study-tile');
   if (pickBtn && document.getElementById('study-step-grid')?.contains(pickBtn)) {
     const value = pickBtn.dataset.value;
     if (!studySelClass) selectStudyClass(value);
@@ -6507,7 +6575,7 @@ function renderStudyClasses() {
   const section = document.getElementById('study-chapter-section');
   if (section) section.style.display = 'none';
   renderStudyBreadcrumb();
-  renderStudyStepGrid(studyClassesList, 'No classes available.');
+  renderStudyStepGrid(studyClassesList, 'No classes available.', 'fa-layer-group');
 }
 
 function selectStudyClass(cls) {
@@ -6521,7 +6589,7 @@ function selectStudyClass(cls) {
   const defaultSubjects = Object.keys(DEFAULT_STUDY_DATA[cls] || {});
   const savedSubjects = [...new Set(getData('studyContent').filter(c => c.class === cls).map(c => c.subject))];
   const subjects = [...new Set([...defaultSubjects, ...savedSubjects])];
-  renderStudyStepGrid(subjects, 'No subjects yet for this class.');
+  renderStudyStepGrid(subjects, 'No subjects yet for this class.', 'fa-atom');
 }
 
 function selectStudySubject(sub) {
@@ -6531,21 +6599,24 @@ function selectStudySubject(sub) {
   const defaultChapters = (DEFAULT_STUDY_DATA[studySelClass] && DEFAULT_STUDY_DATA[studySelClass][sub]) ? DEFAULT_STUDY_DATA[studySelClass][sub] : [];
   const savedChapters = [...new Set(getData('studyContent').filter(c => c.class === studySelClass && c.subject === sub).map(c => c.chapter))];
   const chapters = [...new Set([...defaultChapters, ...savedChapters])];
-  renderStudyStepGrid(chapters, 'No chapters yet for this subject.');
+  renderStudyStepGrid(chapters, 'No chapters yet for this subject.', 'fa-bookmark');
 }
+
+// Two clear, distinctly-coloured resource tabs per chapter (the official
+// Book is handled separately above — it isn't chapter-uploaded content).
+const STUDY_RESOURCE_TYPES = [
+  ['notes', 'fa-sticky-note', 'Notes & Exercises'],
+  ['practice', 'fa-file-pdf', 'Practice & PYQs']
+];
 
 function selectStudyChapterDropdown(chapterName) {
   studySelCh = chapterName;
   const section = document.getElementById('study-chapter-section');
   renderStudyBreadcrumb();
-  renderStudyStepGrid([]); // chapter buttons make way for the resource panel below
+  renderStudyStepGrid([], '', 'fa-bookmark'); // chapter tiles make way for the resource panel below
   document.getElementById('study-chapter-title').textContent = `${studySelClass} — ${studySelSub} — ${chapterName}`;
-  const resTypes = [
-    ['notes', 'fa-sticky-note', 'Notes, Mind Map & Exercise Q&A'],
-    ['practice', 'fa-file-pdf', 'Practice Papers & Previous Year Papers']
-  ];
-  document.getElementById('study-restypes').innerHTML = resTypes.map(([type, icon, label]) =>
-    `<div onclick="loadStudyContentInline('${type}')" id="study-restype-${type}"><i class="fas ${icon}"></i> ${label}</div>`
+  document.getElementById('study-restypes').innerHTML = STUDY_RESOURCE_TYPES.map(([type, icon, label]) =>
+    `<div class="study-restype-btn" data-type="${type}" onclick="loadStudyContentInline('${type}')" id="study-restype-${type}"><i class="fas ${icon}"></i><span>${label}</span></div>`
   ).join('');
   section.style.display = 'block';
   loadStudyContentInline('notes');
@@ -6553,14 +6624,16 @@ function selectStudyChapterDropdown(chapterName) {
 
 // Resource "type" values used when a piece of content is uploaded are kept
 // as-is (Notes / Mind Map / Exercise / Extra Questions / Practice / PYQ) so
-// admin uploads stay clearly labelled — only the STUDENT-facing tabs are
-// merged down to 2 groups, per request.
-const STUDY_TYPE_GROUPS = { notes: ['notes', 'mindmap', 'exercise', 'extra'], practice: ['practice', 'pyq'] };
+// admin uploads stay clearly labelled — the STUDENT-facing tabs just group
+// them into 2 clear categories.
+const STUDY_TYPE_GROUPS = { notes: ['notes', 'mindmap', 'extra', 'exercise'], practice: ['practice', 'pyq'] };
 
 function loadStudyContentInline(groupKey) {
-  document.querySelectorAll('#study-restypes > div').forEach(el => { el.style.background = ''; el.style.color = ''; });
+  document.querySelectorAll('#study-restypes .study-restype-btn').forEach(el => el.classList.remove('active'));
   const activeBtn = document.getElementById(`study-restype-${groupKey}`);
-  if (activeBtn) { activeBtn.style.background = 'var(--primary)'; activeBtn.style.color = '#fff'; }
+  if (activeBtn) activeBtn.classList.add('active');
+
+  const display = document.getElementById('study-content-display');
 
   const typesInGroup = STUDY_TYPE_GROUPS[groupKey] || [groupKey];
   let contents = getData('studyContent').filter(c =>
@@ -6572,7 +6645,6 @@ function loadStudyContentInline(groupKey) {
   const hasRealContent = contents.some(c => !c.isDefault);
   if (hasRealContent) contents = contents.filter(c => !c.isDefault);
 
-  const display = document.getElementById('study-content-display');
   if (contents.length === 0) {
     display.innerHTML = `<div style="padding:20px;text-align:center;color:var(--gray);border:2px dashed var(--border);border-radius:12px;">
       <i class="fas fa-file-alt" style="font-size:40px;display:block;margin-bottom:10px;color:var(--primary-light);"></i>
