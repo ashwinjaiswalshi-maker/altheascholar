@@ -992,20 +992,10 @@
     }
     .admin-table td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
     .admin-table tr:hover { background: #f8faff; }
-    /* Compact icon buttons (Edit/Delete) sit on one row; the show/hide
-       control gets its own full-width row right below so it's never lost
-       among the other buttons and its current state is always obvious. */
+    /* Compact icon buttons (Edit/Delete) — the show/hide checkbox itself
+       reuses .mini-toggle-row, same as Announcements/Teacher Profiles. */
     .lead-action-row { display: flex; gap: 6px; margin-bottom: 6px; }
-    .lead-visibility-toggle {
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-      width: 100%; min-width: 150px; padding: 7px 10px; border-radius: 8px;
-      font-size: 12px; font-weight: 700; cursor: pointer; border: 1.5px solid transparent;
-      transition: 0.15s; white-space: nowrap;
-    }
-    .lead-visibility-toggle.visible { background: #e3f7ec; color: #1f9c5a; border-color: #b7ecce; }
-    .lead-visibility-toggle.visible:hover { background: #cdf1de; }
-    .lead-visibility-toggle.hidden { background: #f1f2f4; color: #75808c; border-color: #dfe3e8; }
-    .lead-visibility-toggle.hidden:hover { background: #e6e8eb; }
+
 
     .admin-form {
       background: #f8faff; padding: 20px; border-radius: 16px;
@@ -1850,6 +1840,11 @@
         </div>
         <button class="btn btn-green" onclick="addNewLead()" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Lead</button>
       </div>
+      <div class="visibility-save-bar" id="leads_save_bar" style="display:none;">
+        <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('leads', renderAdminLeads)">Cancel</button>
+        <button type="button" class="btn btn-green btn-sm" id="leads_save_btn" onclick="saveVisibilityChanges('leads','visible', renderAdminLeads, [renderLeadSidebar])">Save Changes</button>
+      </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
           <thead><tr><th>ID</th><th>Name</th><th>Class</th><th>Subject</th><th>City</th><th>Budget</th><th>Mode</th><th>Days/Week</th><th>Hours/Day</th><th>Time Slot</th><th>Status</th><th>Action</th></tr></thead>
@@ -2066,6 +2061,11 @@
           </div>
           <textarea id="pl_requirement" placeholder="Student Requirement / Notes" style="width:100%;margin-top:12px;min-height:70px;"></textarea>
           <button class="btn btn-accent" onclick="addPremiumLead()" style="margin-top:12px;"><i class="fas fa-plus"></i> Publish Premium Lead</button>
+        </div>
+        <div class="visibility-save-bar" id="premiumLeads_save_bar" style="display:none;">
+          <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
+          <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('premiumLeads', renderAdminPremiumLeads)">Cancel</button>
+          <button type="button" class="btn btn-green btn-sm" id="premiumLeads_save_btn" onclick="saveVisibilityChanges('premiumLeads','visible', renderAdminPremiumLeads, [renderPublicPremiumLeads])">Save Changes</button>
         </div>
         <div class="admin-table-wrap">
           <table class="admin-table">
@@ -4234,19 +4234,10 @@ function renderAdminLeads() {
           <button class="btn btn-accent btn-sm" onclick="editLead(${l.id})"><i class="fas fa-edit"></i></button>
           <button class="btn btn-danger btn-sm" onclick="deleteData('leads', ${l.id}); renderLeadSidebar();"><i class="fas fa-trash"></i></button>
         </div>
-        <button class="lead-visibility-toggle ${l.hidden ? 'hidden' : 'visible'}" onclick="toggleLeadVisibility(${l.id})">
-          <i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden — click to show' : 'Visible — click to hide'}
-        </button>
+        <label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('leads', l.id, l.visible !== false) ? 'checked' : ''} onchange="stageVisibilityChange('leads', ${l.id}, this.checked, renderAdminLeads)"> ${getPendingOrActual('leads', l.id, l.visible !== false) ? 'Visible — click Save to hide' : 'Hidden — click Save to show'}</label>
       </td>
     </tr>
   `).join('');
-}
-
-function toggleLeadVisibility(id) {
-  const l = getData('leads').find(x => x.id === id);
-  if (!l) return;
-  updateData('leads', id, { hidden: !l.hidden });
-  renderLeadSidebar();
 }
 
 let editingLeadId = null;
@@ -4309,7 +4300,7 @@ function viewLeadDetails(id) {
 }
 
 function renderLeadSidebar() {
-  const leads = getData('leads').filter(l => l.status !== 'Closed' && !l.hidden);
+  const leads = getData('leads').filter(l => l.status !== 'Closed' && l.visible !== false);
   const body = document.getElementById('leadBody');
   if (!body) return;
   body.innerHTML = leads.length === 0 ? '<p style="text-align:center;color:var(--gray);padding:40px 0;">No open leads</p>' :
@@ -5257,19 +5248,10 @@ function renderAdminPremiumLeads() {
           <button class="btn btn-outline btn-sm" onclick="editPremiumLead(${l.id})"><i class="fas fa-edit"></i></button>
           <button class="btn btn-danger btn-sm" onclick="deleteData('premiumLeads', ${l.id})"><i class="fas fa-trash"></i></button>
         </div>
-        <button class="lead-visibility-toggle ${l.hidden ? 'hidden' : 'visible'}" onclick="togglePremiumLeadVisibility(${l.id})">
-          <i class="fas fa-eye${l.hidden ? '-slash' : ''}"></i> ${l.hidden ? 'Hidden — click to show' : 'Visible — click to hide'}
-        </button>
+        <label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('premiumLeads', l.id, l.visible !== false) ? 'checked' : ''} onchange="stageVisibilityChange('premiumLeads', ${l.id}, this.checked, renderAdminPremiumLeads)"> ${getPendingOrActual('premiumLeads', l.id, l.visible !== false) ? 'Visible — click Save to hide' : 'Hidden — click Save to show'}</label>
       </td>
     </tr>
   `).join('') : '<tr><td colspan="12" style="text-align:center;color:var(--gray);">No premium leads yet.</td></tr>';
-}
-
-function togglePremiumLeadVisibility(id) {
-  const l = getData('premiumLeads').find(x => x.id === id);
-  if (!l) return;
-  updateData('premiumLeads', id, { hidden: !l.hidden });
-  renderPublicPremiumLeads();
 }
 
 let editingPremiumLeadId = null;
@@ -6504,7 +6486,7 @@ function renderHomepageTestimonials() {
 function renderPublicPremiumLeads() {
   const grid = document.getElementById('publicPremiumLeadsGrid');
   if (!grid) return;
-  const leads = getData('premiumLeads').filter(l => l.status === 'Active' && !l.hidden);
+  const leads = getData('premiumLeads').filter(l => l.status === 'Active' && l.visible !== false);
   grid.innerHTML = leads.length ? leads.map(l => `
     <div class="offer-card">
       <span class="lead-status-badge"><i class="fas fa-bolt"></i> ${l.status}</span>
