@@ -11,7 +11,7 @@
        turn that toggle on. -->
   <title>Althea Scholar by Shree — Home & Online Tuition, Study Material, Entrance Exam Prep | Pan India</title>
   <meta name="description" content="Althea Scholar by Shree connects students with verified home & online tutors across India. Free CBSE study material (Class 6–12), entrance exam prep (JNVST, Sainik School), hobby & language classes, and teacher registration.">
-  <meta name="keywords" content="home tuition, online tuition, tutor near me, CBSE study material, entrance exam preparation, Sainik School, JNVST, teacher registration, Althea Scholar">
+  <meta name="keywords" content="home tuition, online tuition, home tutor, online tutor, tutor near me, private tuition, tuition classes near me, home tuition in India, online tuition classes, CBSE study material, ICSE study material, entrance exam preparation, Sainik School coaching, JNVST Navodaya preparation, RMS CET, hobby classes online, language classes online, dance classes online, music classes online, chess classes online, spoken English classes, teacher registration, tutor jobs India, Althea Scholar">
   <link rel="canonical" href="https://altheascholar.in/">
   <meta name="robots" content="index, follow">
   <!-- Open Graph / social sharing preview -->
@@ -25,6 +25,31 @@
   <meta name="twitter:description" content="Verified home & online tutors, free CBSE study material, entrance exam prep and hobby/language classes — all in one platform.">
   <meta property="og:image" content="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
   <meta name="twitter:image" content="https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg">
+  <!-- Organization structured data (NOT LocalBusiness — we're an online
+       platform with no public physical office, so we deliberately avoid
+       any schema type or field that implies a walk-in address). This
+       just helps Google understand who we are and what we do; it does
+       not add fake review/rating data. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Althea Scholar by Shree",
+    "url": "https://altheascholar.in/",
+    "logo": "https://res.cloudinary.com/zcumhdql/image/upload/v1788600832/lygouyhgyxttqb0eucom.jpg",
+    "description": "An online platform connecting students and parents with home & online tutors across India, offering free CBSE study material and entrance exam preparation resources.",
+    "areaServed": { "@type": "Country", "name": "India" },
+    "email": "support@altheascholar.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-82877-71882",
+      "contactType": "customer support",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"]
+    },
+    "knowsAbout": ["Home Tuition", "Online Tuition", "CBSE Study Material", "Entrance Exam Preparation", "Hobby Classes", "Language Classes"]
+  }
+  </script>
   <!-- Static favicon (the real logo, hardcoded directly rather than only
        set via JS) — Google's favicon crawler and some browsers fetch this
        without running any JavaScript, so the JS-driven update in
@@ -861,9 +886,18 @@
     .testimonial-card .who img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--primary-light); }
     .testimonial-card .who .name { font-weight: 700; font-size: 13.5px; color: var(--secondary); }
     .testimonial-card .who .loc { font-size: 11.5px; color: var(--gray); }
+    .faq-section { padding: 30px 0 40px; background: #fff; }
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fafcff; }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 14px 16px; font-size: 14.5px; font-weight: 700; color: var(--secondary); display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; }
+    .faq-q i { transition: transform 0.2s ease; color: var(--primary); flex: none; }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+    .faq-item.open .faq-a { max-height: 500px; }
+    .faq-a p { padding: 0 16px 16px; font-size: 13.5px; color: #33455e; line-height: 1.6; margin: 0; }
 
     /* ===== Admin small pieces reused for premium / announcements / feedback ===== */
-    .mini-toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gray); }
+    .mini-toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gray); margin-top: 6px; width: 100%; }
     .img-thumb-sm { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--primary-light); }
     .max3-note { font-size: 11.5px; color: var(--accent); font-weight: 600; margin: 6px 0 10px; }
     .visibility-save-bar {
@@ -994,7 +1028,10 @@
     .admin-table tr:hover { background: #f8faff; }
     /* Compact icon buttons (Edit/Delete) — the show/hide checkbox itself
        reuses .mini-toggle-row, same as Announcements/Teacher Profiles. */
-    .lead-action-row { display: flex; gap: 6px; margin-bottom: 6px; }
+    .lead-action-row { display: flex; gap: 6px; margin-bottom: 8px; }
+    #adminLeadTable .mini-toggle-row, #adminPremiumLeadsTable .mini-toggle-row {
+      display: flex; padding-top: 8px; border-top: 1px dashed var(--border); margin-top: 0;
+    }
 
 
     .admin-form {
@@ -1346,7 +1383,7 @@
       <div class="stat-item"><div class="ic"><i class="fas fa-map-marker-alt"></i></div><div class="stat-text"><span class="num" id="hp-stat2-num">70+</span><span class="lbl" id="hp-stat2-lbl">Cities — Pan India</span></div></div>
       <div class="stat-item"><div class="ic"><i class="fas fa-book"></i></div><div class="stat-text"><span class="num" id="hp-stat3-num">50+</span><span class="lbl" id="hp-stat3-lbl">Subjects & Boards</span></div></div>
       <div class="stat-item"><div class="ic"><i class="fas fa-smile"></i></div><div class="stat-text"><span class="lbl-only" id="hp-stat4-main">Happy Students</span><span class="stat-sep">·</span><span class="lbl-sub" id="hp-stat4-sub">Growing Community</span></div></div>
-      <div class="stat-item"><div class="ic"><i class="fas fa-star"></i></div><div class="stat-text"><span class="num" id="hp-stat5-num">4.8/5</span><span class="lbl" id="hp-stat5-lbl">Parent Rating</span></div></div>
+      <div class="stat-item"><div class="ic"><i class="fas fa-thumbs-up"></i></div><div class="stat-text"><span class="num" id="hp-stat5-num">Free</span><span class="lbl" id="hp-stat5-lbl">Demo Before You Commit</span></div></div>
       <div class="stat-item"><div class="ic"><i class="fas fa-headset"></i></div><div class="stat-text"><span class="num" id="hp-stat6-num">24/7</span><span class="lbl" id="hp-stat6-lbl">Support</span></div></div>
     </div>
   </section>
@@ -1466,7 +1503,7 @@
       <div class="trust-item"><i class="fas fa-layer-group"></i> Subject & Class Matching</div>
       <div class="trust-item"><i class="fas fa-clock"></i> Flexible Timings & Demo</div>
       <div class="trust-item"><i class="fas fa-shield-alt"></i> Safe & Transparent</div>
-      <div class="trust-item"><i class="fas fa-headset"></i> Dedicated Support</div>
+      <div class="trust-item"><i class="fas fa-headset"></i> Quick WhatsApp Support</div>
     </div>
   </section>
 
@@ -1480,6 +1517,13 @@
         </div>
       </div>
       <div class="testimonial-grid" id="testimonialGrid"></div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faqSection" style="display:none;">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList"></div>
     </div>
   </section>
 </div>
@@ -1774,6 +1818,8 @@
       <button class="btn btn-accent admin-tab-btn" data-tab="blog" onclick="showAdminTab('blog')"><i class="fas fa-blog"></i> Blog Posts</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="formeditor" onclick="showAdminTab('formeditor')"><i class="fas fa-edit"></i> Registration Form Editor</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="chatbot" onclick="showAdminTab('chatbot')"><i class="fas fa-robot"></i> Chatbot FAQs</button>
+      <button class="btn btn-accent admin-tab-btn" data-tab="site-faq" onclick="showAdminTab('site-faq')"><i class="fas fa-circle-question"></i> Website FAQs (SEO)</button>
+      <button class="btn btn-accent admin-tab-btn" data-tab="seo-pages" onclick="showAdminTab('seo-pages')"><i class="fas fa-sitemap"></i> SEO Pages</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="festival" onclick="showAdminTab('festival')"><i class="fas fa-gift"></i> Festival Popup</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="branding" onclick="showAdminTab('branding')"><i class="fas fa-palette"></i> Branding &amp; Theme</button>
       <button class="btn btn-accent" onclick="exportAllData()"><i class="fas fa-download"></i> Export All</button>
@@ -2279,6 +2325,71 @@
           <tbody id="adminChatbotTable"></tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Website FAQs (visible on homepage, SEO) Tab -->
+    <div class="admin-tab" id="admin-site-faq">
+      <h3>❓ Website FAQs (shown on homepage for visitors &amp; Google)</h3>
+      <button class="btn btn-outline btn-sm" onclick="loadDefaultData()" style="margin-bottom:14px;"><i class="fas fa-sync"></i> Reload Default FAQs</button>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">These questions show up in the "Frequently Asked Questions" section on the homepage (unlike Chatbot FAQs, which only the chat widget uses). Keep answers honest and simple — this text also helps Google understand your site.</p>
+      <div id="sf_edit_banner" style="display:none;background:#fff3e0;border:1px solid #f6c98a;color:#8a5300;padding:10px 14px;border-radius:10px;margin-bottom:14px;font-size:13px;font-weight:600;">
+        <i class="fas fa-edit"></i> Editing existing FAQ — update and click "Update FAQ" to save.
+        <button type="button" class="btn btn-outline btn-sm" style="margin-left:10px;" onclick="cancelEditSiteFaq()">Cancel</button>
+      </div>
+      <div class="admin-form">
+        <input type="text" id="sf_question" placeholder="Question (e.g. Do you provide online tuition in my city?)">
+        <textarea id="sf_answer" placeholder="Answer shown to visitors" style="width:100%;margin-top:10px;min-height:70px;"></textarea>
+        <button class="btn btn-green" id="sf_submit_btn" onclick="addOrUpdateSiteFaq()" style="margin-top:12px;"><i class="fas fa-plus"></i> Add FAQ</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Question</th><th>Answer</th><th>Action</th></tr></thead>
+          <tbody id="adminSiteFaqTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEO Pages (standalone landing pages) Tab -->
+    <div class="admin-tab" id="admin-seo-pages">
+      <h3>🌐 SEO Landing Pages (Delhi, Mumbai, Lucknow, Cities list, Subject pages)</h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">These are the separate pages (like <code>tuition-in-lucknow.html</code>) that live outside this app, for Google search traffic. Your WhatsApp number, phone, and logo on those pages already follow the Homepage Content &amp; Branding tabs automatically — no need to set them again here.</p>
+
+      <div class="admin-form">
+        <label style="font-weight:700;font-size:13px;">Choose a page to edit</label>
+        <select id="sp_page_select" onchange="loadSeoPageIntoForm()" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:8px;border:1px solid var(--border);">
+          <option value="home-tuition">Home Tuition</option>
+          <option value="online-tuition">Online Tuition</option>
+          <option value="hobby-and-language-classes">Hobby &amp; Language Classes</option>
+          <option value="cbse-icse-study-material">CBSE/ICSE Study Material</option>
+          <option value="entrance-exam-preparation">Entrance Exam Preparation</option>
+          <option value="tuition-in-new-delhi">Delhi City Page</option>
+          <option value="tuition-in-mumbai">Mumbai City Page</option>
+          <option value="tuition-in-lucknow">Lucknow City Page</option>
+        </select>
+
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin-bottom:12px;">
+          <input type="checkbox" id="sp_visible" style="width:16px;height:16px;"> Page is visible (uncheck to temporarily hide this page)
+        </label>
+
+        <input type="text" id="sp_title" placeholder="Page Title (shows in browser tab &amp; Google)" style="margin-bottom:10px;">
+        <textarea id="sp_desc" placeholder="Meta Description (shows under the title in Google search results)" style="width:100%;min-height:55px;margin-bottom:10px;"></textarea>
+        <input type="text" id="sp_h1" placeholder="Main Heading (H1) shown on the page" style="margin-bottom:10px;">
+        <textarea id="sp_body" placeholder="Main page content (basic HTML allowed — <p>, <ul><li>, <h2> etc.)" style="width:100%;min-height:220px;font-family:monospace;font-size:12.5px;"></textarea>
+        <button class="btn btn-green" onclick="saveSeoPage()" style="margin-top:12px;"><i class="fas fa-save"></i> Save This Page</button>
+        <button class="btn btn-outline btn-sm" onclick="resetSeoPageToDefault()" style="margin-top:12px;"><i class="fas fa-rotate-left"></i> Reset This Page to Default</button>
+      </div>
+
+      <hr style="margin:30px 0;border:none;border-top:1px solid var(--border);">
+
+      <h3>🗺️ Cities List (the "70+ cities" page)</h3>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin-bottom:12px;">
+        <input type="checkbox" id="sp_cities_visible" style="width:16px;height:16px;"> Cities page is visible
+      </label>
+      <p style="color:var(--gray);font-size:13px;">One city per line, in this exact format — keep the <code>||</code> separators:</p>
+      <p style="color:var(--gray);font-size:12px;background:#f5f8fc;padding:8px 10px;border-radius:8px;">City Name || State || Nearby areas (comma separated, or leave blank) || 2-3 line description</p>
+      <textarea id="sp_cities_bulk" style="width:100%;min-height:320px;font-family:monospace;font-size:12px;margin-top:10px;"></textarea>
+      <button class="btn btn-green" onclick="saveSeoCitiesList()" style="margin-top:12px;"><i class="fas fa-save"></i> Save Cities List</button>
+      <button class="btn btn-outline btn-sm" onclick="resetSeoCitiesToDefault()" style="margin-top:12px;"><i class="fas fa-rotate-left"></i> Reset Cities List to Default</button>
     </div>
 
     <!-- Festival Popup Tab -->
@@ -2978,6 +3089,18 @@ async function loadDefaultData() {
   }
 
   try {
+    const siteFaqSnap = await fsDb.collection('siteFaqs').get();
+    if (siteFaqSnap.empty) {
+      const siteFaqDefaults = SITE_FAQ_DEFAULTS();
+      await fsBatchAdd('siteFaqs', siteFaqDefaults);
+      totalAdded += siteFaqDefaults.length;
+    }
+  } catch (err) {
+    console.error('Seeding siteFaqs failed:', err);
+    showToast('⚠️ Could not load Website FAQs — add the "siteFaqs" rule in Firestore Rules and Publish, then try again.', 'error');
+  }
+
+  try {
     const annSnap = await fsDb.collection('announcements').get();
     if (annSnap.empty) {
       const announcements = [
@@ -3239,7 +3362,7 @@ const HOMEPAGE_DEFAULTS = {
   stat2_num: "70+", stat2_lbl: "Cities — Pan India",
   stat3_num: "50+", stat3_lbl: "Subjects & Boards",
   stat4_main: "Happy Students", stat4_sub: "Growing Community",
-  stat5_num: "4.8/5", stat5_lbl: "Parent Rating",
+  stat5_num: "Free", stat5_lbl: "Demo Before You Commit",
   stat6_num: "24/7", stat6_lbl: "Support",
   offer1_title: "Home Tuition", offer1_desc: "Experienced home tutors in your city — academics, hobbies & languages, Nursery to Post Graduation.",
   offer2_title: "Online Tuition", offer2_desc: "One-to-one online classes with top teachers across India, for academics, hobbies & languages.",
@@ -3270,7 +3393,7 @@ const HOMEPAGE_DEFAULTS = {
   parent_img_opacity: "100", parent_img_x: "0", parent_img_y: "0", parent_img_rot: "0",
   cities_heading: "We Provide Tutors in 70+ Major Cities Across India",
   why_heading: "Why Choose Althea Scholar by Shree?",
-  why_more: "10,000+ verified tutors background-checked and interviewed before onboarding.\nEvery teacher is matched to your child's board, class and subject — not just generic tutoring.\nFree demo class before you commit to a teacher.\nTransparent fee structure — no hidden charges, ever.\n24/7 WhatsApp support for parents and teachers.\nDedicated relationship manager for every family."
+  why_more: "Every teacher's documents are checked before their profile goes live.\nEvery teacher is matched to your child's board, class and subject — not just generic tutoring.\nFree demo class before you commit to a teacher.\nTransparent fee structure — no hidden charges, ever.\nQuick WhatsApp support for parents and teachers.\nPersonal support while we help you find the right match."
 };
 
 function getHomepageContent() {
@@ -5086,6 +5209,7 @@ function renderPublicAll() {
   if (typeof renderPublicTeacherProfiles === 'function') renderPublicTeacherProfiles();
   if (typeof renderPublicPremiumLeads === 'function') renderPublicPremiumLeads();
   if (typeof renderBlogList === 'function') renderBlogList();
+  if (typeof renderFaqSection === 'function') renderFaqSection();
 }
 
 function showAdminTab(tab) {
@@ -5103,6 +5227,8 @@ function showAdminTab(tab) {
   if (tab === 'blog') renderAdminBlog();
   if (tab === 'formeditor') { renderFormEditor(); populatePolicyEditor(); populateStudentFormNoticeEditor(); }
   if (tab === 'chatbot') renderAdminChatbotFaqs();
+  if (tab === 'site-faq') renderAdminSiteFaqs();
+  if (tab === 'seo-pages') { loadSeoPageIntoForm(); populateSeoCitiesForm(); }
   if (tab === 'festival') populateFestivalPopupForm();
   if (tab === 'branding') populateBrandingForm();
   if (tab === 'ncert-books') renderNcertBooksAdmin();
@@ -5813,7 +5939,16 @@ const CHATBOT_FAQ_DEFAULTS = () => ([
   { keywords: ['document', 'documents', 'what documents', 'aadhaar', 'id proof'], answer: "For teacher registration, we typically need an ID proof (like Aadhaar) and qualification proof (degree/certificate). Students don't need to upload any documents to register." },
   { keywords: ['class', 'classes', 'which class', 'grade', 'standard'], answer: "We cover Classes 6 to 12 across CBSE and other major boards, plus entrance exam prep for Class 6 & 9 (Sainik School, Navodaya, RMS, AMU, BHU)." },
   { keywords: ['blog', 'articles', 'tips'], answer: "Check out our Blog (in the top menu) for study tips, parenting advice, and updates about the platform." },
-  { keywords: ['app', 'mobile app', 'download app'], answer: "You can access everything from your mobile browser right here — no separate app needed. Just bookmark the site for quick access!" }
+  { keywords: ['app', 'mobile app', 'download app'], answer: "You can access everything from your mobile browser right here — no separate app needed. Just bookmark the site for quick access!" },
+  { keywords: ['hobby', 'hobby classes', 'dance', 'singing', 'music', 'guitar', 'piano', 'chess', 'art', 'drawing'], answer: "Yes! Besides academics, we help you find teachers for hobby & skill classes — dance, singing, guitar, piano, keyboard, chess, art & craft and more, at home or online. Tap 'Find Tutor' and mention the hobby/skill in your requirement. 🎨" },
+  { keywords: ['language', 'language classes', 'spoken english', 'french', 'german', 'spanish', 'sanskrit', 'foreign language'], answer: "We can connect you with teachers for spoken English and foreign/Indian languages (French, German, Spanish, Sanskrit and more) — both home and online classes available." },
+  { keywords: ['small kids', 'nursery', 'kg', 'primary', 'class 1', 'class 2', 'class 3', 'class 4', 'class 5', 'foundation'], answer: "Yes, we cover Nursery/KG and Classes 1–5 (foundation level) as well, in addition to Classes 6–12 and entrance exam prep — just mention the class while registering." },
+  { keywords: ['nri', 'abroad', 'outside india', 'international', 'usa', 'uk', 'dubai', 'other country'], answer: "Online classes work great for students outside India too — time zones and scheduling are worked out directly with your matched teacher. Just choose 'Online' mode while registering, from anywhere in the world. 🌍" },
+  { keywords: ['safe', 'is it safe', 'trust', 'genuine', 'fraud', 'scam', 'legit'], answer: "We're a platform that helps parents/students and teachers find and connect with each other — we check teacher documents before a profile goes live, fees are agreed directly between you and the teacher, and we never ask for large upfront payments. If anything feels off, reach out to us on WhatsApp right away." },
+  { keywords: ['how does this work', 'how does it work', 'what is this platform', 'about', 'what is althea scholar'], answer: "Althea Scholar is a platform that connects students/parents looking for tutors with teachers who want to teach — for home tuition, online tuition, study material and hobby/language classes. We help you find the right match; the actual classes and fee arrangement happen directly between student and teacher." },
+  { keywords: ['commission', 'how do you earn', 'do you charge teachers', 'platform fee'], answer: "Registration is free for everyone. We may charge a small platform/membership fee in certain cases (like Premium Teacher Membership) — full details are always shown upfront on the relevant page before you pay anything." },
+  { keywords: ['group tuition', 'batch', 'one on one', 'individual tuition'], answer: "Both one-on-one and small group/batch tuition can usually be arranged — just mention your preference while posting your requirement, and we'll try to match you accordingly." },
+  { keywords: ['exam prep', 'board exam', 'jee', 'neet', 'competitive exam'], answer: "Along with school subjects (Classes 6–12) and Sainik School/Navodaya/RMS/AMU/BHU entrance prep, you can also request a tutor for board exam revision or competitive exam foundation — mention it in your requirement." }
 ]);
 function getChatbotFaqs() {
   return getData('chatbotFaqs');
@@ -5965,6 +6100,208 @@ function cancelEditChatbotFaq() {
   document.getElementById('cb_answer').value = '';
   document.getElementById('cb_edit_banner').style.display = 'none';
   document.getElementById('cb_submit_btn').innerHTML = '<i class="fas fa-plus"></i> Add FAQ';
+}
+
+// ================================================================
+// Website FAQs — shown in a visible "Frequently Asked Questions"
+// section on the homepage (separate from the chatbot's keyword-match
+// FAQs above). This is the content Google reads for FAQ rich results,
+// so keep it honest and specific — no invented numbers or claims.
+// ================================================================
+const SITE_FAQ_DEFAULTS = () => ([
+  { question: "Is Althea Scholar a tuition center or an online platform?", answer: "Althea Scholar is an online platform, not a physical tuition center. We help students/parents and teachers find each other for home tuition, online tuition, and hobby/language classes across India — the actual classes happen at the student's home, online, or wherever student and teacher agree." },
+  { question: "Do you provide home tuition and online tuition in my city?", answer: "We help connect students and teachers across 70+ cities in India for both home tuition and online tuition. Online classes are available from anywhere, including outside India. If your exact city isn't listed yet, message us on WhatsApp — we're adding more cities regularly." },
+  { question: "Is registration free?", answer: "Yes, registration is completely free for both students/parents and teachers. Some optional features for teachers (like Premium Membership) have a small fee, which is always shown clearly before you pay anything." },
+  { question: "How are teachers verified?", answer: "Before a teacher's profile goes live, we check the documents (ID and qualification proof) they submit. Fee and schedule are then discussed and finalised directly between the student/parent and the teacher." },
+  { question: "What classes and subjects are covered?", answer: "Nursery/KG through Class 12 across major boards, all main subjects, plus entrance exam preparation (Sainik School/AISSEE, Navodaya/JNVST, RMS CET, AMU, BHU) and hobby/language classes like dance, music, art, chess and spoken languages." },
+  { question: "Is free study material really free?", answer: "Yes — notes, mind maps, exercise solutions and previous year papers under 'Study Material' are free to view on the site for everyone, organised by Class → Subject → Chapter." },
+  { question: "How do I get matched with a tutor?", answer: "Tap 'Find Tutor', share your requirement (class, subject, city, mode), and we'll help match you with a suitable, available teacher. Most teachers offer a free demo class before you commit." },
+  { question: "How do I register as a teacher?", answer: "Tap 'Teacher Reg.' in the menu, fill in your subjects, classes, experience and preferred cities/online mode. You'll get a Registration ID instantly, and your profile goes live after document verification." }
+]);
+function getSiteFaqs() {
+  return getData('siteFaqs');
+}
+let editingSiteFaqId = null;
+function renderAdminSiteFaqs() {
+  const faqs = getSiteFaqs();
+  const tbody = document.getElementById('adminSiteFaqTable');
+  if (!tbody) return;
+  tbody.innerHTML = faqs.length ? faqs.map(f => `
+    <tr>
+      <td>${f.question}</td>
+      <td>${f.answer}</td>
+      <td><button class="btn btn-outline btn-sm" onclick="editSiteFaq(${f.id})"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-danger btn-sm" onclick="deleteData('siteFaqs', ${f.id}); renderAdminSiteFaqs(); renderFaqSection();"><i class="fas fa-trash"></i></button></td>
+    </tr>
+  `).join('') : '<tr><td colspan="3" style="text-align:center;color:var(--gray);">No FAQs yet.</td></tr>';
+}
+function addOrUpdateSiteFaq() {
+  const question = document.getElementById('sf_question').value.trim();
+  const answer = document.getElementById('sf_answer').value.trim();
+  if (!question || !answer) { showToast('⚠️ Question & Answer are required!', 'error'); return; }
+  if (editingSiteFaqId !== null) {
+    updateData('siteFaqs', editingSiteFaqId, { question, answer });
+    showToast('✅ FAQ updated!');
+    cancelEditSiteFaq();
+  } else {
+    addData('siteFaqs', { question, answer });
+    showToast('✅ FAQ added!');
+    document.getElementById('sf_question').value = '';
+    document.getElementById('sf_answer').value = '';
+  }
+  renderAdminSiteFaqs();
+  renderFaqSection();
+}
+function editSiteFaq(id) {
+  const f = getSiteFaqs().find(x => x.id === id);
+  if (!f) return;
+  editingSiteFaqId = id;
+  document.getElementById('sf_question').value = f.question;
+  document.getElementById('sf_answer').value = f.answer;
+  document.getElementById('sf_edit_banner').style.display = 'block';
+  document.getElementById('sf_submit_btn').innerHTML = '<i class="fas fa-save"></i> Update FAQ';
+  document.getElementById('admin-site-faq').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function cancelEditSiteFaq() {
+  editingSiteFaqId = null;
+  document.getElementById('sf_question').value = '';
+  document.getElementById('sf_answer').value = '';
+  document.getElementById('sf_edit_banner').style.display = 'none';
+  document.getElementById('sf_submit_btn').innerHTML = '<i class="fas fa-plus"></i> Add FAQ';
+}
+function toggleFaqItem(idx) {
+  const item = document.getElementById('faqItem' + idx);
+  if (item) item.classList.toggle('open');
+}
+function renderFaqSection() {
+  const faqs = getSiteFaqs();
+  const wrap = document.getElementById('faqSection');
+  const list = document.getElementById('faqList');
+  if (!wrap || !list) return;
+  if (!faqs.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = faqs.map((f, i) => `
+    <div class="faq-item" id="faqItem${i}">
+      <button class="faq-q" onclick="toggleFaqItem(${i})" aria-expanded="false">
+        <span>${f.question}</span><i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-a"><p>${f.answer}</p></div>
+    </div>
+  `).join('');
+  // Update the FAQPage structured data so Google can pick up rich results.
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+    }))
+  };
+  let ldTag = document.getElementById('faqJsonLd');
+  if (!ldTag) {
+    ldTag = document.createElement('script');
+    ldTag.type = 'application/ld+json';
+    ldTag.id = 'faqJsonLd';
+    document.head.appendChild(ldTag);
+  }
+  ldTag.textContent = JSON.stringify(ld);
+}
+
+// ================================================================
+// SEO Landing Pages (standalone pages outside this app — Delhi,
+// Mumbai, Lucknow, Cities list, and the 5 subject pages) — content
+// and visibility are editable from Admin → SEO Pages, and the pages
+// themselves pull this via seo-shared.js. Stored under the same
+// 'settings' collection as Branding/Homepage Content (no extra
+// Firestore rule needed).
+// ================================================================
+const SEO_PAGE_LABELS = {
+  'home-tuition': 'Home Tuition', 'online-tuition': 'Online Tuition',
+  'hobby-and-language-classes': 'Hobby & Language Classes', 'cbse-icse-study-material': 'CBSE/ICSE Study Material',
+  'entrance-exam-preparation': 'Entrance Exam Preparation', 'tuition-in-new-delhi': 'Delhi City Page',
+  'tuition-in-mumbai': 'Mumbai City Page', 'tuition-in-lucknow': 'Lucknow City Page'
+};
+const SEO_PAGES_DEFAULT = {"visible": {"home-tuition": true, "online-tuition": true, "hobby-and-language-classes": true, "cbse-icse-study-material": true, "entrance-exam-preparation": true, "tuition-in-new-delhi": true, "tuition-in-mumbai": true, "tuition-in-lucknow": true, "tuition-cities": true}, "pages": {"home-tuition": {"title": "Home Tuition Across India – Verified Home Tutors | Althea Scholar", "desc": "Find home tutors near you across India for all boards, Nursery to Class 12. Free registration, free demo class, transparent fees.", "h1": "Home Tuition Across India", "body": "<p>Home tuition means a qualified teacher comes to your home to teach your child one-on-one or in a small group — no travel, no distraction of a crowded classroom, and a pace set around your child rather than the other way around. Althea Scholar helps students and parents across <a href=\"https://altheascholar.in/tuition-cities.html\">70+ cities in India</a> find home tutors matched to their child's exact board, class, subject and learning style.</p>\n\n<p>We know every child is different — some need a patient teacher who repeats concepts multiple ways, some need someone who can push them harder for board exams, and some just need consistent homework supervision. When you post your requirement with us, we try to understand exactly what kind of help your child needs before suggesting a teacher, instead of just matching on subject name alone.</p>\n\n<h2>How home tuition through Althea Scholar works</h2>\n<ul>\n  <li><strong>Step 1 — Tell us what you need:</strong> class, subject(s), board, your city/area, and preferred days/timing.</li>\n  <li><strong>Step 2 — We suggest a match:</strong> a teacher whose documents we've checked, and whose experience fits your requirement.</li>\n  <li><strong>Step 3 — Free demo class:</strong> see how the teacher explains, how your child responds, before you commit to anything.</li>\n  <li><strong>Step 4 — Agree directly:</strong> fees, schedule and duration are discussed and finalised directly between you and the teacher — no hidden platform charges added on top.</li>\n</ul>\n\n<h2>Who home tuition is right for</h2>\n<p>Nursery/KG and the early years (building reading, writing and number-sense from scratch), Classes 1–5 (foundation subjects), Classes 6–10 (board-focused, subject-wise depth), and Classes 11–12 (Science/Commerce/Arts streams, with exam-pattern practice). We also help with entrance exam preparation for Sainik School (AISSEE), Navodaya (JNVST), RMS CET, AMU and BHU, and with hobby &amp; language classes delivered at home.</p>\n\n<h2>Why parents choose home tuition over a coaching center</h2>\n<ul>\n  <li>Full attention — the teacher's time is not split between 20–30 other students</li>\n  <li>Flexible scheduling around school, sleep and other activities</li>\n  <li>Comfortable, familiar environment for younger or shy children</li>\n  <li>Faster to spot and fix a specific weak topic instead of following one fixed pace for the whole class</li>\n</ul>"}, "online-tuition": {"title": "Online Tuition Classes – Live 1-on-1 Tutors | Althea Scholar", "desc": "Live online tuition for all classes and subjects, anywhere in India or abroad. Free registration, free demo class, flexible timing.", "h1": "Online Tuition Classes", "body": "<p>Online tuition lets your child learn from a qualified teacher over live video call, from anywhere — including outside India. It removes the biggest limitation of home tuition (finding a good teacher physically nearby) and opens up a much wider pool of experienced teachers, while still keeping the personal, one-on-one (or small-batch) format that makes tuition effective in the first place.</p>\n\n<p>Many parents start with online tuition simply because it's convenient — no commuting for the teacher, no rescheduling because of traffic or weather, and lessons can be recorded (with the teacher's agreement) for revision later. For working parents managing school pickups and multiple children's schedules, being able to book a slot that fits everyone is often the single biggest reason to choose online over home tuition.</p>\n\n<h2>Why online tuition works well</h2>\n<ul>\n  <li>Learn from home, at a time that genuinely suits your family's schedule</li>\n  <li>Access to good teachers beyond your own city or even country</li>\n  <li>Ideal for NRI families who want their child to stay connected to Indian boards and syllabi</li>\n  <li>Great for competitive/entrance exam preparation, where a specialist teacher matters more than proximity</li>\n  <li>Free demo class before you commit to a teacher, exactly like home tuition</li>\n</ul>\n\n<h2>Subjects &amp; classes available online</h2>\n<p>Nursery to Class 12 across all major boards, entrance exam preparation (Sainik School, Navodaya/JNVST, RMS, AMU, BHU), and hobby/language classes like music, dance, art, chess and spoken English — all deliverable over a simple video call, using whatever app (WhatsApp video, Zoom, Google Meet) you and the teacher are both comfortable with.</p>\n\n<h2>What you'll need</h2>\n<p>A phone, tablet or computer with a stable internet connection, and a quiet corner for the class. Most teachers share simple study material or worksheets over WhatsApp between sessions so learning continues beyond the live class itself.</p>"}, "hobby-and-language-classes": {"title": "Hobby &amp; Language Classes Online and at Home | Althea Scholar", "desc": "Find teachers for dance, singing, music, guitar, piano, chess, art and language classes (English, French, German, Spanish, Sanskrit) — online or at home.", "h1": "Hobby &amp; Language Classes", "body": "<p>Academics aren't the only thing that shapes a child (or an adult learner) — a good hobby class builds confidence, discipline and a creative outlet, and a language class can open doors both academically and professionally. Althea Scholar helps you find teachers for hobby and skill classes, at home or online, the same simple way we help you find academic tutors.</p>\n\n<h2>Popular hobby classes</h2>\n<ul>\n  <li><strong>Dance</strong> — classical and contemporary styles, for kids and adults</li>\n  <li><strong>Music</strong> — singing, guitar, piano/keyboard, and other instruments</li>\n  <li><strong>Art &amp; craft</strong> — drawing, painting, and creative skills for young children</li>\n  <li><strong>Chess</strong> — a great way to build focus and strategic thinking in kids</li>\n</ul>\n\n<h2>Language classes</h2>\n<p>Spoken English confidence-building for students and working professionals, along with foreign and Indian languages — French, German, Spanish, and Sanskrit are among the most requested. Whether it's for a school subject, a competitive exam, or simply personal interest, we try to match you with a teacher who has actually taught that exact language before.</p>\n\n<h2>How to get started</h2>\n<p>Mention the hobby or language, your city (or \"online\"), and roughly how many days a week you're looking for, while registering. We'll help match you with a suitable teacher — many offer a free trial class so you can be sure it's the right fit before committing to a regular schedule.</p>"}, "cbse-icse-study-material": {"title": "Free CBSE &amp; ICSE Study Material – Notes, Papers, Solutions | Althea Scholar", "desc": "Free notes, mind maps, exercise solutions and previous year papers for CBSE and ICSE, Class 6 to 12, organised by class, subject and chapter.", "h1": "Free CBSE &amp; ICSE Study Material", "body": "<p>Not every family needs a tutor for every subject — sometimes what a student really needs is well-organised revision material they can go through on their own, at their own pace. That's why Althea Scholar offers completely free study material for Classes 6–12, organised the way a student would actually look for it: Class → Subject → Chapter.</p>\n\n<h2>What's included</h2>\n<ul>\n  <li>Chapter-wise notes, written in simple, exam-focused language</li>\n  <li>Mind maps for quick revision before exams</li>\n  <li>Exercise question &amp; answer solutions from the textbook</li>\n  <li>Extra practice questions to test understanding</li>\n  <li>Previous year board exam papers, so students know exactly what to expect</li>\n</ul>\n\n<h2>Why we keep this free</h2>\n<p>Good study material shouldn't be locked behind a paywall — it's often the difference between a student who's confident going into an exam and one who's guessing. Free material also naturally leads some families to realise exactly where they need a tutor's help (a specific chapter or subject) rather than paying for a tutor across every subject.</p>\n\n<p>Use the <strong>\"Study Material\"</strong> menu on the <a href=\"https://altheascholar.in/\">Althea Scholar homepage</a> to browse by class and subject — no login or download required, everything opens directly on the site.</p>"}, "entrance-exam-preparation": {"title": "Sainik School, Navodaya (JNVST) &amp; Entrance Exam Preparation | Althea Scholar", "desc": "Free syllabus, pattern, notes and previous year papers for Sainik School (AISSEE), Navodaya (JNVST), RMS CET, AMU and BHU entrance exams, Class 6 &amp; 9.", "h1": "Entrance Exam Preparation", "body": "<p>Entrance exams for residential and prestigious schools are highly competitive, and preparation usually needs to start well before the exam itself, with a clear understanding of the syllabus and pattern rather than generic Class 6/9 revision. Althea Scholar offers free preparation resources, plus tutor matching if your child needs dedicated, personalised guidance.</p>\n\n<h2>Exams we cover</h2>\n<ul>\n  <li><strong>Sainik School (AISSEE)</strong> — for Class 6 and Class 9 entry</li>\n  <li><strong>Jawahar Navodaya Vidyalaya (JNVST)</strong> — for Class 6 entry</li>\n  <li><strong>RMS CET</strong> (Rashtriya Military School) — for Class 6 and Class 9 entry</li>\n  <li><strong>AMU &amp; BHU entrance exams</strong></li>\n</ul>\n\n<h2>What's available for free</h2>\n<p>Exam-wise syllabus breakdown, question pattern and marking scheme, chapter-wise notes, and previous year papers — everything under the <strong>\"Entrance Exams\"</strong> menu on the <a href=\"https://altheascholar.in/\">homepage</a>. This is the same starting point we'd recommend to any parent, whether or not you go on to hire a tutor through us.</p>\n\n<h2>When a dedicated tutor helps</h2>\n<p>If your child is starting late, has a specific weak area (commonly Mathematics or Mental Ability), or simply needs a structured daily routine leading up to the exam, a tutor experienced specifically with that entrance exam (not just general school tuition) usually makes the biggest difference. Register with us and mention the exact exam and class — we'll try to match you with a teacher who has prepared students for it before.</p>"}, "tuition-in-new-delhi": {"title": "Home Tuition &amp; Online Tuition in Delhi | Verified Tutors – Althea Scholar", "desc": "Find home tutors and online tutors in Delhi &amp; NCR (Gurugram, Noida, Ghaziabad, Faridabad) for CBSE, ICSE &amp; all boards, Nursery to Class 12. Free registration, free demo class.", "h1": "Home Tuition &amp; Online Tuition in Delhi", "body": "<h2>Delhi-NCR: one big region, one platform</h2>\n<p>Delhi is part of a much larger NCR region, and many families search for a tutor across city lines — a teacher based in Gurugram or Noida may well be the best fit even if you're in central Delhi, especially for online classes. We treat Delhi and its NCR neighbours as one connected area when matching teachers, so you're not limited to only your exact pin code.</p>"}, "tuition-in-mumbai": {"title": "Home Tuition &amp; Online Tuition in Mumbai | Verified Tutors – Althea Scholar", "desc": "Find home tutors and online tutors in Mumbai &amp; the wider MMR region (Thane, Navi Mumbai, Kalyan) for CBSE, ICSE &amp; all boards, Nursery to Class 12. Free registration, free demo class.", "h1": "Home Tuition &amp; Online Tuition in Mumbai", "body": "<h2>Mumbai Metropolitan Region — well covered</h2>\n<p>Mumbai's local trains and long commute distances mean the \"right\" tutor for a family in Thane or Navi Mumbai might not be the same as one for South Mumbai — proximity genuinely matters for home tuition here. We factor in your exact area within the Mumbai Metropolitan Region (MMR) when suggesting a home tutor, while online tuition removes the distance question altogether.</p>"}, "tuition-in-lucknow": {"title": "Home Tuition &amp; Online Tuition in Lucknow | Verified Tutors – Althea Scholar", "desc": "Find home tutors and online tutors in Lucknow — Gomti Nagar, Hazratganj, Indira Nagar, Aliganj, Alambagh and nearby Kanpur, Barabanki, Unnao. CBSE, ICSE, UP Board, all classes. Free registration, free demo.", "h1": "Home Tuition &amp; Online Tuition in Lucknow", "body": "<h2>Lucknow — our home city</h2>\n<p>Lucknow holds a special place for Althea Scholar — it's where we're based and where we personally know the schools, boards and areas best. Whether you're in Gomti Nagar, Hazratganj, Indira Nagar, Aliganj, Alambagh, or one of the many other localities across the city, we try to match you with a teacher who genuinely understands the local school curriculum (CBSE, ICSE and UP Board) and exam expectations.</p>\n<p>We also connect students and teachers from the wider Lucknow region — Kanpur, Barabanki, Unnao, Sitapur and Rae Bareli — for both home and online tuition, and our WhatsApp support is quickest to respond for Lucknow-based queries.</p>\n<h2>What Lucknow families ask us most</h2>\n<ul>\n  <li>UP Board vs CBSE-focused teachers — we ask which board your school follows before suggesting a match</li>\n  <li>Home tutors who can travel within the city for daily or alternate-day classes</li>\n  <li>Entrance exam coaching for Sainik School, Navodaya and RMS CET — popular among Lucknow-region families</li>\n  <li>Hobby classes — classical dance, music and art teachers are frequently requested here</li>\n</ul>"}}, "cities": [{"name": "New Delhi", "state": "Delhi (NCR)", "nearby": "Gurugram, Noida, Ghaziabad, Faridabad, Greater Noida", "desc": "Althea Scholar helps students and parents in New Delhi (Delhi (NCR)) connect with home and online tutors — covering New Delhi city and nearby areas like Gurugram, Noida, Ghaziabad, Faridabad, Greater Noida. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Mumbai", "state": "Maharashtra", "nearby": "Thane, Navi Mumbai, Kalyan, Vasai-Virar, Panvel", "desc": "Althea Scholar helps students and parents in Mumbai (Maharashtra) connect with home and online tutors — covering Mumbai city and nearby areas like Thane, Navi Mumbai, Kalyan, Vasai-Virar, Panvel. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": "https://altheascholar.in/tuition-in-mumbai.html"}, {"name": "Lucknow", "state": "Uttar Pradesh", "nearby": "Kanpur, Barabanki, Unnao, Sitapur, Rae Bareli — including Gomti Nagar, Hazratganj, Indira Nagar, Aliganj, Alambagh", "desc": "Althea Scholar helps students and parents in Lucknow (Uttar Pradesh) connect with home and online tutors — covering Lucknow city and nearby areas like Kanpur, Barabanki, Unnao, Sitapur, Rae Bareli — including Gomti Nagar, Hazratganj, Indira Nagar, Aliganj, Alambagh. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": "https://altheascholar.in/tuition-in-lucknow.html"}, {"name": "Bengaluru", "state": "Karnataka", "nearby": "Whitefield, Electronic City, Hosur Road, Ramanagara", "desc": "Althea Scholar helps students and parents in Bengaluru (Karnataka) connect with home and online tutors — covering Bengaluru city and nearby areas like Whitefield, Electronic City, Hosur Road, Ramanagara. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Chennai", "state": "Tamil Nadu", "nearby": "Kanchipuram, Chengalpattu, Tiruvallur", "desc": "Althea Scholar helps students and parents in Chennai (Tamil Nadu) connect with home and online tutors — covering Chennai city and nearby areas like Kanchipuram, Chengalpattu, Tiruvallur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Hyderabad", "state": "Telangana", "nearby": "Secunderabad, Cyberabad, Ranga Reddy", "desc": "Althea Scholar helps students and parents in Hyderabad (Telangana) connect with home and online tutors — covering Hyderabad city and nearby areas like Secunderabad, Cyberabad, Ranga Reddy. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Kolkata", "state": "West Bengal", "nearby": "Howrah, Salt Lake, New Town, Barrackpore", "desc": "Althea Scholar helps students and parents in Kolkata (West Bengal) connect with home and online tutors — covering Kolkata city and nearby areas like Howrah, Salt Lake, New Town, Barrackpore. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Ahmedabad", "state": "Gujarat", "nearby": "Gandhinagar, Sanand", "desc": "Althea Scholar helps students and parents in Ahmedabad (Gujarat) connect with home and online tutors — covering Ahmedabad city and nearby areas like Gandhinagar, Sanand. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Pune", "state": "Maharashtra", "nearby": "Pimpri-Chinchwad, Hinjewadi", "desc": "Althea Scholar helps students and parents in Pune (Maharashtra) connect with home and online tutors — covering Pune city and nearby areas like Pimpri-Chinchwad, Hinjewadi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Surat", "state": "Gujarat", "nearby": "Navsari, Bharuch", "desc": "Althea Scholar helps students and parents in Surat (Gujarat) connect with home and online tutors — covering Surat city and nearby areas like Navsari, Bharuch. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Jaipur", "state": "Rajasthan", "nearby": "Ajmer Road, Dausa", "desc": "Althea Scholar helps students and parents in Jaipur (Rajasthan) connect with home and online tutors — covering Jaipur city and nearby areas like Ajmer Road, Dausa. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Kanpur", "state": "Uttar Pradesh", "nearby": "Unnao, Lucknow", "desc": "Althea Scholar helps students and parents in Kanpur (Uttar Pradesh) connect with home and online tutors — covering Kanpur city and nearby areas like Unnao, Lucknow. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Nagpur", "state": "Maharashtra", "nearby": "Wardha", "desc": "Althea Scholar helps students and parents in Nagpur (Maharashtra) connect with home and online tutors — covering Nagpur city and nearby areas like Wardha. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Indore", "state": "Madhya Pradesh", "nearby": "Dewas, Ujjain", "desc": "Althea Scholar helps students and parents in Indore (Madhya Pradesh) connect with home and online tutors — covering Indore city and nearby areas like Dewas, Ujjain. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Bhopal", "state": "Madhya Pradesh", "nearby": "Vidisha, Sehore", "desc": "Althea Scholar helps students and parents in Bhopal (Madhya Pradesh) connect with home and online tutors — covering Bhopal city and nearby areas like Vidisha, Sehore. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Patna", "state": "Bihar", "nearby": "Danapur, Phulwari Sharif", "desc": "Althea Scholar helps students and parents in Patna (Bihar) connect with home and online tutors — covering Patna city and nearby areas like Danapur, Phulwari Sharif. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Vadodara", "state": "Gujarat", "nearby": "Anand", "desc": "Althea Scholar helps students and parents in Vadodara (Gujarat) connect with home and online tutors — covering Vadodara city and nearby areas like Anand. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Ludhiana", "state": "Punjab", "nearby": "Jalandhar", "desc": "Althea Scholar helps students and parents in Ludhiana (Punjab) connect with home and online tutors — covering Ludhiana city and nearby areas like Jalandhar. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Agra", "state": "Uttar Pradesh", "nearby": "Mathura, Firozabad", "desc": "Althea Scholar helps students and parents in Agra (Uttar Pradesh) connect with home and online tutors — covering Agra city and nearby areas like Mathura, Firozabad. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Nashik", "state": "Maharashtra", "nearby": "Igatpuri", "desc": "Althea Scholar helps students and parents in Nashik (Maharashtra) connect with home and online tutors — covering Nashik city and nearby areas like Igatpuri. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Faridabad", "state": "Haryana (NCR)", "nearby": "Ballabgarh, Delhi", "desc": "Althea Scholar helps students and parents in Faridabad (Haryana (NCR)) connect with home and online tutors — covering Faridabad city and nearby areas like Ballabgarh, Delhi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Meerut", "state": "Uttar Pradesh", "nearby": "Modinagar, Muzaffarnagar", "desc": "Althea Scholar helps students and parents in Meerut (Uttar Pradesh) connect with home and online tutors — covering Meerut city and nearby areas like Modinagar, Muzaffarnagar. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Varanasi", "state": "Uttar Pradesh", "nearby": "Chandauli, Mirzapur", "desc": "Althea Scholar helps students and parents in Varanasi (Uttar Pradesh) connect with home and online tutors — covering Varanasi city and nearby areas like Chandauli, Mirzapur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Srinagar", "state": "Jammu & Kashmir", "nearby": "Budgam, Ganderbal", "desc": "Althea Scholar helps students and parents in Srinagar (Jammu & Kashmir) connect with home and online tutors — covering Srinagar city and nearby areas like Budgam, Ganderbal. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Amritsar", "state": "Punjab", "nearby": "Tarn Taran", "desc": "Althea Scholar helps students and parents in Amritsar (Punjab) connect with home and online tutors — covering Amritsar city and nearby areas like Tarn Taran. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Allahabad (Prayagraj)", "state": "Uttar Pradesh", "nearby": "Kaushambi", "desc": "Althea Scholar helps students and parents in Allahabad (Prayagraj) (Uttar Pradesh) connect with home and online tutors — covering Allahabad (Prayagraj) city and nearby areas like Kaushambi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Ranchi", "state": "Jharkhand", "nearby": "Khunti", "desc": "Althea Scholar helps students and parents in Ranchi (Jharkhand) connect with home and online tutors — covering Ranchi city and nearby areas like Khunti. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Jabalpur", "state": "Madhya Pradesh", "nearby": "Katni", "desc": "Althea Scholar helps students and parents in Jabalpur (Madhya Pradesh) connect with home and online tutors — covering Jabalpur city and nearby areas like Katni. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Coimbatore", "state": "Tamil Nadu", "nearby": "Tiruppur, Pollachi", "desc": "Althea Scholar helps students and parents in Coimbatore (Tamil Nadu) connect with home and online tutors — covering Coimbatore city and nearby areas like Tiruppur, Pollachi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Madurai", "state": "Tamil Nadu", "nearby": "Dindigul", "desc": "Althea Scholar helps students and parents in Madurai (Tamil Nadu) connect with home and online tutors — covering Madurai city and nearby areas like Dindigul. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Visakhapatnam", "state": "Andhra Pradesh", "nearby": "Vizianagaram", "desc": "Althea Scholar helps students and parents in Visakhapatnam (Andhra Pradesh) connect with home and online tutors — covering Visakhapatnam city and nearby areas like Vizianagaram. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Chandigarh", "state": "Chandigarh (Tricity)", "nearby": "Mohali, Panchkula", "desc": "Althea Scholar helps students and parents in Chandigarh (Chandigarh (Tricity)) connect with home and online tutors — covering Chandigarh city and nearby areas like Mohali, Panchkula. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Gurugram", "state": "Haryana (NCR)", "nearby": "Manesar, Delhi, Faridabad", "desc": "Althea Scholar helps students and parents in Gurugram (Haryana (NCR)) connect with home and online tutors — covering Gurugram city and nearby areas like Manesar, Delhi, Faridabad. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Noida", "state": "Uttar Pradesh (NCR)", "nearby": "Greater Noida, Ghaziabad, Delhi", "desc": "Althea Scholar helps students and parents in Noida (Uttar Pradesh (NCR)) connect with home and online tutors — covering Noida city and nearby areas like Greater Noida, Ghaziabad, Delhi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Ghaziabad", "state": "Uttar Pradesh (NCR)", "nearby": "Noida, Delhi, Modinagar", "desc": "Althea Scholar helps students and parents in Ghaziabad (Uttar Pradesh (NCR)) connect with home and online tutors — covering Ghaziabad city and nearby areas like Noida, Delhi, Modinagar. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Guwahati", "state": "Assam", "nearby": "Dispur", "desc": "Althea Scholar helps students and parents in Guwahati (Assam) connect with home and online tutors — covering Guwahati city and nearby areas like Dispur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Shimla", "state": "Himachal Pradesh", "nearby": "Solan", "desc": "Althea Scholar helps students and parents in Shimla (Himachal Pradesh) connect with home and online tutors — covering Shimla city and nearby areas like Solan. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Dehradun", "state": "Uttarakhand", "nearby": "Rishikesh, Haridwar", "desc": "Althea Scholar helps students and parents in Dehradun (Uttarakhand) connect with home and online tutors — covering Dehradun city and nearby areas like Rishikesh, Haridwar. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Jammu", "state": "Jammu & Kashmir", "nearby": "Samba, Udhampur", "desc": "Althea Scholar helps students and parents in Jammu (Jammu & Kashmir) connect with home and online tutors — covering Jammu city and nearby areas like Samba, Udhampur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Udaipur", "state": "Rajasthan", "nearby": "Rajsamand", "desc": "Althea Scholar helps students and parents in Udaipur (Rajasthan) connect with home and online tutors — covering Udaipur city and nearby areas like Rajsamand. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Kota", "state": "Rajasthan", "nearby": "Bundi", "desc": "Althea Scholar helps students and parents in Kota (Rajasthan) connect with home and online tutors — covering Kota city and nearby areas like Bundi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Gwalior", "state": "Madhya Pradesh", "nearby": "Morena", "desc": "Althea Scholar helps students and parents in Gwalior (Madhya Pradesh) connect with home and online tutors — covering Gwalior city and nearby areas like Morena. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Bareilly", "state": "Uttar Pradesh", "nearby": "Pilibhit", "desc": "Althea Scholar helps students and parents in Bareilly (Uttar Pradesh) connect with home and online tutors — covering Bareilly city and nearby areas like Pilibhit. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Aligarh", "state": "Uttar Pradesh", "nearby": "Hathras", "desc": "Althea Scholar helps students and parents in Aligarh (Uttar Pradesh) connect with home and online tutors — covering Aligarh city and nearby areas like Hathras. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Mysuru", "state": "Karnataka", "nearby": "Mandya", "desc": "Althea Scholar helps students and parents in Mysuru (Karnataka) connect with home and online tutors — covering Mysuru city and nearby areas like Mandya. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Vijayawada", "state": "Andhra Pradesh", "nearby": "Guntur, Amaravati", "desc": "Althea Scholar helps students and parents in Vijayawada (Andhra Pradesh) connect with home and online tutors — covering Vijayawada city and nearby areas like Guntur, Amaravati. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Aurangabad", "state": "Maharashtra", "nearby": "Jalna", "desc": "Althea Scholar helps students and parents in Aurangabad (Maharashtra) connect with home and online tutors — covering Aurangabad city and nearby areas like Jalna. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Solapur", "state": "Maharashtra", "nearby": "Barshi", "desc": "Althea Scholar helps students and parents in Solapur (Maharashtra) connect with home and online tutors — covering Solapur city and nearby areas like Barshi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Hubballi", "state": "Karnataka", "nearby": "Dharwad", "desc": "Althea Scholar helps students and parents in Hubballi (Karnataka) connect with home and online tutors — covering Hubballi city and nearby areas like Dharwad. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Kochi", "state": "Kerala", "nearby": "Ernakulam, Aluva", "desc": "Althea Scholar helps students and parents in Kochi (Kerala) connect with home and online tutors — covering Kochi city and nearby areas like Ernakulam, Aluva. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Thrissur", "state": "Kerala", "nearby": "Guruvayur", "desc": "Althea Scholar helps students and parents in Thrissur (Kerala) connect with home and online tutors — covering Thrissur city and nearby areas like Guruvayur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Kozhikode", "state": "Kerala", "nearby": "Malappuram", "desc": "Althea Scholar helps students and parents in Kozhikode (Kerala) connect with home and online tutors — covering Kozhikode city and nearby areas like Malappuram. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Thiruvananthapuram", "state": "Kerala", "nearby": "Kollam", "desc": "Althea Scholar helps students and parents in Thiruvananthapuram (Kerala) connect with home and online tutors — covering Thiruvananthapuram city and nearby areas like Kollam. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Bhubaneswar", "state": "Odisha", "nearby": "Cuttack, Puri", "desc": "Althea Scholar helps students and parents in Bhubaneswar (Odisha) connect with home and online tutors — covering Bhubaneswar city and nearby areas like Cuttack, Puri. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Raipur", "state": "Chhattisgarh", "nearby": "Durg, Bhilai", "desc": "Althea Scholar helps students and parents in Raipur (Chhattisgarh) connect with home and online tutors — covering Raipur city and nearby areas like Durg, Bhilai. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Gandhinagar", "state": "Gujarat", "nearby": "Ahmedabad", "desc": "Althea Scholar helps students and parents in Gandhinagar (Gujarat) connect with home and online tutors — covering Gandhinagar city and nearby areas like Ahmedabad. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Panaji", "state": "Goa", "nearby": "Margao", "desc": "Althea Scholar helps students and parents in Panaji (Goa) connect with home and online tutors — covering Panaji city and nearby areas like Margao. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Port Blair", "state": "Andaman & Nicobar Islands", "nearby": "", "desc": "Althea Scholar helps students and parents in Port Blair (Andaman & Nicobar Islands) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Puducherry", "state": "Puducherry", "nearby": "Villupuram", "desc": "Althea Scholar helps students and parents in Puducherry (Puducherry) connect with home and online tutors — covering Puducherry city and nearby areas like Villupuram. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Daman", "state": "Daman & Diu", "nearby": "Vapi", "desc": "Althea Scholar helps students and parents in Daman (Daman & Diu) connect with home and online tutors — covering Daman city and nearby areas like Vapi. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Leh", "state": "Ladakh", "nearby": "", "desc": "Althea Scholar helps students and parents in Leh (Ladakh) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Itanagar", "state": "Arunachal Pradesh", "nearby": "Naharlagun", "desc": "Althea Scholar helps students and parents in Itanagar (Arunachal Pradesh) connect with home and online tutors — covering Itanagar city and nearby areas like Naharlagun. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Dispur", "state": "Assam", "nearby": "Guwahati", "desc": "Althea Scholar helps students and parents in Dispur (Assam) connect with home and online tutors — covering Dispur city and nearby areas like Guwahati. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Shillong", "state": "Meghalaya", "nearby": "", "desc": "Althea Scholar helps students and parents in Shillong (Meghalaya) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Imphal", "state": "Manipur", "nearby": "", "desc": "Althea Scholar helps students and parents in Imphal (Manipur) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Aizawl", "state": "Mizoram", "nearby": "", "desc": "Althea Scholar helps students and parents in Aizawl (Mizoram) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Kohima", "state": "Nagaland", "nearby": "Dimapur", "desc": "Althea Scholar helps students and parents in Kohima (Nagaland) connect with home and online tutors — covering Kohima city and nearby areas like Dimapur. Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class.", "dedicatedUrl": ""}, {"name": "Agartala", "state": "Tripura", "nearby": "", "desc": "Althea Scholar helps students and parents in Agartala (Tripura) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}, {"name": "Gangtok", "state": "Sikkim", "nearby": "", "desc": "Althea Scholar helps students and parents in Gangtok (Sikkim) connect with home and online tutors — Nursery to Class 12, all major boards, entrance exam preparation, and hobby &amp; language classes, with free registration and a free demo class before you commit to a teacher.", "dedicatedUrl": ""}]}
+;
+function getSeoPages() {
+  fsSettingsListen('seoPages');
+  const saved = fsSettingsGet('seoPages') || {};
+  return {
+    visible: { ...SEO_PAGES_DEFAULT.visible, ...(saved.visible || {}) },
+    pages: Object.fromEntries(Object.keys(SEO_PAGES_DEFAULT.pages).map(slug =>
+      [slug, { ...SEO_PAGES_DEFAULT.pages[slug], ...((saved.pages && saved.pages[slug]) || {}) }]
+    )),
+    citiesVisible: saved.visible && saved.visible['tuition-cities'] !== undefined ? saved.visible['tuition-cities'] : true,
+    cities: (saved.cities && saved.cities.length) ? saved.cities : SEO_PAGES_DEFAULT.cities
+  };
+}
+function saveSeoPagesPartial(updates) {
+  const current = getSeoPages();
+  const merged = { ...current, ...updates };
+  fsSettingsSave('seoPages', merged);
+}
+function loadSeoPageIntoForm() {
+  const slug = document.getElementById('sp_page_select').value;
+  const sp = getSeoPages();
+  const p = sp.pages[slug] || {};
+  document.getElementById('sp_visible').checked = sp.visible[slug] !== false;
+  document.getElementById('sp_title').value = p.title || '';
+  document.getElementById('sp_desc').value = p.desc || '';
+  document.getElementById('sp_h1').value = p.h1 || '';
+  document.getElementById('sp_body').value = p.body || '';
+}
+function saveSeoPage() {
+  const slug = document.getElementById('sp_page_select').value;
+  const sp = getSeoPages();
+  const visible = { ...sp.visible, [slug]: document.getElementById('sp_visible').checked };
+  const pages = { ...sp.pages, [slug]: {
+    title: document.getElementById('sp_title').value.trim(),
+    desc: document.getElementById('sp_desc').value.trim(),
+    h1: document.getElementById('sp_h1').value.trim(),
+    body: document.getElementById('sp_body').value.trim()
+  } };
+  fsSettingsSave('seoPages', { ...sp, visible, pages });
+  showToast('✅ ' + (SEO_PAGE_LABELS[slug] || slug) + ' page updated! (May take a few seconds to reflect on the live page.)');
+}
+function resetSeoPageToDefault() {
+  const slug = document.getElementById('sp_page_select').value;
+  const sp = getSeoPages();
+  const pages = { ...sp.pages, [slug]: { ...SEO_PAGES_DEFAULT.pages[slug] } };
+  const visible = { ...sp.visible, [slug]: true };
+  fsSettingsSave('seoPages', { ...sp, visible, pages });
+  loadSeoPageIntoForm();
+  showToast('✅ Reset to default!');
+}
+function populateSeoCitiesForm() {
+  const sp = getSeoPages();
+  document.getElementById('sp_cities_visible').checked = sp.citiesVisible !== false;
+  document.getElementById('sp_cities_bulk').value = sp.cities.map(c =>
+    `${c.name} || ${c.state || ''} || ${c.nearby || ''} || ${(c.desc || '').replace(/\n/g, ' ')}`
+  ).join('\n');
+}
+function saveSeoCitiesList() {
+  const lines = document.getElementById('sp_cities_bulk').value.split('\n').map(l => l.trim()).filter(Boolean);
+  const sp = getSeoPages();
+  const dedicatedUrlByName = {};
+  sp.cities.forEach(c => { if (c.dedicatedUrl) dedicatedUrlByName[c.name] = c.dedicatedUrl; });
+  const cities = lines.map(line => {
+    const parts = line.split('||').map(s => s.trim());
+    const name = parts[0] || '';
+    return {
+      name, state: parts[1] || '', nearby: parts[2] || '', desc: parts[3] || '',
+      dedicatedUrl: dedicatedUrlByName[name] || ''
+    };
+  }).filter(c => c.name);
+  const visible = { ...sp.visible, 'tuition-cities': document.getElementById('sp_cities_visible').checked };
+  fsSettingsSave('seoPages', { ...sp, visible, cities });
+  showToast('✅ Cities list updated! (' + cities.length + ' cities saved.)');
+}
+function resetSeoCitiesToDefault() {
+  const sp = getSeoPages();
+  fsSettingsSave('seoPages', { ...sp, cities: SEO_PAGES_DEFAULT.cities, visible: { ...sp.visible, 'tuition-cities': true } });
+  populateSeoCitiesForm();
+  showToast('✅ Cities list reset to default!');
 }
 
 function renderStudentFormNotice() {

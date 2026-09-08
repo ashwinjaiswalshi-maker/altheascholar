@@ -2,7 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://altheascholar.in/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-08</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/home-tuition.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/online-tuition.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/hobby-and-language-classes.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/cbse-icse-study-material.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/entrance-exam-preparation.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/tuition-cities.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/tuition-in-new-delhi.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/tuition-in-mumbai.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://altheascholar.in/tuition-in-lucknow.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>
