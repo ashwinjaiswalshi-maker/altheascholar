@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=980">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A4174">
   <!-- Fixed (non-device-width) viewport: the browser always lays the page
        out as if the screen were 980px wide and then zooms the whole thing
        down to fit the real screen — this is exactly what "Request Desktop
@@ -1532,7 +1533,42 @@
       <div class="faq-list" id="faqList"></div>
     </div>
   </section>
+
+  <section class="community-section">
+    <div class="container">
+      <h2 class="section-title">Ask, Suggest, or Share Something</h2>
+      <p style="text-align:center;color:var(--gray);font-size:13.5px;max-width:560px;margin:-10px auto 24px;">Have a question, an idea to make this site better, or something worth writing about? Post it below — we review everything before it goes live.</p>
+      <div class="community-form-card">
+        <select id="cp_type">
+          <option value="question">❓ Ask a Question</option>
+          <option value="suggestion">💡 Suggest an Idea</option>
+          <option value="blog">✍️ Write a Blog Post</option>
+        </select>
+        <input type="text" id="cp_name" placeholder="Your name (optional)">
+        <input type="text" id="cp_title" placeholder="Title / short summary">
+        <textarea id="cp_content" placeholder="Write your question, suggestion, or blog post here..." style="min-height:110px;"></textarea>
+        <button class="btn btn-primary" onclick="submitVisitorPost()"><i class="fas fa-paper-plane"></i> Submit for Review</button>
+      </div>
+      <div class="community-list" id="communityList"></div>
+    </div>
+  </section>
 </div>
+
+<style>
+  .community-section { padding: 10px 0 46px; background: var(--primary-light); }
+  .community-form-card { max-width: 560px; margin: 0 auto 28px; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .community-form-card select, .community-form-card input, .community-form-card textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 13.5px; }
+  .community-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .community-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+  .community-card .cc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .community-card .cc-type { font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; }
+  .community-card .cc-type.question { background: #E4EFF9; color: var(--primary); }
+  .community-card .cc-type.suggestion { background: #fff3d6; color: #8a5300; }
+  .community-card .cc-type.blog { background: #e6f6ea; color: #1a7a3c; }
+  .community-card .cc-by { font-size: 12px; color: var(--gray); }
+  .community-card h4 { margin: 4px 0 6px; font-size: 15px; color: var(--secondary); }
+  .community-card p { font-size: 13.5px; color: #33455e; margin: 0; white-space: pre-wrap; }
+</style>
 
 <!-- TEACHER FORM -->
 <div class="page-inner" id="page-teacher-form">
@@ -1826,6 +1862,7 @@
       <button class="btn btn-accent admin-tab-btn" data-tab="formeditor" onclick="showAdminTab('formeditor')"><i class="fas fa-edit"></i> Registration Form Editor</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="chatbot" onclick="showAdminTab('chatbot')"><i class="fas fa-robot"></i> Chatbot FAQs</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="site-faq" onclick="showAdminTab('site-faq')"><i class="fas fa-circle-question"></i> Website FAQs (SEO)</button>
+      <button class="btn btn-accent admin-tab-btn" data-tab="community" onclick="showAdminTab('community')"><i class="fas fa-comments"></i> Community</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="seo-pages" onclick="showAdminTab('seo-pages')"><i class="fas fa-sitemap"></i> SEO Pages</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="festival" onclick="showAdminTab('festival')"><i class="fas fa-gift"></i> Festival Popup</button>
       <button class="btn btn-accent admin-tab-btn" data-tab="branding" onclick="showAdminTab('branding')"><i class="fas fa-palette"></i> Branding &amp; Theme</button>
@@ -2352,6 +2389,27 @@
         <table class="admin-table">
           <thead><tr><th>Question</th><th>Answer</th><th>Action</th></tr></thead>
           <tbody id="adminSiteFaqTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Community Submissions (visitor questions / suggestions / blog ideas) Tab -->
+    <div class="admin-tab" id="admin-community">
+      <h3>💬 Community Submissions</h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">Questions, suggestions and blog ideas visitors post from the homepage land here first as <strong>Pending</strong> — nothing shows publicly until you Approve it. You can edit the text before approving, Hide something already approved, or Delete it entirely.</p>
+      <div id="cp_edit_banner" style="display:none;background:#fff3e0;border:1px solid #f6c98a;color:#8a5300;padding:10px 14px;border-radius:10px;margin-bottom:14px;font-size:13px;font-weight:600;">
+        <i class="fas fa-edit"></i> Editing a submission — update and click "Save Changes".
+        <button type="button" class="btn btn-outline btn-sm" style="margin-left:10px;" onclick="cancelEditVisitorPost()">Cancel</button>
+      </div>
+      <div class="admin-form" id="cp_edit_form" style="display:none;">
+        <input type="text" id="cp_edit_title" placeholder="Title">
+        <textarea id="cp_edit_content" placeholder="Content" style="width:100%;margin-top:10px;min-height:90px;"></textarea>
+        <button class="btn btn-green" onclick="saveVisitorPostEdit()" style="margin-top:12px;"><i class="fas fa-save"></i> Save Changes</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Type</th><th>Name</th><th>Title / Content</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="adminCommunityTable"></tbody>
         </table>
       </div>
     </div>
@@ -3942,6 +4000,15 @@ function closeMobileNav() {
 }
 
 function showPage(id) {
+  // Push a history entry per page-switch so the phone/browser Back button
+  // steps back through the site's own pages (Home -> Study Material -> ...)
+  // instead of immediately leaving the site to whatever was open before it.
+  if (!(window.history.state && window.history.state.page === id)) {
+    history.pushState({ page: id }, '', '#' + id.replace('page-', ''));
+  }
+  activatePage(id);
+}
+function activatePage(id) {
   document.querySelectorAll('.page-inner').forEach(el => el.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
@@ -3959,6 +4026,17 @@ function showPage(id) {
   if (id === 'page-teacher-form') { renderPaymentSettings(); }
   if (id === 'page-student-form') { renderStudentFormNotice(); }
   if (id === 'page-blog') { renderBlogList(); }
+}
+// Phone/browser Back (and Forward) button support: restore whichever page
+// was active at that point in history, without pushing a new entry.
+window.addEventListener('popstate', function (e) {
+  const id = (e.state && e.state.page) || 'page-home';
+  if (document.getElementById(id)) activatePage(id);
+});
+// The very first page load has no history state yet — give it one so the
+// first Back press has something defined to land on.
+if (!window.history.state) {
+  history.replaceState({ page: 'page-home' }, '', location.pathname);
 }
 
 /* ---------- Payment Settings (UPI / QR / Fee / Duration / Benefits) — admin controlled ---------- */
@@ -4594,6 +4672,7 @@ function renderAdminSubjectDropdown() {
   if (!cls) {
     sel.innerHTML = '<option value="">Select Class First</option>';
     renderAdminChapterDropdown();
+    renderAdminContent();
     return;
   }
   // Existing subjects = defaults for this class + any admin-added ones already saved
@@ -4604,12 +4683,14 @@ function renderAdminSubjectDropdown() {
     allSubjects.map(s => `<option value="${s}">${s}</option>`).join('') +
     '<option value="__new__">➕ Add New Subject</option>';
   renderAdminChapterDropdown();
+  renderAdminContent();
 }
 
 function onScSubjectChange() {
   const sel = document.getElementById('sc_subject');
   document.getElementById('sc_subject_custom').style.display = sel.value === '__new__' ? 'block' : 'none';
   renderAdminChapterDropdown();
+  renderAdminContent();
 }
 
 function renderAdminChapterDropdown() {
@@ -5144,8 +5225,18 @@ function renderAdminContent() {
   const contents = getData('studyContent');
   const tbody = document.getElementById('adminContentTable');
   if (!tbody) return;
+  // Filter the list below to match whatever Class/Subject is currently
+  // picked in the upload form above, so uploading doesn't bury new items
+  // in 70+ unrelated rows. A dropdown left on its placeholder ("Select
+  // Class"/"Select Subject") means "don't filter by this field".
+  const filterClass = document.getElementById('sc_class') ? document.getElementById('sc_class').value : '';
+  const subjSel = document.getElementById('sc_subject');
+  const filterSubject = (subjSel && subjSel.value && subjSel.value !== '__new__') ? subjSel.value : '';
+  const filtered = contents.filter(c =>
+    (!filterClass || c.class === filterClass) && (!filterSubject || c.subject === filterSubject)
+  );
   const typeMap = { notes:'📝 Notes', mindmap:'🧠 Mind Map', exercise:'📖 Exercise', extra:'❓ Extra Q', practice:'📄 Practice', pyq:'📜 PYQ' };
-  tbody.innerHTML = contents.map(c => `
+  tbody.innerHTML = filtered.length ? filtered.map(c => `
     <tr>
       <td>${c.class}</td>
       <td>${c.subject}</td>
@@ -5157,7 +5248,7 @@ function renderAdminContent() {
         <button class="btn btn-danger btn-sm" onclick="deleteData('studyContent', ${c.id})">Delete</button>
       </td>
     </tr>
-  `).join('');
+  `).join('') : `<tr><td colspan="6" style="text-align:center;color:var(--gray);">No study material for ${filterClass || 'any class'}${filterSubject ? ' / ' + filterSubject : ''} yet.</td></tr>`;
 }
 
 function renderAdminEntrance() {
@@ -5217,6 +5308,7 @@ function renderPublicAll() {
   if (typeof renderPublicPremiumLeads === 'function') renderPublicPremiumLeads();
   if (typeof renderBlogList === 'function') renderBlogList();
   if (typeof renderFaqSection === 'function') renderFaqSection();
+  if (typeof renderVisitorPostsPublic === 'function') renderVisitorPostsPublic();
 }
 
 function showAdminTab(tab) {
@@ -5227,6 +5319,7 @@ function showAdminTab(tab) {
   const activeBtn = document.querySelector('.admin-tab-btn[data-tab="' + tab + '"]');
   if (activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   if (tab === 'homepage') populateHomepageAdminForm();
+  if (tab === 'community') renderAdminVisitorPosts();
   if (tab === 'premium') { renderAdminPremium(); showPremiumSubTab('pending'); populatePaymentSettingsForm(); }
   if (tab === 'teacher-profiles') renderAdminTeacherProfiles();
   if (tab === 'announcements') renderAdminAnnouncements();
@@ -6213,6 +6306,99 @@ function renderFaqSection() {
     document.head.appendChild(ldTag);
   }
   ldTag.textContent = JSON.stringify(ld);
+}
+
+// ================================================================
+// Community Submissions — visitors post a question/suggestion/blog idea
+// from the homepage; it lands as "pending" and stays invisible to other
+// visitors until an admin approves it here. Uses the same generic
+// getData/addData/updateData/deleteData layer as everything else, in a
+// new 'visitorPosts' collection (needs its own Firestore rule, same as
+// siteFaqs did — read: true, write: only when logged in as admin, EXCEPT
+// visitors must be able to create a pending post while logged out, so the
+// rule allows create by anyone but restricts update/delete to admin).
+// ================================================================
+const VISITOR_POST_TYPE_LABEL = { question: '❓ Question', suggestion: '💡 Suggestion', blog: '✍️ Blog Post' };
+function getVisitorPosts() { return getData('visitorPosts'); }
+
+function submitVisitorPost() {
+  const type = document.getElementById('cp_type').value;
+  const name = document.getElementById('cp_name').value.trim() || 'Anonymous';
+  const title = document.getElementById('cp_title').value.trim();
+  const content = document.getElementById('cp_content').value.trim();
+  if (!title || !content) { showToast('⚠️ Please fill in a title and your message.', 'error'); return; }
+  addData('visitorPosts', { type, name, title, content, status: 'pending', submittedAt: Date.now() });
+  showToast('✅ Thanks! Your ' + (type === 'blog' ? 'post' : type) + ' has been submitted for review.');
+  document.getElementById('cp_title').value = '';
+  document.getElementById('cp_content').value = '';
+  document.getElementById('cp_name').value = '';
+}
+
+// Public homepage list — approved posts only, newest first.
+function renderVisitorPostsPublic() {
+  const list = document.getElementById('communityList');
+  if (!list) return;
+  const approved = getVisitorPosts().filter(p => p.status === 'approved').sort((a, b) => (b.submittedAt || 0) - (a.submittedAt || 0));
+  list.innerHTML = approved.length ? approved.map(p => `
+    <div class="community-card">
+      <div class="cc-top"><span class="cc-type ${p.type}">${VISITOR_POST_TYPE_LABEL[p.type] || p.type}</span><span class="cc-by">— ${p.name}</span></div>
+      <h4>${p.title}</h4>
+      <p>${p.content}</p>
+    </div>
+  `).join('') : '<p style="text-align:center;color:var(--gray);font-size:13px;">Nothing posted yet — be the first!</p>';
+}
+
+// Admin table — every submission regardless of status, with moderation actions.
+let editingVisitorPostId = null;
+function renderAdminVisitorPosts() {
+  const tbody = document.getElementById('adminCommunityTable');
+  if (!tbody) return;
+  const posts = getVisitorPosts().sort((a, b) => (b.submittedAt || 0) - (a.submittedAt || 0));
+  const statusColor = { pending: '#8a5300', approved: '#1a7a3c', hidden: '#666' };
+  tbody.innerHTML = posts.length ? posts.map(p => `
+    <tr>
+      <td>${VISITOR_POST_TYPE_LABEL[p.type] || p.type}</td>
+      <td>${p.name}</td>
+      <td><strong>${p.title}</strong><br><span style="font-size:12px;color:var(--gray);">${(p.content || '').slice(0, 80)}${(p.content || '').length > 80 ? '…' : ''}</span></td>
+      <td><span style="font-weight:700;color:${statusColor[p.status] || '#666'};text-transform:capitalize;">${p.status}</span></td>
+      <td style="white-space:nowrap;">
+        ${p.status !== 'approved' ? `<button class="btn btn-green btn-sm" onclick="setVisitorPostStatus(${p.id}, 'approved')"><i class="fas fa-check"></i> Approve</button>` : ''}
+        ${p.status !== 'hidden' ? `<button class="btn btn-outline btn-sm" onclick="setVisitorPostStatus(${p.id}, 'hidden')"><i class="fas fa-eye-slash"></i> Hide</button>` : `<button class="btn btn-outline btn-sm" onclick="setVisitorPostStatus(${p.id}, 'approved')"><i class="fas fa-eye"></i> Unhide</button>`}
+        <button class="btn btn-accent btn-sm" onclick="editVisitorPost(${p.id})"><i class="fas fa-edit"></i> Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteData('visitorPosts', ${p.id}); renderAdminVisitorPosts();"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  `).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--gray);">No submissions yet.</td></tr>';
+}
+function setVisitorPostStatus(id, status) {
+  updateData('visitorPosts', id, { status });
+  showToast(status === 'approved' ? '✅ Published to the homepage!' : '✅ Hidden from the homepage.');
+  renderAdminVisitorPosts();
+}
+function editVisitorPost(id) {
+  const p = getVisitorPosts().find(x => x.id === id);
+  if (!p) return;
+  editingVisitorPostId = id;
+  document.getElementById('cp_edit_title').value = p.title;
+  document.getElementById('cp_edit_content').value = p.content;
+  document.getElementById('cp_edit_form').style.display = 'block';
+  document.getElementById('cp_edit_banner').style.display = 'block';
+  document.getElementById('admin-community').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function saveVisitorPostEdit() {
+  if (editingVisitorPostId === null) return;
+  updateData('visitorPosts', editingVisitorPostId, {
+    title: document.getElementById('cp_edit_title').value.trim(),
+    content: document.getElementById('cp_edit_content').value.trim()
+  });
+  showToast('✅ Submission updated!');
+  cancelEditVisitorPost();
+  renderAdminVisitorPosts();
+}
+function cancelEditVisitorPost() {
+  editingVisitorPostId = null;
+  document.getElementById('cp_edit_form').style.display = 'none';
+  document.getElementById('cp_edit_banner').style.display = 'none';
 }
 
 // ================================================================
