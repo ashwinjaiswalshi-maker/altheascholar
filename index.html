@@ -4712,6 +4712,25 @@ function onScSubjectChange() {
   renderAdminContent();
 }
 
+// Chapter rename overrides — stored under the same 'settings' collection as
+// Branding/Homepage Content (no new Firestore rule needed). Keyed by the
+// chapter's ORIGINAL built-in name, so it renames the site's default
+// curriculum chapters everywhere they're shown, even before anything has
+// been uploaded under them — not just already-uploaded resources.
+function chapterRenameKey(cls, subj, rawName) { return cls + '|||' + subj + '|||' + rawName; }
+function getChapterRenames() {
+  fsSettingsListen('chapterRenames');
+  return fsSettingsGet('chapterRenames') || {};
+}
+function displayChapterName(cls, subj, rawName) {
+  return getChapterRenames()[chapterRenameKey(cls, subj, rawName)] || rawName;
+}
+function saveChapterRename(cls, subj, rawName, newName) {
+  const renames = getChapterRenames();
+  renames[chapterRenameKey(cls, subj, rawName)] = newName;
+  fsSettingsSave('chapterRenames', renames);
+}
+
 function renderAdminChapterDropdown() {
   const cls = document.getElementById('sc_class').value;
   const subjSel = document.getElementById('sc_subject');
@@ -4725,12 +4744,22 @@ function renderAdminChapterDropdown() {
     chSel.innerHTML = '<option value="">Select Subject First</option>';
     return;
   }
-  const defaultChapters = (DEFAULT_STUDY_DATA[cls] && DEFAULT_STUDY_DATA[cls][subj]) ? DEFAULT_STUDY_DATA[cls][subj] : [];
+  const defaultChaptersRaw = (DEFAULT_STUDY_DATA[cls] && DEFAULT_STUDY_DATA[cls][subj]) ? DEFAULT_STUDY_DATA[cls][subj] : [];
   const savedChapters = [...new Set(getData('studyContent').filter(c => c.class === cls && c.subject === subj).map(c => c.chapter))];
-  const allChapters = [...new Set([...defaultChapters, ...savedChapters])];
-  chSel.innerHTML = '<option value="">Select Chapter</option>' +
-    allChapters.map(c => `<option value="${c}">${c}</option>`).join('') +
-    '<option value="__new__">➕ Add New Chapter</option>';
+  const seen = new Set();
+  let optionsHtml = '';
+  defaultChaptersRaw.forEach(raw => {
+    const display = displayChapterName(cls, subj, raw);
+    if (seen.has(display)) return;
+    seen.add(display);
+    optionsHtml += `<option value="${display}" data-raw="${raw}">${display}</option>`;
+  });
+  savedChapters.forEach(name => {
+    if (seen.has(name)) return;
+    seen.add(name);
+    optionsHtml += `<option value="${name}">${name}</option>`;
+  });
+  chSel.innerHTML = '<option value="">Select Chapter</option>' + optionsHtml + '<option value="__new__">➕ Add New Chapter</option>';
 }
 
 function onScChapterChange() {
@@ -4740,11 +4769,10 @@ function onScChapterChange() {
   if (renameBtn) renameBtn.style.display = (sel.value && sel.value !== '__new__') ? 'inline-flex' : 'none';
 }
 
-// Renames an existing chapter across every uploaded resource filed under
-// it (for this exact Class + Subject). Only affects chapters that already
-// have real uploaded content — a chapter name that's part of the site's
-// built-in curriculum list but has nothing uploaded under it yet has
-// nothing in the database to rename, so nothing happens for it here.
+// Renames the selected chapter — for a default curriculum chapter this
+// saves a display-name override (works instantly, even with nothing
+// uploaded yet); any resources already uploaded under the old name are
+// also renamed so the data stays clean.
 function renameSelectedChapter() {
   const cls = document.getElementById('sc_class').value;
   const subjSel = document.getElementById('sc_subject');
@@ -4752,15 +4780,18 @@ function renameSelectedChapter() {
   const chSel = document.getElementById('sc_chapter');
   const oldName = chSel.value;
   if (!cls || !subj || !oldName || oldName === '__new__') { showToast('⚠️ Select an existing chapter first.', 'error'); return; }
+  const selectedOption = chSel.options[chSel.selectedIndex];
+  const rawDefaultName = selectedOption ? selectedOption.getAttribute('data-raw') : null;
   const newName = prompt('Rename chapter "' + oldName + '" to:', oldName);
   if (!newName || !newName.trim() || newName.trim() === oldName) return;
+  const finalName = newName.trim();
+
+  if (rawDefaultName) saveChapterRename(cls, subj, rawDefaultName, finalName);
+
   const items = getData('studyContent').filter(c => c.class === cls && c.subject === subj && c.chapter === oldName);
-  if (!items.length) {
-    showToast('⚠️ Nothing is uploaded under "' + oldName + '" yet — upload something first, or this is a default chapter name that needs a code change to rename.', 'error');
-    return;
-  }
-  items.forEach(it => updateData('studyContent', it.id, { chapter: newName.trim() }));
-  showToast('✅ Renamed to "' + newName.trim() + '" (' + items.length + ' item' + (items.length > 1 ? 's' : '') + ' updated).');
+  items.forEach(it => updateData('studyContent', it.id, { chapter: finalName }));
+
+  showToast('✅ Renamed to "' + finalName + '"' + (items.length ? ' (' + items.length + ' item' + (items.length > 1 ? 's' : '') + ' updated).' : '.'));
   renderAdminChapterDropdown();
   renderAdminContent();
 }
@@ -7203,7 +7234,8 @@ function selectStudySubject(sub) {
   studySelSub = sub; studySelCh = '';
   document.getElementById('study-chapter-section').style.display = 'none';
   renderStudyBreadcrumb();
-  const defaultChapters = (DEFAULT_STUDY_DATA[studySelClass] && DEFAULT_STUDY_DATA[studySelClass][sub]) ? DEFAULT_STUDY_DATA[studySelClass][sub] : [];
+  const defaultChaptersRaw = (DEFAULT_STUDY_DATA[studySelClass] && DEFAULT_STUDY_DATA[studySelClass][sub]) ? DEFAULT_STUDY_DATA[studySelClass][sub] : [];
+  const defaultChapters = defaultChaptersRaw.map(raw => displayChapterName(studySelClass, sub, raw));
   const savedChapters = [...new Set(getData('studyContent').filter(c => c.class === studySelClass && c.subject === sub).map(c => c.chapter))];
   const chapters = [...new Set([...defaultChapters, ...savedChapters])];
   renderStudyStepGrid(chapters, 'No chapters yet for this subject.', 'fa-bookmark');
