@@ -651,12 +651,12 @@
     /* AI Chat Widget — bottom-left */
     .chatbot-fab {
       position: fixed; left: 20px; bottom: 20px; z-index: 9998;
-      width: 58px; height: 58px; border-radius: 50%; background: var(--primary);
+      width: 64px; height: 64px; border-radius: 50%; background: var(--primary);
       color: #fff; border: none; box-shadow: 0 8px 24px rgba(26,76,255,0.4);
-      font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center;
     }
     .chatbot-greet {
-      position: fixed; left: 88px; bottom: 30px; z-index: 9998;
+      position: fixed; left: 94px; bottom: 34px; z-index: 9998;
       background: #fff; border: 1px solid var(--border); border-radius: 14px 14px 14px 2px;
       padding: 10px 14px; font-size: 13px; font-weight: 600; color: var(--secondary);
       box-shadow: 0 8px 20px rgba(0,0,0,0.12); max-width: 200px;
@@ -665,8 +665,8 @@
     .chatbot-greet button { position:absolute; top:-6px; right:-6px; background:#fff; border:1px solid var(--border); border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; color:var(--gray); }
     @keyframes chatbotBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     .chatbot-panel {
-      position: fixed; left: 20px; bottom: 90px; z-index: 9999;
-      width: min(340px, 88vw); height: min(460px, 70vh); background: #fff;
+      position: fixed; left: 20px; bottom: 96px; z-index: 9999;
+      width: min(370px, 90vw); height: min(500px, 72vh); background: #fff;
       border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.25);
       display: none; flex-direction: column; overflow: hidden; border: 1px solid var(--border);
     }
@@ -705,10 +705,10 @@
     .file-view-modal-body { flex: 1; overflow-y: auto; overflow-x: hidden; background: #eef1f6; display: block; padding: 10px 0; }
     .file-view-modal-body img { width: 100%; height: auto; display: block; }
     .file-view-modal-body iframe { width: 100%; height: 78vh; border: none; display: block; }
-    .view-only-wrap { position: relative; width: 100%; margin-bottom: 10px; }
+    .view-only-wrap { position: relative; width: 100%; margin-bottom: 18px; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.09); overflow: hidden; }
     .view-only-wrap:last-child { margin-bottom: 0; }
-    .view-only-watermark { position: absolute; inset: 0; pointer-events: none; display: flex; flex-wrap: wrap; align-content: space-around; justify-content: space-around; overflow: hidden; opacity: 0.16; transform: rotate(-28deg) scale(1.3); }
-    .view-only-watermark span { font-size: 13px; font-weight: 800; color: #0b2b5e; white-space: nowrap; margin: 22px 26px; }
+    .view-only-watermark { position: absolute; inset: 0; pointer-events: none; display: flex; flex-wrap: wrap; align-content: space-around; justify-content: space-around; overflow: hidden; opacity: 0.09; transform: rotate(-28deg) scale(1.1); }
+    .view-only-watermark span { font-size: 12px; font-weight: 800; color: #0b2b5e; white-space: nowrap; margin: 48px 60px; }
 
     .form-wrap {
       max-width: 720px; margin: 0 auto 60px; background: #fff;
@@ -922,7 +922,7 @@
     .premium-leads-grid .offer-card .ic { margin: 0 0 10px; background: linear-gradient(135deg,#f6c94a,#e6a12a); color: #4a3200; }
     .premium-leads-grid .offer-card .lead-status-badge {
       position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 800; letter-spacing: 0.3px;
-      padding: 4px 11px; border-radius: 20px; color: #fff; background: linear-gradient(135deg,#2fbf71,#1f9c5a);
+      padding: 4px 11px; border-radius: 20px; color: #fff; background: linear-gradient(135deg,#4a90e2,#1e5fc2);
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
@@ -1016,31 +1016,98 @@
     .study-tile span { font-weight: 700; font-size: 14px; color: var(--secondary); }
     .study-tile:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(11,43,94,0.2); border-color: var(--primary); }
     .study-tile:hover i { transform: rotate(-6deg) scale(1.08); }
-    #study-step-grid .study-tile:nth-child(6n+1) i { background: linear-gradient(145deg, var(--shade2), var(--shade1)); }
-    #study-step-grid .study-tile:nth-child(6n+2) i { background: linear-gradient(145deg, var(--shade4), var(--shade3)); }
-    #study-step-grid .study-tile:nth-child(6n+3) i { background: linear-gradient(145deg, #7c5cd6, #5637a8); }
-    #study-step-grid .study-tile:nth-child(6n+4) i { background: linear-gradient(145deg, #f0985a, #d97438); }
-    #study-step-grid .study-tile:nth-child(6n+5) i { background: linear-gradient(145deg, #2fa96b, #1f7a4c); }
-    #study-step-grid .study-tile:nth-child(6n+6) i { background: linear-gradient(145deg, #e05c8a, #b83b68); }
+    #study-chapter-grid .study-tile:nth-child(6n+1) i { background: linear-gradient(145deg, var(--shade2), var(--shade1)); }
+    #study-chapter-grid .study-tile:nth-child(6n+2) i { background: linear-gradient(145deg, var(--shade4), var(--shade3)); }
+    #study-chapter-grid .study-tile:nth-child(6n+3) i { background: linear-gradient(145deg, #7c5cd6, #5637a8); }
+    #study-chapter-grid .study-tile:nth-child(6n+4) i { background: linear-gradient(145deg, #f0985a, #d97438); }
+    #study-chapter-grid .study-tile:nth-child(6n+5) i { background: linear-gradient(145deg, #e0a83a, #b8811f); }
+    #study-chapter-grid .study-tile:nth-child(6n+6) i { background: linear-gradient(145deg, #e05c8a, #b83b68); }
+    .sm-intro{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 16px rgba(11,42,102,.06);}
+    .sm-intro .ic{flex:none;width:46px;height:46px;border-radius:12px;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;}
+    .sm-intro h3{margin:0 0 3px;font-size:16px;color:var(--secondary);font-weight:800;}
+    .sm-intro p{margin:0;font-size:12.5px;color:var(--gray);}
+    .sm-hero-art{display:flex;align-items:center;gap:10px;flex:none;}
+    .sm-hero-art svg{width:80px;height:60px;flex:none;}
+    .sm-hero-art img{width:auto;height:64px;max-width:180px;object-fit:contain;flex:none;border-radius:8px;}
+    .sm-hero-txt{font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:14px;color:var(--primary);line-height:1.3;transform:rotate(-3deg);}
+    @media(max-width:560px){.sm-hero-art{display:none;}}
+    .sm-picker{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+    .sm-step{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(11,43,94,0.05);}
+    .sm-num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none;font-size:14px;}
+    .sm-step-body{flex:1;min-width:0;}
+    .sm-step-body label{display:block;font-size:11.5px;font-weight:700;color:var(--gray);margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px;}
+    .sm-step-body select{width:100%;padding:9px 10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;background:#fff;color:var(--secondary);}
+    .sm-step-body select:disabled{background:#f4f6f9;color:var(--gray);}
+    .sm-chap-head{display:flex;align-items:center;gap:14px;margin:4px 0 14px;}
+    .sm-chap-head button{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit;}
+    .sm-chap-head h4{margin:0;font-size:15px;color:var(--secondary);display:flex;align-items:center;gap:8px;}
+    .sm-chap-head h4 small{font-weight:600;color:var(--gray);font-size:12px;}
+    .sm-back-link{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--primary);font-weight:700;font-size:12.5px;cursor:pointer;margin-bottom:10px;padding:0;font-family:inherit;}
+    .sm-more-section{padding-top:10px;padding-bottom:50px;}
+    .sm-more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+    @media(max-width:820px){.sm-more-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:460px){.sm-more-grid{grid-template-columns:1fr;}}
+    .sm-more-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:22px 18px;cursor:pointer;transition:.2s;box-shadow:0 2px 10px rgba(11,43,94,0.05);}
+    .sm-more-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px -8px rgba(11,43,94,0.22);border-color:var(--primary);}
+    .sm-more-card .ic{
+      width:56px;height:56px;border-radius:50%;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-bottom:14px;
+      box-shadow:0 10px 18px -6px rgba(0,0,0,.28), inset 0 -8px 12px rgba(0,0,0,.18), inset 0 5px 7px rgba(255,255,255,.4);
+    }
+    .sm-more-card .ic::after{
+      content:'';position:absolute;top:7px;left:11px;width:20px;height:11px;border-radius:50%;
+      background:rgba(255,255,255,.6);filter:blur(1.5px);transform:rotate(-18deg);
+    }
+    .sm-more-card h4{font-size:15px;color:var(--secondary);margin-bottom:6px;}
+    .sm-more-card p{font-size:12.5px;color:var(--gray);line-height:1.5;margin-bottom:12px;}
+    .sm-more-card .view{color:var(--primary);font-weight:700;font-size:12.5px;}
+    .sm-res-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+    .sm-res-item:last-child{border-bottom:0;}
+    .sm-res-item .n{flex:1;min-width:0;font-size:13.5px;font-weight:600;color:var(--secondary);}
+    .sm-res-item .sub{display:block;font-size:11.5px;color:var(--gray);font-weight:500;}
+.pdfv-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:14px 0 18px;}
+.pdfv-head h1{font-size:20px;color:var(--secondary);display:flex;align-items:center;gap:10px;margin:0;}
+.pdfv-pages{font-size:12.5px;color:var(--gray);background:var(--primary-light);padding:5px 12px;border-radius:14px;font-weight:700;white-space:nowrap;}
+.pdfv-pages-wrap{max-width:780px;margin:0 auto 60px;background:#eef1f6;border-radius:16px;padding:14px;}
+.pdfv-pages-wrap img{width:100%;height:auto;display:block;border-radius:6px;}
+.pdfv-page-num{position:absolute;right:10px;bottom:8px;background:rgba(0,29,57,.65);color:#fff;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:10px;}
+    @media(max-width:560px){.sm-picker{grid-template-columns:1fr;}}
+    .ncert-tile-grid {
+      display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 10px; padding-bottom: 6px; margin-bottom: 24px;
+    }
     .ncert-tile-grid .study-tile.ncert-tile {
-      text-decoration: none; background: #fffaf0; border-color: #f0dca6;
+      flex: 0 0 auto; width: 78px; padding: 10px 6px; text-decoration: none; background: #fffaf0; border-color: #f0dca6;
     }
-    .ncert-tile-grid .study-tile.ncert-tile i { background: linear-gradient(145deg, #e6c05a, #c9971f); }
-    .ncert-tile-grid .study-tile.ncert-tile:hover { border-color: #c9971f; background: #fdf3dc; }
-    .ncert-tile-grid .study-tile.ncert-tile small { display: block; margin-top: 6px; font-size: 11px; font-weight: 600; color: #a6791a; }
+    .ncert-tile-grid .study-tile.ncert-tile i { width: 30px; height: 30px; border-radius: 9px; font-size: 13px; margin: 0 auto 6px; background: linear-gradient(145deg, #e6c05a, #c9971f); }
+    .ncert-tile-grid .study-tile.ncert-tile span { font-size: 12px; }
+    .ncert-tile-grid .study-tile.ncert-tile:hover { background: #f3f7fd; }
+    .ncert-tile-grid .study-tile.ncert-tile small { display: none; }
+    /* Alternating palette (matches the reference's mixed-colour class badges) */
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+1) i { background: linear-gradient(145deg, var(--shade2), var(--shade1)); }
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+2) i { background: linear-gradient(145deg, #f0985a, #d97438); }
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+3) i { background: linear-gradient(145deg, #e0a83a, #b8811f); }
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+4) i { background: linear-gradient(145deg, #7c5cd6, #5637a8); }
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+5) i { background: linear-gradient(145deg, var(--shade4), var(--shade3)); }
+    .ncert-tile-grid .study-tile.ncert-tile:nth-child(6n+6) i { background: linear-gradient(145deg, #e05c8a, #b83b68); }
+    .ncert-tile-grid .study-tile.ncert-tile.active i { background: linear-gradient(145deg, var(--secondary), #001226); }
     .study-empty-msg { grid-column: 1/-1; text-align: center; color: var(--gray); padding: 30px 10px; background: #fff; border: 1.5px dashed var(--border); border-radius: 16px; }
-    .study-restype-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin: 4px 0 22px; }
-    .study-restype-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 10px;
-      border-radius: 16px; cursor: pointer; font-weight: 700; font-size: 13px; text-align: center;
-      border: 1.5px solid var(--border); background: #fff; color: var(--secondary); transition: 0.2s;
-    }
-    .study-restype-btn i { font-size: 21px; }
-    .study-restype-btn[data-type="notes"] i { color: #2f6fbf; }
-    .study-restype-btn[data-type="practice"] i { color: #7a3fc9; }
-    .study-restype-btn:not(.active):hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-3px); }
-    .study-restype-btn.active { background: var(--secondary); color: #fff; border-color: var(--secondary); box-shadow: 0 8px 18px -6px rgba(0,29,57,0.35); }
-    .study-restype-btn.active i { color: #fff; }
+    .study-restype-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 16px; margin: 4px 0 22px; }
+    .study-restype-btn { display: block; text-align: left; padding: 20px; border-radius: 16px; cursor: pointer; border: 1.5px solid var(--border); transition: 0.2s; }
+    .study-restype-btn .rt-ic { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; margin-bottom: 12px; }
+    .study-restype-btn h5 { font-size: 14.5px; color: var(--secondary); font-weight: 800; margin-bottom: 6px; }
+    .study-restype-btn p { font-size: 12.5px; color: var(--gray); line-height: 1.5; margin-bottom: 14px; }
+    .study-restype-btn .rt-view { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 20px; padding: 8px 18px; font-weight: 700; font-size: 12.5px; color: #fff; }
+    .study-restype-btn[data-type="notes"] { background: var(--primary-light); }
+    .study-restype-btn[data-type="notes"] .rt-ic { background: var(--primary); }
+    .study-restype-btn[data-type="notes"] .rt-view { background: var(--secondary); }
+    .study-restype-btn[data-type="practice"] { background: #f1e9fb; }
+    .study-restype-btn[data-type="practice"] .rt-ic { background: #7a3fc9; }
+    .study-restype-btn[data-type="practice"] .rt-view { background: #7a3fc9; }
+    .study-restype-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -8px rgba(11,43,94,0.2); }
+    .study-restype-btn.active { border-color: var(--secondary); box-shadow: 0 8px 18px -6px rgba(0,29,57,0.25); }
+    .content-file-chip { display: flex; align-items: center; gap: 10px; background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; font-size: 13.5px; color: var(--secondary); font-weight: 600; }
+    .content-file-chip span { flex: 1; min-width: 0; }
+    .content-file-chip button { flex: none; }
     .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .admin-table th {
       background: var(--primary); color: #fff; padding: 12px 10px;
@@ -1149,7 +1216,7 @@
     .lead-card .name { font-weight: 700; font-size: 15px; color: var(--secondary); }
     .lead-tag { font-size: 10.5px; font-weight: 800; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.3px; color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
     .tag-new { background: linear-gradient(135deg,#ff8a3d,#e6621a); }
-    .tag-open { background: linear-gradient(135deg,#2fbf71,#1f9c5a); }
+    .tag-open { background: linear-gradient(135deg,#4a90e2,#1e5fc2); }
     .tag-closed { background: linear-gradient(135deg,#9aa5b1,#6c757d); }
     .lead-card .meta { font-size: 12.5px; color: var(--gray); display: flex; gap: 6px; align-items: center; margin-bottom: 2px; }
     .lead-card .pref { font-size: 12px; color: var(--secondary); background: #eef2ff; padding: 2px 10px; border-radius: 12px; display: inline-block; margin-top: 4px; }
@@ -1215,6 +1282,190 @@
       .admin-stats { grid-template-columns: 1fr 1fr; }
       .lead-sidebar { width: 320px; right: -320px; }
     }
+
+/* ================= v2 UI: Latest Updates / Admin sidebar / Registration / Floating widgets ================= */
+:root{--u-navy:#0b2a66;--u-blue:#1e6be0;--u-soft:#eef5ff;--u-line:#d6e4f7;--u-red:#e5323b}
+/* ---------- Latest Education Updates (home) ---------- */
+.upd-section{padding:22px 0 10px;background:transparent;border:0}
+.upd-box{background:#fff;border:1px solid var(--u-line);border-radius:18px;padding:18px;box-shadow:0 8px 26px rgba(11,42,102,.07)}
+.upd-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.upd-head h2{display:flex;align-items:center;gap:10px;font-size:20px;color:var(--u-navy);font-weight:800;margin:0}
+.upd-head h2 i{width:34px;height:34px;border-radius:10px;background:#fde8ea;color:var(--u-red);display:flex;align-items:center;justify-content:center;font-size:15px}
+.upd-all{color:var(--u-blue);font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;background:none;border:0}
+.upd-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.upd-feat{display:grid;grid-template-columns:170px 1fr;gap:16px;background:#fff;border:1px solid var(--u-line);border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(11,42,102,.06)}
+.upd-thumb{position:relative;border-radius:12px;overflow:hidden;min-height:150px;background:linear-gradient(135deg,#0b2a66,#1e6be0);display:flex;align-items:center;justify-content:center;color:#fff;font-size:44px}
+.upd-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.upd-thumb .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:10.5px;padding:14px 8px 6px;font-weight:600}
+.upd-flag{position:absolute;top:8px;left:8px;background:var(--u-red);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;z-index:2}
+.upd-chip{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:14px;white-space:nowrap}
+.upd-feat h3{font-size:19px;color:var(--u-navy);font-weight:800;line-height:1.3;margin:8px 0 6px}
+.upd-feat p{font-size:13.5px;color:var(--gray);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.upd-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;flex-wrap:wrap}
+.upd-date{font-size:12.5px;color:#5a6b85;display:flex;align-items:center;gap:6px}
+.upd-btn{background:var(--u-navy);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit}
+.upd-list{background:#fff;border:1px solid var(--u-line);border-radius:16px;padding:6px 14px;box-shadow:0 4px 16px rgba(11,42,102,.06)}
+.upd-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #e9f0fa;cursor:pointer}
+.upd-row:last-child{border-bottom:0}
+.upd-ico{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background-size:cover;background-position:center}
+.upd-row .t{font-weight:700;font-size:13.5px;color:var(--u-navy);line-height:1.35}
+.upd-row .s{font-size:12px;color:#6b7c95;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.upd-row .m{margin-left:auto;text-align:right;flex:none;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.upd-row .m .upd-date{font-size:11.5px}
+.upd-empty{padding:22px;text-align:center;color:var(--gray);font-size:14px}
+/* updates page */
+.upd-filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
+.upd-filters button{border:1px solid var(--u-line);background:#fff;color:var(--u-navy);font-weight:700;font-size:13px;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit}
+.upd-filters button.on{background:var(--u-navy);color:#fff;border-color:var(--u-navy)}
+.upd-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:50px}
+.upd-card{background:#fff;border:1px solid var(--u-line);border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 4px 16px rgba(11,42,102,.06);display:flex;flex-direction:column}
+.upd-card .upd-thumb{border-radius:0;min-height:150px}
+.upd-card .b{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.upd-card h3{font-size:15.5px;color:var(--u-navy);font-weight:800;line-height:1.35}
+.upd-card p{font-size:13px;color:var(--gray);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* detail page */
+.udt-wrap{max-width:1180px;margin:0 auto 60px;padding-top:14px}
+.udt-crumb{font-size:13px;color:#5a6b85;margin-bottom:14px}
+.udt-crumb a{color:var(--u-blue);font-weight:600;cursor:pointer}
+.udt-frame{border:1.5px solid #9cc2f2;border-radius:20px;padding:16px;background:#f6faff}
+.udt-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px}
+.udt-main{background:#fff;border-radius:16px;padding:20px;border:1px solid var(--u-line)}
+.udt-badge{display:inline-flex;align-items:center;gap:6px;background:var(--u-red);color:#fff;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:8px}
+.udt-main h1{font-size:30px;color:var(--u-navy);font-weight:800;line-height:1.25;margin:12px 0 16px}
+.udt-mid{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}
+.udt-mid .upd-thumb{min-height:220px;border-radius:12px}
+.udt-sum{background:var(--u-soft);border:1px solid var(--u-line);border-radius:12px;padding:14px 16px}
+.udt-sum h4{font-size:14.5px;color:var(--u-navy);font-weight:800;margin-bottom:6px}
+.udt-sum p{font-size:13.5px;color:#3f5170;line-height:1.6;white-space:pre-line}
+.udt-kp{margin-top:14px}
+.udt-kp h4{font-size:14.5px;color:var(--u-navy);font-weight:800;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.udt-kp h4 i{color:var(--u-blue)}
+.udt-kp li{list-style:none;display:flex;gap:9px;font-size:13.5px;color:#3f5170;line-height:1.5;margin-bottom:8px}
+.udt-kp li i{color:var(--u-blue);margin-top:3px}
+.udt-src{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--u-soft);border:1px solid var(--u-line);border-radius:12px;padding:12px 14px}
+.udt-src .ic{width:44px;height:44px;border-radius:12px;background:#fff;color:#6d28d9;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid var(--u-line)}
+.udt-src b{color:#6d28d9;font-size:15px;display:block}
+.udt-src a.u{font-size:12.5px;color:#3f5170;word-break:break-all}
+.udt-src .upd-btn{margin-left:auto;text-decoration:none;background:var(--u-blue);display:inline-block}
+.udt-side .card{background:#fff;border:1px solid var(--u-line);border-radius:16px;padding:16px;margin-bottom:14px}
+.udt-side h4{font-size:15px;color:var(--u-navy);font-weight:800;margin-bottom:10px}
+.udt-side .upd-row{padding:10px 0}
+.udt-side .upd-btn{width:100%;margin-top:10px;background:var(--u-navy)}
+.udt-share{display:flex;gap:10px;flex-wrap:wrap}
+.udt-share a{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
+@media(max-width:900px){.upd-grid,.udt-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.upd-feat{grid-template-columns:1fr}.udt-mid{grid-template-columns:1fr}.udt-main h1{font-size:23px}.udt-src .upd-btn{margin-left:0;width:100%;text-align:center}.upd-box{padding:12px}}
+
+/* ---------- Admin: dashboard shell ---------- */
+.adm-shell{position:relative;display:flex;align-items:flex-start;box-sizing:border-box;min-height:calc(100vh - 110px);}
+.adm-sidebar{flex:0 0 262px;width:262px;box-sizing:border-box;position:sticky;top:110px;align-self:flex-start;max-height:calc(100vh - 110px);overflow-y:auto;padding:14px 10px;display:flex;flex-direction:column;gap:2px;background:linear-gradient(180deg,#0b1f4a,#071633);border-radius:0;box-shadow:2px 0 20px rgba(7,22,51,.2);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;}
+.adm-sidebar::-webkit-scrollbar{width:5px;}
+.adm-sidebar::-webkit-scrollbar-track{background:transparent;}
+.adm-sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:4px;}
+.adm-main{flex:1 1 0;min-width:0;box-sizing:border-box}
+.adm-main .container{padding-top:20px;padding-bottom:60px;}
+.adm-topbar{background:#fff;border:1px solid var(--u-line,var(--border));border-radius:16px;padding:16px 20px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 4px 16px rgba(11,42,102,.05)}
+.adm-topbar h1{font-size:21px;color:var(--secondary);font-weight:800;display:flex;align-items:center;gap:10px;margin:0}
+.adm-topbar p{font-size:12.5px;color:var(--gray);margin:3px 0 0}
+.adm-brand{display:flex;align-items:center;gap:10px;color:#fff;padding:4px 8px 12px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:8px;flex:none}
+.adm-brand i{width:36px;height:36px;border-radius:10px;background:#1e6be0;display:flex;align-items:center;justify-content:center;flex:none}
+.adm-brand small{display:block;color:#9db4e0;font-size:11px}
+.adm-grp{color:#7f97c9;font-size:11.5px;font-weight:700;padding:12px 10px 4px;flex:none}
+.adm-sidebar .adm-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;color:#d5e2ff;border:0;border-radius:10px;padding:10px 12px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;opacity:1;transform:none;box-shadow:none;flex:none}
+.adm-sidebar .adm-item i{width:18px;text-align:center;font-size:14px;color:#8fb0ee}
+.adm-sidebar .adm-item:hover{background:rgba(255,255,255,.08)}
+.adm-sidebar .adm-item.active-tab{background:#1e5fe0;color:#fff;box-shadow:none}
+.adm-sidebar .adm-item.active-tab i{color:#fff}
+.adm-sidebar .adm-parent .chev{margin-left:auto;font-size:11px;transition:.2s}
+.adm-sidebar .adm-parent.open .chev{transform:rotate(180deg)}
+.adm-sub{display:none;margin:2px 0 4px 20px;padding-left:8px;border-left:1px solid rgba(255,255,255,.18);flex:none}
+.adm-sub.open{display:block}
+.adm-sidebar .adm-sub .adm-item{padding:8px 10px;font-size:13px}
+.adm-logout{flex:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12)}
+.adm-logout .btn{width:100%;justify-content:center}
+#admMenuBtn{display:none;background:#0b1f4a;color:#fff;border:0;border-radius:12px;padding:11px 16px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;align-items:center;gap:8px;flex:none}
+#admBackdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10040}
+#admCollapseTab{display:none;position:sticky;top:124px;align-self:flex-start;margin-left:-32px;background:var(--u-navy,#0b2a66);color:#fff;border:0;border-radius:0 10px 10px 0;padding:14px 6px;font-weight:700;font-size:11px;cursor:pointer;writing-mode:vertical-rl;letter-spacing:1px;box-shadow:4px 4px 14px rgba(11,42,102,.25);z-index:20;flex:none;}
+.adm-sidebar.adm-collapsed + #admCollapseTab{margin-left:0;}
+@media(min-width:901px){
+  #admCollapseTab{display:flex;align-items:center;gap:6px;}
+  .adm-sidebar.adm-collapsed{display:none;}
+}
+@media(max-width:900px){
+  .adm-shell{display:block;padding-top:14px}
+  #admMenuBtn{display:inline-flex}
+  #admCollapseTab{display:none!important}
+  .adm-sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;max-height:none;margin:0;border-radius:0 18px 18px 0;z-index:10050;transform:translateX(-105%);transition:transform .25s}
+  .adm-sidebar.open{transform:none}
+  #admBackdrop.show{display:block}
+}
+.up-form{background:#fff;border:1px solid var(--u-line);border-radius:16px;padding:18px}
+.up-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.up-grid .full{grid-column:1/-1}
+.up-form label.l{display:block;font-size:13px;font-weight:700;color:var(--u-navy);margin-bottom:5px}
+.up-form input[type=text],.up-form input[type=url],.up-form input[type=date],.up-form select,.up-form textarea{width:100%;padding:11px 12px;border:1px solid var(--u-line);border-radius:10px;font-family:inherit;font-size:14px;background:#fff}
+.up-chips{display:flex;gap:8px;flex-wrap:wrap}
+.up-chips button{border:2px solid transparent;color:#fff;font-weight:700;font-size:12.5px;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:inherit;opacity:.55}
+.up-chips button.on{opacity:1;border-color:#0b2a66;box-shadow:0 0 0 2px #fff inset}
+.up-img{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.up-img img{width:110px;height:62px;object-fit:cover;border-radius:8px;border:1px solid var(--u-line);background:#eef3fb}
+.up-tg{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.up-tg label{display:flex;gap:9px;align-items:center;font-size:13.5px;font-weight:600;color:var(--u-navy)}
+.up-tg input{width:40px;height:22px;accent-color:#1e6be0}
+@media(max-width:600px){.up-grid{grid-template-columns:1fr}}
+
+/* ---------- Registration forms ---------- */
+.reg-head .reg-title{display:flex;align-items:center;gap:14px;margin-top:8px}
+.reg-head .reg-ic{width:58px;height:58px;border-radius:16px;background:#fff;border:1px solid var(--u-line);color:var(--u-blue);display:flex;align-items:center;justify-content:center;font-size:26px;flex:none;box-shadow:0 4px 12px rgba(11,42,102,.08)}
+.reg-head p{color:var(--gray);font-size:14px;margin-top:2px}
+.reg-strip{max-width:1240px;margin:18px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:#fff;border:1px solid var(--u-line);border-radius:14px;padding:12px}
+.reg-strip div{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--u-navy)}
+.reg-strip i{width:34px;height:34px;border-radius:10px;background:var(--u-soft);color:var(--u-blue);display:flex;align-items:center;justify-content:center;flex:none}
+.reg-layout{display:grid;grid-template-columns:minmax(0,1fr) 216px;gap:18px;max-width:1240px;margin:18px auto 60px;align-items:start}
+.reg-layout .form-wrap{max-width:none;margin:0;padding:26px 30px;border-radius:18px;border-color:var(--u-line);box-shadow:0 8px 26px rgba(11,42,102,.06)}
+.reg-layout form,.reg-layout .student-block{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
+.reg-layout form > *,.reg-layout .student-block > *{grid-column:1/-1}
+.reg-layout .form-row{grid-column:auto;margin-bottom:14px}
+.reg-layout .form-row:has(textarea),.reg-layout .form-row:has(.check-inline-group){grid-column:1/-1}
+.reg-layout .form-row label{font-size:13px}
+.reg-layout .form-row input,.reg-layout .form-row select,.reg-layout .form-row textarea{padding:11px 12px;border-radius:9px;background:#fff}
+.reg-layout .form-section-title{color:var(--u-navy);font-size:16px;border-bottom:1px solid var(--u-line);padding-bottom:8px}
+.reg-layout .form-section-title i{color:var(--u-blue);margin-right:6px}
+.reg-layout .student-block{background:#f8fbff}
+.reg-layout button[type=submit]{background:var(--u-navy);border-radius:10px;padding:14px;font-size:15px}
+.reg-side{position:sticky;top:110px}
+.reg-side .card{background:#fff;border:1px solid var(--u-line);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 4px 16px rgba(11,42,102,.05)}
+.reg-side h3{font-size:14.5px;color:var(--u-navy);font-weight:800;margin-bottom:10px}
+.reg-side .it{display:flex;align-items:center;gap:9px;padding:7px 0;font-size:11.5px;color:#3f5170;line-height:1.35}
+.reg-side .it i{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:12px}
+.reg-quote{text-align:left;overflow:hidden}
+.reg-quote q{display:block;font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:14.5px;color:var(--u-navy);line-height:1.3;quotes:none}
+.reg-quote .art{margin-top:10px;width:100%;display:block;border-radius:10px;overflow:hidden}
+.reg-quote .art svg{width:100%;height:auto;display:block}
+.reg-quote .reg-side-img{width:100%;border-radius:10px;margin-top:10px;display:block;object-fit:cover;max-height:150px}
+@media(max-width:900px){.reg-layout{grid-template-columns:1fr}.reg-strip{grid-template-columns:1fr 1fr}.reg-side{position:static}
+  .reg-side .card{padding:20px}.reg-side h3{font-size:18px}.reg-side .it{font-size:14px;gap:13px;padding:10px 0}.reg-side .it i{width:40px;height:40px;font-size:17px}.reg-quote q{font-size:19px}.reg-quote .reg-side-img{max-height:220px}}
+@media(max-width:420px){.reg-layout form,.reg-layout .student-block{grid-template-columns:1fr}.reg-layout .form-wrap{padding:16px}}
+
+/* ---------- Floating FAQ / Ask widgets (styled like the chatbot bubble) ---------- */
+.fw-dock{position:fixed;right:16px;bottom:20px;z-index:9990;display:none;flex-direction:column;gap:14px;align-items:center}
+.fw-dock.left{right:auto;left:16px;bottom:98px}
+.fw-item{position:relative}
+.fw-btn{width:64px;height:64px;border-radius:50%;background:var(--u-navy);color:#fff;border:0;font-size:25px;cursor:pointer;box-shadow:0 8px 24px rgba(11,42,102,.4);display:flex;align-items:center;justify-content:center;font-family:inherit}
+.fw-btn.ask{background:#1e6be0;box-shadow:0 8px 24px rgba(30,107,224,.4)}
+.fw-panel{position:fixed;right:16px;bottom:172px;z-index:9995;width:min(390px,92vw);max-height:min(560px,calc(100vh - 150px));background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.28);border:1px solid var(--u-line);display:none;flex-direction:column;overflow:hidden}
+.fw-panel.left{right:auto;left:16px;bottom:250px}
+.fw-panel.show{display:flex}
+.fw-head{display:flex;align-items:center;justify-content:space-between;background:var(--u-navy);color:#fff;padding:12px 14px;font-weight:700;font-size:14.5px}
+.fw-head button{background:none;border:0;color:#fff;font-size:16px;cursor:pointer}
+.fw-body{overflow-y:auto;padding:12px;background:#f6faff}
+.fw-body .faq-section{padding:0;background:transparent;display:block}
+#fwPanel-faq #faqSection{display:block!important}
+.fw-empty{display:none;text-align:center;color:var(--gray);font-size:13.5px;padding:18px}
+#faqList:empty + .fw-empty,#faqList:empty ~ .fw-empty{display:block}
+.fw-body .community-form-card{max-width:none;border:0;padding:0;background:transparent}
+.fw-note{font-size:12.5px;color:var(--gray);margin-bottom:10px;line-height:1.5}
+
   </style>
 </head>
 <body>
@@ -1410,11 +1661,11 @@
     </div>
   </section>
 
-  <section class="notice-section" id="noticeSection" style="display:none;">
-    <div class="container">
-      <div class="notice-heading"><i class="fas fa-bullhorn"></i> Latest Announcements</div>
-      <div class="notice-strip" id="noticeStrip"></div>
-    </div>
+  <section class="upd-section" id="noticeSection" style="display:none;">
+    <div class="container"><div class="upd-box">
+      <div class="upd-head"><h2><i class="fas fa-bullhorn"></i> Latest Education Updates</h2><button class="upd-all" onclick="showPage('page-updates')">View All Updates <i class="fas fa-arrow-right"></i></button></div>
+      <div class="upd-grid"><div class="upd-feat" id="updFeatured"></div><div class="upd-list" id="updList"></div></div>
+    </div></div>
   </section>
 
   <section class="offer">
@@ -1542,56 +1793,25 @@
     </div>
   </section>
 
-  <section class="faq-section" id="faqSection" style="display:none;">
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-list" id="faqList"></div>
-    </div>
-  </section>
-
-  <section class="community-section">
-    <div class="container">
-      <h2 class="section-title">Ask, Suggest, or Share Something</h2>
-      <p style="text-align:center;color:var(--gray);font-size:13.5px;max-width:560px;margin:-10px auto 24px;">Ask a question, share feedback about your experience, suggest an idea, or write a blog post — we review everything before it goes live in the right place on the site.</p>
-      <div class="community-form-card">
-        <select id="cp_type" onchange="onCommunityTypeChange()">
-          <option value="question">❓ Ask a Question (shows in FAQ once answered)</option>
-          <option value="feedback">⭐ Share Feedback / Review (shows in Testimonials)</option>
-          <option value="blog">✍️ Write a Blog Post (shows in Blog)</option>
-          <option value="suggestion">💡 Suggest an Idea (for our team only, not shown publicly)</option>
-        </select>
-        <input type="text" id="cp_name" placeholder="Your name (optional)">
-        <select id="cp_rating" style="display:none;">
-          <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-          <option value="4">⭐⭐⭐⭐ Good</option>
-          <option value="3">⭐⭐⭐ Okay</option>
-          <option value="2">⭐⭐ Below Average</option>
-          <option value="1">⭐ Poor</option>
-        </select>
-        <input type="text" id="cp_title" placeholder="Title / short summary" style="display:none;">
-        <textarea id="cp_content" placeholder="Type your question here" style="min-height:110px;"></textarea>
-        <button class="btn btn-primary" onclick="submitVisitorPost()"><i class="fas fa-paper-plane"></i> Submit for Review</button>
-      </div>
-    </div>
-  </section>
 </div>
 
 <style>
-  .community-section { padding: 10px 0 46px; background: var(--primary-light); }
+  .community-section-unused { padding: 10px 0 46px; background: var(--primary-light); }
   .community-form-card { max-width: 560px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
   .community-form-card select, .community-form-card input, .community-form-card textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 13.5px; }
 </style>
 
 <!-- TEACHER FORM -->
 <div class="page-inner" id="page-teacher-form">
-  <section class="inner-header">
+  <section class="inner-header reg-head">
     <div class="container">
       <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Teacher Registration</div>
-      <h1><i class="fas fa-chalkboard-teacher"></i> Teacher Registration</h1>
+      <div class="reg-title"><div class="reg-ic"><i class="fas fa-chalkboard-teacher"></i></div><div><h1>Teacher Registration</h1><p>Join our platform and connect with students across India.</p></div></div>
+      <div class="reg-strip"><div><i class="fas fa-clipboard-check"></i>Easy Registration</div><div><i class="fas fa-users"></i>Get Student Leads</div><div><i class="fas fa-clock"></i>Flexible Teaching</div><div><i class="fas fa-chart-line"></i>Grow Your Income</div></div>
     </div>
   </section>
   <section class="container">
-    <div class="form-wrap">
+    <div class="reg-layout"><div class="form-wrap">
       <form id="teacherForm" onsubmit="submitTeacherForm(event)">
         <div class="form-section-title"><i class="fas fa-user-circle"></i> A. Basic Information</div>
         <div class="form-row"><label>Full Name *</label><input type="text" id="t_name" required></div>
@@ -1697,7 +1917,7 @@
           <li><strong>Agreement:</strong> By registering, the teacher confirms acceptance of Althea's Terms & Conditions and Privacy Policy.</li>
         </ul>
         <label class="agree-row"><input type="checkbox" id="t_agree" required> I have read and agree to the above policy.</label>
-        <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;"><i class="fas fa-user-plus"></i> Register as Teacher</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i> Register Now</button>
       </form>
       <div class="success-box" id="teacherSuccess">
         <div class="ic"><i class="fas fa-check-circle" style="color:var(--green);"></i></div>
@@ -1707,19 +1927,22 @@
         <p id="teacherSuccessMsg">Our team will verify and connect on WhatsApp. Please save your ID for future reference.</p>
       </div>
     </div>
+    <aside class="reg-side" id="regSideTeacher"></aside>
+    </div>
   </section>
 </div>
 
 <!-- STUDENT FORM -->
 <div class="page-inner" id="page-student-form">
-  <section class="inner-header">
+  <section class="inner-header reg-head">
     <div class="container">
       <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Find a Tutor</div>
-      <h1><i class="fas fa-user-graduate"></i> Student / Parent Registration</h1>
+      <div class="reg-title"><div class="reg-ic"><i class="fas fa-user-graduate"></i></div><div><h1>Student / Parent Registration</h1><p>Find the best tutors for your child's learning journey.</p></div></div>
+      <div class="reg-strip"><div><i class="fas fa-user-shield"></i>Verified Tutors</div><div><i class="fas fa-lock"></i>Safe &amp; Secure</div><div><i class="fas fa-clock"></i>Flexible Classes</div><div><i class="fas fa-headset"></i>Support Anytime</div></div>
     </div>
   </section>
   <section class="container">
-    <div class="form-wrap">
+    <div class="reg-layout"><div class="form-wrap">
       <div id="studentFormNoticeBox" style="background:#eaf3ff;border:1px solid #b8d8ff;border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start;">
         <i class="fas fa-clock" style="color:var(--primary);font-size:20px;margin-top:2px;"></i>
         <p id="studentFormNoticeText" style="font-size:13.5px;color:var(--secondary);line-height:1.55;margin:0;"></p>
@@ -1764,7 +1987,7 @@
           <li><strong>Agreement:</strong> By submitting the form, the parent/guardian confirms acceptance of Althea's Terms & Conditions and Privacy Policy.</li>
         </ul>
         <label class="agree-row"><input type="checkbox" id="s_agree" required> I agree to the above policy.</label>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i> Submit Requirement</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i> Register Now</button>
       </form>
       <div class="success-box" id="studentSuccess">
         <div class="ic"><i class="fas fa-check-circle" style="color:var(--green);"></i></div>
@@ -1774,16 +1997,21 @@
         <p>Our team will reach out on WhatsApp with matching tutors. Please save your ID for future reference.</p>
       </div>
     </div>
+    <aside class="reg-side" id="regSideStudent"></aside>
+    </div>
   </section>
 </div>
 
 <!-- STUDY MATERIAL -->
 <div class="page-inner" id="page-study">
   <section class="inner-header">
-    <div class="container">
-      <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Study Material</div>
-      <h1><i class="fas fa-book-open"></i> Study Material</h1>
-      <p style="color:var(--gray);font-size:14px;">NCERT Books, Notes, Exercises & Practice Papers — Class 6 to 12</p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Study Material</div>
+        <h1><i class="fas fa-book-open"></i> Study Material</h1>
+        <p style="color:var(--gray);font-size:14px;">NCERT Books, Notes, Exercises &amp; Practice Papers — Class 6 to 12</p>
+      </div>
+      <div class="sm-hero-art" id="smHeroArt"></div>
     </div>
   </section>
   <section class="container">
@@ -1792,18 +2020,21 @@
     <div class="study-tile-grid ncert-tile-grid" id="ncert-books-grid"></div>
   </section>
   <section class="container" style="padding-top:6px;">
-    <div class="study-res-heading">
-      <div class="srh-ic"><i class="fas fa-layer-group"></i></div>
-      <div>
-        <h3>Chapter Notes, Exercise Solutions, Extra Q&amp;A &amp; Practice Papers</h3>
-        <p>Pick a Class → Subject → Chapter below to find notes, solved textbook exercises, extra practice questions with answers, and practice/previous-year question papers — all free.</p>
-      </div>
+    <div class="sm-intro">
+      <div class="ic"><i class="fas fa-graduation-cap"></i></div>
+      <div><h3>Study Material</h3><p>Select Class → Choose Subject → View Material</p></div>
     </div>
-    <button id="study-back-btn" onclick="goStudyBack()" style="display:none;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary);border:1px solid var(--border);border-radius:20px;padding:8px 16px;font-weight:700;font-size:13px;margin-bottom:10px;cursor:pointer;"><i class="fas fa-arrow-left"></i> Back</button>
-    <div class="study-breadcrumb" id="study-breadcrumb"></div>
-    <div class="study-tile-grid" id="study-step-grid"></div>
+    <div class="sm-picker">
+      <div class="sm-step"><div class="sm-num">1</div><div class="sm-step-body"><label>Select Class</label><select id="sm_class" onchange="smSelectClass(this.value)"></select></div></div>
+      <div class="sm-step"><div class="sm-num">2</div><div class="sm-step-body"><label>Select Subject</label><select id="sm_subject" onchange="smSelectSubject(this.value)" disabled><option value="">Choose subject</option></select></div></div>
+    </div>
+    <div id="sm-chapters-wrap" style="display:none;">
+      <div class="sm-chap-head"><button onclick="document.getElementById('sm-chapters-wrap').scrollIntoView({behavior:'smooth'})"><i class="fas fa-arrow-left"></i> Back</button><h4 id="sm-chap-title"></h4></div>
+      <div class="study-tile-grid" id="study-chapter-grid"></div>
+    </div>
     <div id="study-chapter-section" style="display:none;">
       <div class="res-panel">
+        <button class="sm-back-link" onclick="goStudyBackToChapters()"><i class="fas fa-arrow-left"></i> Back to chapters</button>
         <h3 id="study-chapter-title">Chapter</h3>
         <p style="font-size:12.5px;color:var(--gray);margin:-8px 0 14px;">Choose what you need below.</p>
         <div class="study-restype-row" id="study-restypes"></div>
@@ -1811,6 +2042,26 @@
       </div>
     </div>
   </section>
+  <section class="container sm-more-section">
+    <div class="study-res-heading" style="background:linear-gradient(120deg,#1e6be0,#0b2a66);">
+      <div class="srh-ic"><i class="fas fa-folder-open"></i></div>
+      <div><h3>More Resources</h3><p>Additional study materials to support your preparation.</p></div>
+    </div>
+    <div class="sm-more-grid" id="sm-more-grid"></div>
+  </section>
+</div>
+
+<!-- Resource Library selection modal (Syllabus / Sample Papers / PYQs / Toppers) -->
+<div class="info-modal-overlay" id="smResModalOverlay" onclick="if(event.target===this) closeSmResModal()">
+  <div class="info-modal-box" style="max-width:480px;text-align:left;">
+    <button class="close-x" onclick="closeSmResModal()"><i class="fas fa-times"></i></button>
+    <h3 id="smResModalTitle" style="margin-bottom:14px;"></h3>
+    <div class="sm-picker" style="margin-bottom:14px;">
+      <div class="sm-step"><div class="sm-num">1</div><div class="sm-step-body"><label>Class</label><select id="smres_class" onchange="smResLoad()"></select></div></div>
+      <div class="sm-step"><div class="sm-num">2</div><div class="sm-step-body"><label>Subject</label><select id="smres_subject" onchange="smResLoad()"><option value="">All subjects</option></select></div></div>
+    </div>
+    <div id="smResList"></div>
+  </div>
 </div>
 
 <!-- ================================================================ -->
@@ -1846,46 +2097,69 @@
   </section>
 </div>
 
+<!-- LATEST UPDATES (list + detail) -->
+<div class="page-inner" id="page-updates">
+  <section class="inner-header"><div class="container">
+    <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Latest Updates</div>
+    <h1><i class="fas fa-bullhorn"></i> Latest Education Updates</h1>
+  </div></section>
+  <section class="container" style="padding-top:18px"><div class="upd-filters" id="updFilters"></div><div class="upd-cards" id="updCards"></div></section>
+</div>
+<div class="page-inner" id="page-update-detail"><section class="container"><div class="udt-wrap" id="updDetailBody"></div></section></div>
+<div class="page-inner" id="page-pdf-viewer"><section class="container"><div class="udt-wrap" id="pdfViewerBody"></div></section></div>
+
 <!-- ADMIN PANEL -->
 <div class="page-inner" id="page-admin">
-  <section class="inner-header">
-    <div class="container">
-      <div class="breadcrumb"><a onclick="showPage('page-home')">Home</a> / Admin Panel</div>
-      <h1><i class="fas fa-user-shield"></i> Admin Dashboard</h1>
-      <p style="color:var(--gray);">Manage Teachers, Students, Leads, Study & Entrance Content</p>
-      <button class="btn btn-danger btn-sm" onclick="adminLogout()" style="margin-top:10px;"><i class="fas fa-sign-out-alt"></i> Logout</button>
-    </div>
-  </section>
-  <section class="container">
-    <div class="admin-stats" id="adminStats">
-      <div class="stat-card"><div class="number" id="statTeachers">0</div><div class="label">👨‍🏫 Teachers</div></div>
-      <div class="stat-card"><div class="number" id="statStudents">0</div><div class="label">👨‍🎓 Students</div></div>
-      <div class="stat-card"><div class="number" id="statLeads">0</div><div class="label">⚡ Leads</div></div>
-      <div class="stat-card"><div class="number" id="statContent">0</div><div class="label">📚 Content</div></div>
-    </div>
-
-    <div class="admin-tab-bar" id="adminTabBar">
-      <button class="btn btn-primary admin-tab-btn" data-tab="teachers" onclick="showAdminTab('teachers')"><i class="fas fa-chalkboard-teacher"></i> Teachers</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="students" onclick="showAdminTab('students')"><i class="fas fa-user-graduate"></i> Students</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="leads" onclick="showAdminTab('leads')"><i class="fas fa-bolt"></i> Leads</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="study-content" onclick="showAdminTab('study-content')"><i class="fas fa-book"></i> Study Content</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="ncert-books" onclick="showAdminTab('ncert-books')"><i class="fas fa-external-link-alt"></i> NCERT Books</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="entrance-content" onclick="showAdminTab('entrance-content')"><i class="fas fa-clipboard-list"></i> Entrance Content</button>
-      <button class="btn btn-primary admin-tab-btn" data-tab="homepage" onclick="showAdminTab('homepage')"><i class="fas fa-home"></i> Homepage Content</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="premium" onclick="showAdminTab('premium')"><i class="fas fa-star"></i> Premium Management</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="teacher-profiles" onclick="showAdminTab('teacher-profiles')"><i class="fas fa-user-tie"></i> Teacher Profiles</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="announcements" onclick="showAdminTab('announcements')"><i class="fas fa-bullhorn"></i> Announcements</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="feedback" onclick="showAdminTab('feedback')"><i class="fas fa-comment-dots"></i> Parent Feedback</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="blog" onclick="showAdminTab('blog')"><i class="fas fa-blog"></i> Blog Posts</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="formeditor" onclick="showAdminTab('formeditor')"><i class="fas fa-edit"></i> Registration Form Editor</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="chatbot" onclick="showAdminTab('chatbot')"><i class="fas fa-robot"></i> Chatbot FAQs</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="site-faq" onclick="showAdminTab('site-faq')"><i class="fas fa-circle-question"></i> Website FAQs (SEO)</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="community" onclick="showAdminTab('community')"><i class="fas fa-comments"></i> Community</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="seo-pages" onclick="showAdminTab('seo-pages')"><i class="fas fa-sitemap"></i> SEO Pages</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="festival" onclick="showAdminTab('festival')"><i class="fas fa-gift"></i> Festival Popup</button>
-      <button class="btn btn-accent admin-tab-btn" data-tab="branding" onclick="showAdminTab('branding')"><i class="fas fa-palette"></i> Branding &amp; Theme</button>
-      <button class="btn btn-accent" onclick="exportAllData()"><i class="fas fa-download"></i> Export All</button>
-    </div>
+  <div class="adm-shell">
+    <aside class="adm-sidebar" id="adminTabBar">
+      <div class="adm-brand"><i class="fas fa-graduation-cap"></i><div><b>Althea Scholar</b><small>Admin Panel</small></div></div>
+      <button class="adm-item" onclick="showAdminTab('teachers');window.scrollTo(0,0)"><i class="fas fa-gauge"></i> Dashboard</button>
+      <div class="adm-grp">People</div>
+      <button class="adm-item admin-tab-btn" data-tab="teachers" onclick="showAdminTab('teachers')"><i class="fas fa-chalkboard-teacher"></i> Teachers</button>
+      <button class="adm-item admin-tab-btn" data-tab="students" onclick="showAdminTab('students')"><i class="fas fa-user-graduate"></i> Students</button>
+      <button class="adm-item admin-tab-btn" data-tab="leads" onclick="showAdminTab('leads')"><i class="fas fa-bolt"></i> Leads</button>
+      <button class="adm-item admin-tab-btn" data-tab="premium" onclick="showAdminTab('premium')"><i class="fas fa-star"></i> Premium Management</button>
+      <button class="adm-item admin-tab-btn" data-tab="teacher-profiles" onclick="showAdminTab('teacher-profiles')"><i class="fas fa-user-tie"></i> Teacher Profiles</button>
+      <div class="adm-grp">Website content</div>
+      <button class="adm-item admin-tab-btn" data-tab="homepage" onclick="showAdminTab('homepage')"><i class="fas fa-home"></i> Homepage Content</button>
+      <button class="adm-item admin-tab-btn" data-tab="blog" onclick="showAdminTab('blog')"><i class="fas fa-blog"></i> Blog Posts</button>
+      <button class="adm-item admin-tab-btn" data-tab="feedback" onclick="showAdminTab('feedback')"><i class="fas fa-comment-dots"></i> Parent Feedback</button>
+      <button class="adm-item admin-tab-btn" data-tab="study-content" onclick="showAdminTab('study-content')"><i class="fas fa-book"></i> Study Content</button>
+      <button class="adm-item admin-tab-btn" data-tab="study-extras" onclick="showAdminTab('study-extras')"><i class="fas fa-folder-open"></i> Resource Library</button>
+      <button class="adm-item admin-tab-btn" data-tab="ncert-books" onclick="showAdminTab('ncert-books')"><i class="fas fa-external-link-alt"></i> NCERT Books</button>
+      <button class="adm-item admin-tab-btn" data-tab="entrance-content" onclick="showAdminTab('entrance-content')"><i class="fas fa-clipboard-list"></i> Entrance Content</button>
+      <button class="adm-item adm-parent open" onclick="toggleAdmGroup(this)"><i class="fas fa-bullhorn"></i> Latest Updates <i class="fas fa-chevron-down chev"></i></button>
+      <div class="adm-sub open"><button class="adm-item admin-tab-btn" data-tab="update-add" onclick="showAdminTab('update-add')"><i class="fas fa-plus"></i> Add New Update</button><button class="adm-item admin-tab-btn" data-tab="update-all" onclick="showAdminTab('update-all')"><i class="fas fa-list"></i> All Updates</button></div>
+      <div class="adm-grp">Forms &amp; help</div>
+      <button class="adm-item admin-tab-btn" data-tab="formeditor" onclick="showAdminTab('formeditor')"><i class="fas fa-edit"></i> Registration Form Editor</button>
+      <button class="adm-item admin-tab-btn" data-tab="chatbot" onclick="showAdminTab('chatbot')"><i class="fas fa-robot"></i> Chatbot FAQs</button>
+      <button class="adm-item admin-tab-btn" data-tab="site-faq" onclick="showAdminTab('site-faq')"><i class="fas fa-circle-question"></i> Website FAQs (SEO)</button>
+      <button class="adm-item admin-tab-btn" data-tab="community" onclick="showAdminTab('community')"><i class="fas fa-comments"></i> Community</button>
+      <button class="adm-item admin-tab-btn" data-tab="floatwidgets" onclick="showAdminTab('floatwidgets')"><i class="fas fa-layer-group"></i> Floating Widgets</button>
+      <div class="adm-grp">Site settings</div>
+      <button class="adm-item admin-tab-btn" data-tab="seo-pages" onclick="showAdminTab('seo-pages')"><i class="fas fa-sitemap"></i> SEO Pages</button>
+      <button class="adm-item admin-tab-btn" data-tab="festival" onclick="showAdminTab('festival')"><i class="fas fa-gift"></i> Festival Popup</button>
+      <button class="adm-item admin-tab-btn" data-tab="branding" onclick="showAdminTab('branding')"><i class="fas fa-palette"></i> Branding &amp; Theme</button>
+      <button class="adm-item" onclick="exportAllData()"><i class="fas fa-download"></i> Export All</button>
+      <div class="adm-logout"><button class="btn btn-danger btn-sm" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button></div>
+    </aside>
+    <button id="admCollapseTab" onclick="toggleAdmSidebar()" title="Hide/show menu"><i class="fas fa-chevron-left"></i> HIDE</button>
+    <div class="adm-main">
+      <section class="container">
+      <div class="adm-topbar">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:4px;"><a onclick="showPage('page-home')">Home</a> / Admin Panel</div>
+          <h1><i class="fas fa-user-shield"></i> Admin Dashboard</h1>
+          <p>Manage Teachers, Students, Leads, Study &amp; Entrance Content</p>
+        </div>
+        <button id="admMenuBtn" onclick="toggleAdmDrawer(true)"><i class="fas fa-bars"></i> Menu</button>
+      </div>
+      <div class="admin-stats" id="adminStats">
+        <div class="stat-card"><div class="number" id="statTeachers">0</div><div class="label">👨‍🏫 Teachers</div></div>
+        <div class="stat-card"><div class="number" id="statStudents">0</div><div class="label">👨‍🎓 Students</div></div>
+        <div class="stat-card"><div class="number" id="statLeads">0</div><div class="label">⚡ Leads</div></div>
+        <div class="stat-card"><div class="number" id="statContent">0</div><div class="label">📚 Content</div></div>
+      </div>
 
     <!-- Teachers Tab -->
     <div class="admin-tab" id="admin-teachers">
@@ -1965,6 +2239,17 @@
     <!-- Study Content Tab -->
     <div class="admin-tab" id="admin-study-content">
       <h3>📚 Upload Study Material</h3>
+      <div class="up-form" style="margin-bottom:18px;">
+        <h4 style="margin:0 0 4px;color:var(--secondary);font-size:14.5px;"><i class="fas fa-image"></i> Study Material Page Image</h4>
+        <p style="color:var(--gray);font-size:12.5px;margin-bottom:10px;">Shown at the top-right of the Study Material page (next to "Better Learning, Brighter Future"). Upload your own image to replace the default illustration.</p>
+        <div class="up-img">
+          <img id="sm_hero_prev" alt="" style="width:110px;height:62px;object-fit:contain;border-radius:8px;border:1px solid var(--u-line);background:#eef3fb;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('sm_hero_file').click()"><i class="fas fa-image"></i> Change Image</button>
+          <button type="button" class="btn btn-danger btn-sm" onclick="clearSmHeroImg()"><i class="fas fa-trash"></i> Reset to Default</button>
+          <input type="file" id="sm_hero_file" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="onSmHeroImg(this)">
+          <button type="button" class="btn btn-green btn-sm" onclick="saveSmHero()"><i class="fas fa-save"></i> Save</button>
+        </div>
+      </div>
       <button class="btn btn-outline btn-sm" onclick="dedupeStudyMaterial()" style="margin-bottom:14px;"><i class="fas fa-broom"></i> Remove Duplicate / Placeholder Resources</button>
       <div id="sc_edit_banner" style="display:none;background:#fff3e0;border:1px solid #f6c98a;color:#8a5300;padding:10px 14px;border-radius:10px;margin-bottom:14px;font-size:13px;font-weight:600;">
         <i class="fas fa-edit"></i> Editing existing content — update the fields below and click "Update Content" to save changes.
@@ -2007,6 +2292,30 @@
         <table class="admin-table">
           <thead><tr><th>Class</th><th>Subject</th><th>Chapter</th><th>Title</th><th>Type</th><th>Action</th></tr></thead>
           <tbody id="adminContentTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Resource Library Tab (Syllabus / Sample Papers / PYQs / Toppers) -->
+    <div class="admin-tab" id="admin-study-extras">
+      <h3>🗂️ Resource Library</h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">Upload Syllabus, Sample Papers, Previous Year Question Papers &amp; Toppers' Answer Sheets shown under "More Resources" on the Study Material page. Add PDFs for any class &amp; subject.</p>
+      <div class="up-form"><div class="up-grid">
+        <div class="full"><label class="l">Category *</label><div class="up-chips" id="seChips"></div></div>
+        <div><label class="l">Class *</label><select id="se_class"></select></div>
+        <div><label class="l">Subject *</label><input type="text" id="se_subject" placeholder="e.g. Mathematics" list="se_subject_list"><datalist id="se_subject_list"></datalist></div>
+        <div class="full"><label class="l">Title *</label><input type="text" id="se_title" placeholder="e.g. Mathematics Syllabus 2026-27"></div>
+        <div class="full"><label class="l">Upload PDF *</label><input type="file" id="se_file" accept=".pdf"><p id="se_file_note" style="display:none;font-size:12px;color:var(--gray);margin-top:6px;">Leave empty to keep the existing uploaded file.</p></div>
+        <div class="full up-tg"><label><input type="checkbox" id="se_visible" checked> Visible on Website</label></div>
+        <div class="full" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+          <button type="button" class="btn btn-outline" onclick="resetStudyExtraForm()">Reset</button>
+          <button type="button" class="btn btn-green" id="sePublishBtn" onclick="uploadStudyExtra()"><i class="fas fa-upload"></i> Upload</button>
+        </div>
+      </div></div>
+      <div class="admin-table-wrap" style="margin-top:18px;">
+        <table class="admin-table">
+          <thead><tr><th>Category</th><th>Class</th><th>Subject</th><th>Title</th><th>Visible</th><th>Action</th></tr></thead>
+          <tbody id="adminStudyExtrasTable"></tbody>
         </table>
       </div>
     </div>
@@ -2243,34 +2552,60 @@
       </div>
     </div>
 
-    <div class="admin-tab" id="admin-announcements">
-      <h3>📢 Homepage Notice / Announcements</h3>
-      <div class="admin-form">
-        <div class="form-grid">
-          <select id="an_type">
-            <option value="notice">📢 Notice</option>
-            <option value="update">🆕 New Update</option>
-            <option value="material">📚 Study Material Update</option>
-            <option value="exam">🎓 Exam/Admission Update</option>
-            <option value="important">⭐ Important Announcement</option>
-          </select>
-          <input type="text" id="an_title" placeholder="Title *">
-          <input type="text" id="an_link" placeholder="Optional link/button text (e.g. Learn More)">
+    <div class="admin-tab" id="admin-update-add">
+      <h3>📝 <span id="upFormTitle">Add New Update</span></h3>
+      <p style="color:var(--gray);font-size:13.5px;margin:4px 0 14px">Fill in the details below to publish a new education update.</p>
+      <div class="up-form"><div class="up-grid">
+        <div><label class="l">Category *</label><select id="up_type"></select></div>
+        <div><label class="l">Title *</label><input type="text" id="up_title" placeholder="e.g. CBSE Class 10 &amp; 12 Board Exam 2027 – Important Update"></div>
+        <div><label class="l">Featured Image</label>
+          <div class="up-img"><img id="up_img_prev" alt="">
+            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('up_img_file').click()"><i class="fas fa-image"></i> Change Image</button>
+            <button type="button" class="btn btn-danger btn-sm" id="up_img_del" onclick="clearUpdImg()" style="display:none"><i class="fas fa-trash"></i></button>
+            <input type="file" id="up_img_file" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="onUpdImg(this)"></div>
+          <small style="color:var(--gray)">Recommended 1200 × 675 px (JPG, PNG, WebP) · Max 2MB</small></div>
+        <div><label class="l">Date *</label><input type="date" id="up_date"></div>
+        <div class="full"><label class="l">Short Description *</label><textarea id="up_desc" rows="3" placeholder="Short summary shown on the homepage and on the detail page"></textarea></div>
+        <div class="full"><label class="l">Key Points (optional — one point per line)</label><textarea id="up_points" rows="3" placeholder="Board exams will be conducted as per the approved schedule.&#10;Check the official website for date sheet and admit card."></textarea></div>
+        <div><label class="l">Official Source Link</label><input type="url" id="up_source" placeholder="https://www.cbse.gov.in/"></div>
+        <div><label class="l">Button Text *</label><input type="text" id="up_btn" placeholder="Visit Official Website"></div>
+        <div class="full"><label class="l">Image caption (optional)</label><input type="text" id="up_caption" placeholder="Source: CBSE (Representational Image)"></div>
+        <div class="full"><label class="l">Type *</label><div class="up-chips" id="upChips"></div></div>
+        <div class="full up-tg">
+          <label><input type="checkbox" id="up_visible" checked> Visible on Website</label>
+          <label><input type="checkbox" id="up_pin"> Pin to Top (Featured)</label>
         </div>
-        <textarea id="an_desc" placeholder="Short description" style="width:100%;margin-top:12px;min-height:70px;"></textarea>
-        <button class="btn btn-green" onclick="addAnnouncement()" style="margin-top:12px;"><i class="fas fa-plus"></i> Publish Announcement</button>
-      </div>
+        <div class="full" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+          <button type="button" class="btn btn-outline" onclick="resetUpdForm()">Reset</button>
+          <button type="button" class="btn btn-green" id="upPublishBtn" onclick="addAnnouncement()"><i class="fas fa-paper-plane"></i> Publish Update</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="admin-tab" id="admin-update-all">
+      <h3>📋 All Updates</h3>
       <div class="visibility-save-bar" id="announcements_save_bar" style="display:none;">
         <span class="pending-note"><i class="fas fa-circle-exclamation"></i> You have unsaved visibility changes.</span>
         <button type="button" class="btn btn-outline btn-sm" onclick="cancelVisibilityChanges('announcements', renderAdminAnnouncements)">Cancel</button>
         <button type="button" class="btn btn-green btn-sm" id="announcements_save_btn" onclick="saveVisibilityChanges('announcements','visible', renderAdminAnnouncements, [renderHomepageAnnouncements])">Save Changes</button>
       </div>
-      <div class="admin-table-wrap">
-        <table class="admin-table">
-          <thead><tr><th>Type</th><th>Title</th><th>Description</th><th>Date</th><th>Visible</th><th>Action</th></tr></thead>
-          <tbody id="adminAnnouncementsTable"></tbody>
-        </table>
-      </div>
+      <div class="admin-table-wrap"><table class="admin-table">
+        <thead><tr><th>Image</th><th>Title</th><th>Date</th><th>Featured</th><th>Visible</th><th>Action</th></tr></thead>
+        <tbody id="adminAnnouncementsTable"></tbody>
+      </table></div>
+    </div>
+
+    <div class="admin-tab" id="admin-floatwidgets">
+      <h3>🧩 Floating Widgets (FAQ &amp; Ask / Suggest / Share)</h3>
+      <p style="color:var(--gray);font-size:13.5px;margin:4px 0 14px">These two buttons float on the website like the chatbot bubble — always on, no close button for visitors. FAQ answers come from “Website FAQs (SEO)”; visitor posts go to “Community”.</p>
+      <div class="up-form"><div class="up-grid">
+        <div class="full"><label class="l">FAQ button</label><div class="up-tg"><label><input type="checkbox" id="fw_faq_on"> Show on website</label></div></div>
+        <div class="full"><label class="l">FAQ button tooltip text</label><input type="text" id="fw_faq_label" maxlength="20"></div>
+        <div class="full"><label class="l">Ask / Suggest / Share button</label><div class="up-tg"><label><input type="checkbox" id="fw_ask_on"> Show on website</label></div></div>
+        <div class="full"><label class="l">Ask button tooltip text</label><input type="text" id="fw_ask_label" maxlength="20"></div>
+        <div class="full"><label class="l">Side of screen</label><select id="fw_side"><option value="right">Right side (bottom)</option><option value="left">Left side (stacked above chatbot)</option></select></div>
+        <div class="full" style="text-align:right"><button type="button" class="btn btn-green" onclick="saveFloatWidgets()"><i class="fas fa-save"></i> Save</button></div>
+      </div></div>
     </div>
 
     <!-- Parent Feedback Tab -->
@@ -2352,6 +2687,42 @@
 
       <button class="btn btn-green" onclick="saveFormEditor()" style="margin-top:16px;"><i class="fas fa-save"></i> Save Form Changes</button>
       <button class="btn btn-outline" onclick="resetFormEditor()" style="margin-top:16px;margin-left:10px;"><i class="fas fa-undo"></i> Reset to Default Wording</button>
+
+      <h4 style="margin:30px 0 8px;color:var(--secondary);"><i class="fas fa-image"></i> Teacher Registration — Side Card</h4>
+      <p style="color:var(--gray);font-size:12.5px;margin-bottom:10px">Controls the "Why Join Us?" card next to the Teacher Registration form — title, 4 benefit lines, quote and an image.</p>
+      <div class="up-form"><div class="up-grid">
+        <div class="full"><label class="l">Card Title</label><input type="text" id="rs_t_title"></div>
+        <div><label class="l">Benefit 1</label><input type="text" id="rs_t_b0"></div>
+        <div><label class="l">Benefit 2</label><input type="text" id="rs_t_b1"></div>
+        <div><label class="l">Benefit 3</label><input type="text" id="rs_t_b2"></div>
+        <div><label class="l">Benefit 4</label><input type="text" id="rs_t_b3"></div>
+        <div class="full"><label class="l">Quote</label><input type="text" id="rs_t_quote"></div>
+        <div class="full"><label class="l">Card Image</label>
+          <div class="up-img"><img id="rs_t_img_prev" alt="">
+            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('rs_t_img_file').click()"><i class="fas fa-image"></i> Change Image</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="clearRegSideImg('teacher')"><i class="fas fa-trash"></i></button>
+            <input type="file" id="rs_t_img_file" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="onRegSideImg(this,'teacher')"></div>
+        </div>
+        <div class="full" style="text-align:right"><button type="button" class="btn btn-green" onclick="saveRegSide('teacher')"><i class="fas fa-save"></i> Save Teacher Side Card</button></div>
+      </div></div>
+
+      <h4 style="margin:30px 0 8px;color:var(--secondary);"><i class="fas fa-image"></i> Student Registration — Side Card</h4>
+      <p style="color:var(--gray);font-size:12.5px;margin-bottom:10px">Controls the "Benefits for You" card next to the Student / Parent Registration form.</p>
+      <div class="up-form"><div class="up-grid">
+        <div class="full"><label class="l">Card Title</label><input type="text" id="rs_s_title"></div>
+        <div><label class="l">Benefit 1</label><input type="text" id="rs_s_b0"></div>
+        <div><label class="l">Benefit 2</label><input type="text" id="rs_s_b1"></div>
+        <div><label class="l">Benefit 3</label><input type="text" id="rs_s_b2"></div>
+        <div><label class="l">Benefit 4</label><input type="text" id="rs_s_b3"></div>
+        <div class="full"><label class="l">Quote</label><input type="text" id="rs_s_quote"></div>
+        <div class="full"><label class="l">Card Image</label>
+          <div class="up-img"><img id="rs_s_img_prev" alt="">
+            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('rs_s_img_file').click()"><i class="fas fa-image"></i> Change Image</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="clearRegSideImg('student')"><i class="fas fa-trash"></i></button>
+            <input type="file" id="rs_s_img_file" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="onRegSideImg(this,'student')"></div>
+        </div>
+        <div class="full" style="text-align:right"><button type="button" class="btn btn-green" onclick="saveRegSide('student')"><i class="fas fa-save"></i> Save Student Side Card</button></div>
+      </div></div>
 
       <h4 style="margin:26px 0 8px;color:var(--secondary);"><i class="fas fa-bullhorn"></i> Notice on top of Student Registration Form</h4>
       <textarea id="fe_student_notice" style="width:100%;min-height:80px;"></textarea>
@@ -2807,7 +3178,10 @@
       <button class="btn btn-green" onclick="saveHomepageContent()" style="margin-top:6px;"><i class="fas fa-save"></i> Save Homepage Content</button>
       <button class="btn btn-outline" onclick="if(confirm('Reset homepage content to original defaults?')) resetHomepageContent();" style="margin-top:6px;"><i class="fas fa-undo"></i> Reset to Default</button>
     </div>
-  </section>
+      </section>
+    </div>
+  </div>
+  <div id="admBackdrop" onclick="toggleAdmDrawer(false)"></div>
 </div>
 
 <!-- PREMIUM LEADS (public) -->
@@ -2871,17 +3245,6 @@
     <div style="font-size:12px;color:var(--gray);font-weight:600;margin-bottom:6px;" id="blogReadDate"></div>
     <h3 id="blogReadTitle" style="margin-bottom:12px;"></h3>
     <div id="blogReadBody" style="font-size:14px;color:var(--gray);line-height:1.7;white-space:pre-line;"></div>
-  </div>
-</div>
-
-<!-- Announcement detail popup — opens when a homepage notice card is clicked -->
-<div class="info-modal-overlay" id="announcementDetailOverlay" onclick="if(event.target===this) closeAnnouncementDetail()">
-  <div class="info-modal-box" style="max-width:480px;text-align:left;">
-    <button class="close-x" onclick="closeAnnouncementDetail()"><i class="fas fa-times"></i></button>
-    <div style="font-size:34px;margin-bottom:10px;" id="announcementDetailEmoji">📢</div>
-    <div style="font-size:12px;color:var(--gray);font-weight:600;margin-bottom:6px;" id="announcementDetailDate"></div>
-    <h3 id="announcementDetailTitle" style="margin-bottom:12px;"></h3>
-    <div id="announcementDetailBody" style="font-size:14px;color:var(--gray);line-height:1.7;white-space:pre-line;"></div>
   </div>
 </div>
 
@@ -2983,6 +3346,37 @@
   <div class="festival-popup-box">
     <button class="festival-popup-close" onclick="closeFestivalPopup()"><i class="fas fa-times"></i></button>
     <div id="festivalPopupContent"></div>
+  </div>
+</div>
+
+<!-- Floating FAQ / Ask widgets (controlled from Admin > Floating Widgets) -->
+<div class="fw-dock" id="fwDock">
+  <div class="fw-item" id="fwItem-faq"><button class="fw-btn" onclick="openFw('faq')" id="fwBtn-faq" title="FAQ"><i class="fas fa-circle-question"></i></button></div>
+  <div class="fw-item" id="fwItem-ask"><button class="fw-btn ask" onclick="openFw('ask')" id="fwBtn-ask" title="Ask / Suggest"><i class="fas fa-lightbulb"></i></button></div>
+</div>
+<div class="fw-panel" id="fwPanel-faq">
+  <div class="fw-head"><span><i class="fas fa-circle-question"></i> Frequently Asked Questions</span><button onclick="closeFw('faq')"><i class="fas fa-times"></i></button></div>
+  <div class="fw-body"><div class="faq-section" id="faqSection"><div class="faq-list" id="faqList"></div><div class="fw-empty">No FAQs yet. Use “Ask / Suggest” to send us your question.</div></div></div>
+</div>
+<div class="fw-panel" id="fwPanel-ask">
+  <div class="fw-head"><span><i class="fas fa-lightbulb"></i> Ask, Suggest, or Share</span><button onclick="closeFw('ask')"><i class="fas fa-times"></i></button></div>
+  <div class="fw-body">
+    <p class="fw-note">Ask a question, share feedback, suggest an idea, or write a blog post — we review everything before it goes live.</p>
+    <div class="community-form-card">
+      <select id="cp_type" onchange="onCommunityTypeChange()">
+        <option value="question">❓ Ask a Question (shows in FAQ once answered)</option>
+        <option value="feedback">⭐ Share Feedback / Review (shows in Testimonials)</option>
+        <option value="blog">✍️ Write a Blog Post (shows in Blog)</option>
+        <option value="suggestion">💡 Suggest an Idea (for our team only, not shown publicly)</option>
+      </select>
+      <input type="text" id="cp_name" placeholder="Your name (optional)">
+      <select id="cp_rating" style="display:none;">
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option><option value="4">⭐⭐⭐⭐ Good</option><option value="3">⭐⭐⭐ Okay</option><option value="2">⭐⭐ Below Average</option><option value="1">⭐ Poor</option>
+      </select>
+      <input type="text" id="cp_title" placeholder="Title / short summary" style="display:none;">
+      <textarea id="cp_content" placeholder="Type your question here" style="min-height:110px;"></textarea>
+      <button class="btn btn-primary" onclick="submitVisitorPost()"><i class="fas fa-paper-plane"></i> Submit for Review</button>
+    </div>
   </div>
 </div>
 
@@ -4037,19 +4431,24 @@ function activatePage(id) {
   closeMobileNav();
   if (id === 'page-admin' && !isAdminLoggedIn) { openAdminLogin(); return; }
   if (id === 'page-admin' && isAdminLoggedIn) renderAll();
-  if (id === 'page-study') { renderStudyClasses(); renderNcertBooksPublic(); }
+  if (id === 'page-study') { smInitClassDropdown(); renderNcertBooksPublic(); renderStudyMoreResources(); renderSmHeroArt(); }
   if (id === 'page-entrance') renderEntranceExamGrid();
   if (id === 'page-home') { renderLeadSidebar(); renderCities('all'); renderHomepageContent(); renderHomepageAnnouncements(); renderHomepageTestimonials(); renderBlogList(); renderHomepageTeacherPreview(); }
   if (id === 'page-teachers') { renderPublicTeacherProfiles(); }
   if (id === 'page-premium-leads') { renderPublicPremiumLeads(); }
-  if (id === 'page-teacher-form') { renderPaymentSettings(); }
-  if (id === 'page-student-form') { renderStudentFormNotice(); }
+  if (id === 'page-teacher-form') { renderPaymentSettings(); renderRegSide('teacher'); }
+  if (id === 'page-student-form') { renderStudentFormNotice(); renderRegSide('student'); }
   if (id === 'page-blog') { renderBlogList(); }
+  if (id === 'page-updates') { renderUpdatesPage(); }
+  if (id === 'page-update-detail') { renderUpdateDetail(); }
+  if (id === 'page-pdf-viewer') { renderPdfViewerPage(); }
 }
 // Phone/browser Back (and Forward) button support: restore whichever page
 // was active at that point in history, without pushing a new entry.
 window.addEventListener('popstate', function (e) {
   const id = (e.state && e.state.page) || 'page-home';
+  if (e.state && e.state.uid) _curUpdId = e.state.uid;
+  if (e.state && e.state.pdfCollection) window._pdfViewerState = { collection: e.state.pdfCollection, id: e.state.pdfId };
   if (document.getElementById(id)) activatePage(id);
 });
 // The very first page load has no history state yet — give it one so the
@@ -5300,6 +5699,176 @@ function downloadStudentPDF(id) {
   generatePdfFromNode(node, `Student_${(s.parent || 'registration').replace(/\s+/g, '_')}_${s.id}.pdf`);
 }
 
+// ================================================================
+// Resource Library (Syllabus / Sample Papers / Previous Year Question
+// Papers / Toppers' Answer Sheets) — shown as "More Resources" on the
+// Study Material page. Fully admin-managed: category, class, subject
+// (free text so admin can add new subjects), title & a PDF per item.
+// ================================================================
+const SM_RES_CATS = {
+  syllabus: { label: 'Syllabus', icon: 'fa-list-check', color: '#1e6be0', desc: 'Get the latest syllabus for your class and subject.' },
+  sample: { label: 'Sample Papers', icon: 'fa-file-lines', color: '#7c3aed', desc: 'Download sample papers to practice and improve.' },
+  pyq: { label: 'Previous Year Question Papers', icon: 'fa-folder-open', color: '#f07a10', desc: 'Get previous year papers with solutions (if available).' },
+  toppers: { label: "Toppers' Answer Sheets", icon: 'fa-trophy', color: '#e11d74', desc: "Study toppers' answer sheets to understand the exam pattern and marking style." }
+};
+// ---------- Study Material hero image (admin-replaceable) ----------
+const SM_HERO_DEFAULT_SVG = `<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="30" y="95" width="90" height="14" rx="3" fill="var(--primary)"/>
+  <rect x="38" y="79" width="74" height="14" rx="3" fill="#e05c8a"/>
+  <rect x="46" y="63" width="58" height="14" rx="3" fill="#c9971f"/>
+  <rect x="118" y="60" width="14" height="52" rx="3" fill="#c9971f"/>
+  <rect x="136" y="65" width="10" height="47" rx="3" fill="var(--accent)"/>
+</svg>`;
+function renderSmHeroArt() {
+  const el = document.getElementById('smHeroArt');
+  if (!el) return;
+  const s = fsSettingsGet('studyHero') || {};
+  el.innerHTML = (s.image ? `<img src="${s.image}" alt="Study Material">` : SM_HERO_DEFAULT_SVG) + '<span class="sm-hero-txt">Better Learning<br>Brighter Future</span>';
+}
+let _smHeroImg = null;
+function onSmHeroImg(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  compressImageToDataUrl(file, 500, 0.82).then(url => { _smHeroImg = url; document.getElementById('sm_hero_prev').src = url; });
+}
+function clearSmHeroImg() {
+  _smHeroImg = '';
+  document.getElementById('sm_hero_file').value = '';
+  document.getElementById('sm_hero_prev').src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+}
+function populateSmHeroForm() {
+  const s = fsSettingsGet('studyHero') || {};
+  _smHeroImg = s.image || null;
+  document.getElementById('sm_hero_prev').src = s.image || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+}
+function saveSmHero() {
+  fsSettingsSave('studyHero', { image: _smHeroImg === null ? ((fsSettingsGet('studyHero') || {}).image || '') : (_smHeroImg || '') });
+  renderSmHeroArt();
+  showToast('✅ Study Material image saved!');
+}
+fsSettingsListen('studyHero', renderSmHeroArt);
+
+function renderStudyMoreResources() {
+  const grid = document.getElementById('sm-more-grid');
+  if (!grid) return;
+  grid.innerHTML = Object.entries(SM_RES_CATS).map(([key, c]) =>
+    `<div class="sm-more-card" onclick="openSmResModal('${key}')"><div class="ic" style="background:${c.color}"><i class="fas ${c.icon}"></i></div><h4>${c.label}</h4><p>${c.desc}</p><span class="view">View <i class="fas fa-arrow-right"></i></span></div>`
+  ).join('');
+}
+let _smResCat = '';
+function openSmResModal(cat) {
+  _smResCat = cat;
+  const c = SM_RES_CATS[cat];
+  document.getElementById('smResModalTitle').innerHTML = `<i class="fas ${c.icon}" style="color:${c.color}"></i> ${c.label}`;
+  const clsSel = document.getElementById('smres_class');
+  if (!clsSel.dataset.ready) { clsSel.dataset.ready = '1'; clsSel.innerHTML = studyClassesList.map(x => `<option value="${x}">${x}</option>`).join(''); }
+  document.getElementById('smres_subject').innerHTML = '<option value="">All subjects</option>';
+  smResLoad();
+  document.getElementById('smResModalOverlay').classList.add('show');
+}
+function closeSmResModal() { document.getElementById('smResModalOverlay').classList.remove('show'); }
+function smResLoad() {
+  const cls = document.getElementById('smres_class').value || studyClassesList[0];
+  document.getElementById('smres_class').value = cls;
+  const items = getData('studyExtras').filter(x => x.visible !== false && x.category === _smResCat && x.class === cls);
+  const subjects = [...new Set(items.map(x => x.subject))];
+  const subSel = document.getElementById('smres_subject');
+  const curSub = subSel.value;
+  subSel.innerHTML = '<option value="">All subjects</option>' + subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+  if (subjects.includes(curSub)) subSel.value = curSub;
+  const subFilter = subSel.value;
+  const filtered = subFilter ? items.filter(x => x.subject === subFilter) : items;
+  const list = document.getElementById('smResList');
+  list.innerHTML = filtered.length
+    ? filtered.map(x => `<div class="sm-res-item"><i class="fas fa-file-pdf" style="color:#c0392b"></i><div class="n">${x.title}<span class="sub">${x.subject}</span></div>${x.fileData ? `<button class="btn btn-primary btn-sm" onclick="openPageReader('studyExtras', ${x.id})"><i class="fas fa-eye"></i> View</button>` : ''}</div>`).join('')
+    : '<p class="study-empty-msg" style="border:0;padding:20px 0;">No files uploaded yet for this selection.</p>';
+}
+
+// ---------- Admin: upload / list Resource Library items ----------
+let _seCategory = 'syllabus';
+let editingStudyExtraId = null;
+function initStudyExtraChips() {
+  const wrap = document.getElementById('seChips'), clsSel = document.getElementById('se_class');
+  if (!wrap.dataset.ready) {
+    wrap.dataset.ready = '1';
+    wrap.innerHTML = Object.entries(SM_RES_CATS).map(([key, c]) => `<button type="button" data-c="${key}" style="background:${c.color}" onclick="seSetCategory('${key}')">${c.label}</button>`).join('');
+    clsSel.innerHTML = studyClassesList.map(c => `<option value="${c}">${c}</option>`).join('');
+  }
+  seSetCategory(_seCategory);
+  refreshSeSubjectList();
+}
+function seSetCategory(key) {
+  _seCategory = key;
+  document.querySelectorAll('#seChips button').forEach(b => b.classList.toggle('on', b.dataset.c === key));
+}
+function refreshSeSubjectList() {
+  const dl = document.getElementById('se_subject_list');
+  const subjects = [...new Set(getData('studyExtras').map(x => x.subject))];
+  dl.innerHTML = subjects.map(s => `<option value="${s}">`).join('');
+}
+function resetStudyExtraForm() {
+  editingStudyExtraId = null;
+  document.getElementById('se_subject').value = '';
+  document.getElementById('se_title').value = '';
+  document.getElementById('se_file').value = '';
+  document.getElementById('se_file_note').style.display = 'none';
+  document.getElementById('se_visible').checked = true;
+  document.getElementById('sePublishBtn').innerHTML = '<i class="fas fa-upload"></i> Upload';
+}
+async function uploadStudyExtra() {
+  const cls = document.getElementById('se_class').value;
+  const subject = document.getElementById('se_subject').value.trim();
+  const title = document.getElementById('se_title').value.trim();
+  const file = document.getElementById('se_file').files[0];
+  if (!subject || !title) { showToast('⚠️ Fill Subject & Title!', 'error'); return; }
+  if (!file && !editingStudyExtraId) { showToast('⚠️ Choose a PDF to upload!', 'error'); return; }
+  let fileData = null, fileName = null, filePages = 1, fileIsPdf = false;
+  if (file) {
+    if (file.size > 15 * 1024 * 1024) { showToast('⚠️ File too big! Max 15MB allowed.', 'error'); return; }
+    showToast('⏳ Uploading file...');
+    try {
+      const uploaded = await uploadViewOnlyFile(file);
+      fileData = uploaded.url; filePages = uploaded.pages; fileIsPdf = uploaded.isPdf; fileName = file.name;
+    } catch (err) { showToast('⚠️ File upload failed — check your internet connection.', 'error'); return; }
+  }
+  const data = { category: _seCategory, class: cls, subject, title, visible: document.getElementById('se_visible').checked };
+  if (file) { data.file = fileName; data.fileData = fileData; data.filePages = filePages; data.fileIsPdf = fileIsPdf; }
+  if (editingStudyExtraId) { updateData('studyExtras', editingStudyExtraId, data); showToast('✅ Resource updated!'); }
+  else { addData('studyExtras', data); showToast('✅ Resource uploaded!'); }
+  resetStudyExtraForm();
+  refreshSeSubjectList();
+  renderAdminStudyExtras();
+}
+function editStudyExtra(id) {
+  const item = getData('studyExtras').find(x => x.id === id);
+  if (!item) return;
+  editingStudyExtraId = id;
+  seSetCategory(item.category);
+  document.getElementById('se_class').value = item.class;
+  document.getElementById('se_subject').value = item.subject;
+  document.getElementById('se_title').value = item.title;
+  document.getElementById('se_visible').checked = item.visible !== false;
+  document.getElementById('se_file').value = '';
+  document.getElementById('se_file_note').style.display = item.fileData ? 'block' : 'none';
+  document.getElementById('sePublishBtn').innerHTML = '<i class="fas fa-save"></i> Save Changes';
+  document.getElementById('admin-study-extras').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function renderAdminStudyExtras() {
+  const tbody = document.getElementById('adminStudyExtrasTable');
+  if (!tbody) return;
+  const items = getData('studyExtras').slice().sort((a, b) => b.id - a.id);
+  tbody.innerHTML = items.length ? items.map(x => `
+    <tr>
+      <td>${SM_RES_CATS[x.category] ? SM_RES_CATS[x.category].label : x.category}</td>
+      <td>${x.class}</td>
+      <td>${x.subject}</td>
+      <td><strong>${x.title}</strong></td>
+      <td><label class="mini-toggle-row"><input type="checkbox" ${x.visible !== false ? 'checked' : ''} onchange="updateData('studyExtras', ${x.id}, {visible:this.checked}); renderAdminStudyExtras();"> ${x.visible !== false ? 'Visible' : 'Hidden'}</label></td>
+      <td style="white-space:nowrap;"><button class="btn btn-accent btn-sm" onclick="editStudyExtra(${x.id})"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-danger btn-sm" onclick="if(confirm('Delete this file?')) deleteData('studyExtras', ${x.id})"><i class="fas fa-trash"></i></button></td>
+    </tr>`).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--gray);">No files uploaded yet.</td></tr>';
+}
+
 function renderAdminContent() {
   const contents = getData('studyContent');
   const tbody = document.getElementById('adminContentTable');
@@ -5351,7 +5920,7 @@ function updateStats() {
   document.getElementById('statTeachers').textContent = getData('teachers').length;
   document.getElementById('statStudents').textContent = getData('students').length;
   document.getElementById('statLeads').textContent = getData('leads').length;
-  document.getElementById('statContent').textContent = getData('studyContent').length + getData('entranceContent').length;
+  document.getElementById('statContent').textContent = getData('studyContent').length + getData('entranceContent').length + getData('studyExtras').length;
 }
 
 function renderAll() {
@@ -5360,6 +5929,7 @@ function renderAll() {
   renderAdminStudents();
   renderAdminLeads();
   renderAdminContent();
+  renderAdminStudyExtras();
   renderAdminEntrance();
   renderAdminPremium();
   renderAdminAnnouncements();
@@ -5387,6 +5957,7 @@ function renderPublicAll() {
   if (typeof renderPublicPremiumLeads === 'function') renderPublicPremiumLeads();
   if (typeof renderBlogList === 'function') renderBlogList();
   if (typeof renderFaqSection === 'function') renderFaqSection();
+  if (typeof renderStudyMoreResources === 'function') renderStudyMoreResources();
 }
 
 function showAdminTab(tab) {
@@ -5400,16 +5971,21 @@ function showAdminTab(tab) {
   if (tab === 'community') renderAdminVisitorPosts();
   if (tab === 'premium') { renderAdminPremium(); showPremiumSubTab('pending'); populatePaymentSettingsForm(); }
   if (tab === 'teacher-profiles') renderAdminTeacherProfiles();
-  if (tab === 'announcements') renderAdminAnnouncements();
+  if (tab === 'update-add') { initUpdChips(); if (editingAnnouncementId === null) resetUpdForm(); }
+  if (tab === 'update-all') renderAdminAnnouncements();
+  if (tab === 'floatwidgets') populateFloatWidgetsForm();
+  toggleAdmDrawer(false);
   if (tab === 'feedback') renderAdminFeedback();
   if (tab === 'blog') renderAdminBlog();
-  if (tab === 'formeditor') { renderFormEditor(); populatePolicyEditor(); populateStudentFormNoticeEditor(); }
+  if (tab === 'formeditor') { renderFormEditor(); populatePolicyEditor(); populateStudentFormNoticeEditor(); populateRegSideForm('teacher'); populateRegSideForm('student'); }
   if (tab === 'chatbot') renderAdminChatbotFaqs();
   if (tab === 'site-faq') renderAdminSiteFaqs();
   if (tab === 'seo-pages') { loadSeoPageIntoForm(); populateSeoCitiesForm(); }
   if (tab === 'festival') populateFestivalPopupForm();
   if (tab === 'branding') populateBrandingForm();
   if (tab === 'ncert-books') renderNcertBooksAdmin();
+  if (tab === 'study-content') { populateSmHeroForm(); }
+  if (tab === 'study-extras') { initStudyExtraChips(); renderAdminStudyExtras(); }
 }
 
 // ================================================================
@@ -5589,76 +6165,300 @@ function cancelEditPremiumLead() {
 // ================================================================
 // Homepage Announcements
 // ================================================================
-const ANNOUNCEMENT_ICONS = { notice: '📢', update: '🆕', material: '📚', exam: '🎓', important: '⭐' };
+// ================================================================
+// Latest Education Updates (uses the existing "announcements" collection,
+// so no new Firestore rules are needed; old announcements keep working)
+// ================================================================
+const UPD_TYPES = {
+  cbse:{label:'CBSE Update',icon:'fa-graduation-cap',bg:'#e1edff',fg:'#1451b8',solid:'#1e6be0'},
+  scholarship:{label:'Scholarship',icon:'fa-award',bg:'#fdf1e0',fg:'#c97f1f',solid:'#e0a83a'},
+  exam:{label:'Exam Update',icon:'fa-file-signature',bg:'#ffe9d2',fg:'#b45309',solid:'#f07a10'},
+  result:{label:'Result',icon:'fa-trophy',bg:'#eadcff',fg:'#6d28d9',solid:'#7c3aed'},
+  admission:{label:'Admission',icon:'fa-user-graduate',bg:'#ffdcec',fg:'#be185d',solid:'#e11d74'},
+  other:{label:'Other',icon:'fa-bullhorn',bg:'#e7ebf1',fg:'#4a5a72',solid:'#64748b'},
+  notice:{label:'Notice',icon:'fa-bullhorn',bg:'#e7ebf1',fg:'#4a5a72',solid:'#64748b'},
+  update:{label:'New Update',icon:'fa-bell',bg:'#e1edff',fg:'#1451b8',solid:'#1e6be0'},
+  material:{label:'Study Material',icon:'fa-book',bg:'#f1e9fb',fg:'#5637a8',solid:'#7c5cd6'},
+  important:{label:'Important',icon:'fa-star',bg:'#fff3c9',fg:'#8a5300',solid:'#e6a12a'}
+};
+const ANNOUNCEMENT_ICONS = {};
+const UPD_CHIP_KEYS = ['cbse','scholarship','exam','result','admission','other'];
+const _MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function _ue(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function updT(t){ return UPD_TYPES[t] || UPD_TYPES.other; }
+function updDate(a){ const d = new Date(a.date); if (isNaN(d)) return ''; return String(d.getDate()).padStart(2,'0') + ' ' + _MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+function updChip(a, solid){ const t = updT(a.type); return `<span class="upd-chip" style="background:${solid ? t.solid : t.bg};color:${solid ? '#fff' : t.fg}">${_ue(t.label)}</span>`; }
+function updSorted(){ return getData('announcements').filter(a => a.visible).slice().sort((x,y) => (new Date(y.date) - new Date(x.date)) || (y.id - x.id)); }
+function updThumbHtml(a, flag){
+  const t = updT(a.type);
+  return `<div class="upd-thumb">${a.image ? `<img src="${a.image}" alt="${_ue(a.title)}" loading="lazy">` : `<i class="fas ${t.icon}"></i>`}${flag ? '<span class="upd-flag"><i class="fas fa-thumbtack"></i> Featured</span>' : ''}${a.caption ? `<span class="cap">${_ue(a.caption)}</span>` : ''}</div>`;
+}
+function updIconTile(a){ const t = updT(a.type); return `<div class="upd-ico" style="background:${t.bg};color:${t.fg}"><i class="fas ${t.icon}"></i></div>`; }
+function updRow(a, mode){
+  return `<div class="upd-row" onclick="openUpdate(${a.id})">${updIconTile(a)}<div style="min-width:0"><div class="t">${_ue(a.title)}</div>${mode === 'side' ? '' : `<div class="s">${_ue(a.desc || '')}</div>`}${mode === 'side' ? `<div class="upd-date" style="margin-top:4px"><i class="far fa-calendar"></i> ${updDate(a)}</div>` : ''}</div>${mode === 'side' ? '' : `<div class="m">${updChip(a)}<span class="upd-date"><i class="far fa-calendar"></i> ${updDate(a)}</span></div>`}</div>`;
+}
 
-function addAnnouncement() {
-  const title = document.getElementById('an_title').value.trim();
-  if (!title) { showToast('⚠️ Title is required!', 'error'); return; }
-  if (editingAnnouncementId !== null) {
-    updateData('announcements', editingAnnouncementId, {
-      type: document.getElementById('an_type').value, title,
-      desc: document.getElementById('an_desc').value.trim(),
-      link: document.getElementById('an_link').value.trim()
-    });
-    showToast('✅ Announcement updated!');
-    cancelEditAnnouncement();
-    renderAdminAnnouncements();
+function renderHomepageAnnouncements() {
+  const wrap = document.getElementById('noticeSection');
+  const feat = document.getElementById('updFeatured');
+  const list = document.getElementById('updList');
+  if (wrap && feat && list) {
+    fsStartListener('announcements');
+    if (fsDataFailed('announcements')) { wrap.style.display = 'none'; }
+    else if (!fsDataHasLoaded('announcements')) {
+      wrap.style.display = 'block';
+      feat.innerHTML = '<div class="skel" style="height:170px;border-radius:14px"></div>';
+      list.innerHTML = Array(3).fill('<div class="skel" style="height:54px;margin:10px 0"></div>').join('');
+    } else {
+      const items = updSorted();
+      if (!items.length) { wrap.style.display = 'none'; }
+      else {
+        wrap.style.display = 'block';
+        const f = items.find(a => a.pinned) || items[0];
+        feat.innerHTML = `${updThumbHtml(f, true)}<div style="display:flex;flex-direction:column;min-width:0"><div>${updChip(f, true)}</div><h3>${_ue(f.title)}</h3><p>${_ue(f.desc || '')}</p><div class="upd-foot"><span class="upd-date"><i class="far fa-calendar"></i> ${updDate(f)}</span><button class="upd-btn" onclick="openUpdate(${f.id})">Read Update <i class="fas fa-arrow-right"></i></button></div></div>`;
+        feat.onclick = null;
+        const rest = items.filter(a => a.id !== f.id).slice(0, 3);
+        list.innerHTML = rest.length ? rest.map(a => updRow(a)).join('') : '<div class="upd-empty">More updates coming soon.</div>';
+      }
+    }
+  }
+  if (document.getElementById('page-updates') && document.getElementById('page-updates').classList.contains('active')) renderUpdatesPage();
+  if (document.getElementById('page-update-detail') && document.getElementById('page-update-detail').classList.contains('active')) renderUpdateDetail();
+}
+
+let _updFilter = 'all';
+function renderUpdatesPage(){
+  const f = document.getElementById('updFilters'), g = document.getElementById('updCards');
+  if (!f || !g) return;
+  f.innerHTML = ['all'].concat(UPD_CHIP_KEYS).map(k => `<button class="${_updFilter === k ? 'on' : ''}" onclick="_updFilter='${k}';renderUpdatesPage()">${k === 'all' ? 'All' : UPD_TYPES[k].label}</button>`).join('');
+  if (!fsDataHasLoaded('announcements')) { g.innerHTML = Array(3).fill('<div class="skel" style="height:240px;border-radius:16px"></div>').join(''); return; }
+  let items = updSorted();
+  if (_updFilter !== 'all') items = items.filter(a => (_updFilter === 'other' ? !['cbse','scholarship','exam','result','admission'].includes(a.type) : a.type === _updFilter));
+  g.innerHTML = items.length ? items.map(a => `<div class="upd-card" onclick="openUpdate(${a.id})">${updThumbHtml(a, a.pinned)}<div class="b"><div>${updChip(a)}</div><h3>${_ue(a.title)}</h3><p>${_ue(a.desc || '')}</p><span class="upd-date"><i class="far fa-calendar"></i> ${updDate(a)}</span></div></div>`).join('') : '<div class="upd-empty" style="grid-column:1/-1">No updates in this category yet.</div>';
+}
+
+let _curUpdId = null;
+function openUpdate(id, push) {
+  _curUpdId = id;
+  if (push !== false) history.pushState({ page: 'page-update-detail', uid: id }, '', '#update-' + id);
+  activatePage('page-update-detail');
+}
+const _XSVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.1l4.3 5.6L18.2 2zm-1 18h1.7L7 3.9H5.2L17.2 20z"/></svg>';
+function renderUpdateDetail() {
+  const box = document.getElementById('updDetailBody');
+  if (!box) return;
+  fsStartListener('announcements');
+  const a = getData('announcements').find(x => x.id === _curUpdId);
+  if (!a) {
+    box.innerHTML = fsDataHasLoaded('announcements') ? '<div class="upd-empty">This update is not available. <a style="color:var(--u-blue);cursor:pointer;font-weight:700" onclick="showPage(\'page-updates\')">View all updates</a></div>' : '<div class="skel" style="height:320px;border-radius:16px"></div>';
     return;
   }
-  const data = {
-    type: document.getElementById('an_type').value,
-    title: title,
-    desc: document.getElementById('an_desc').value.trim(),
-    link: document.getElementById('an_link').value.trim(),
-    date: new Date().toISOString(),
-    visible: true
-  };
-  addData('announcements', data);
-  showToast('✅ Announcement published!');
-  document.getElementById('an_title').value = '';
-  document.getElementById('an_desc').value = '';
-  document.getElementById('an_link').value = '';
-  renderAdminAnnouncements();
+  const t = updT(a.type);
+  const url = location.origin + location.pathname + '#update-' + a.id;
+  const eu = encodeURIComponent(url), et = encodeURIComponent(a.title + ' — Althea Scholar');
+  const points = (a.points || []).filter(Boolean);
+  const related = updSorted().filter(x => x.id !== a.id).slice(0, 3);
+  const btn = a.btnText || a.link || 'Visit Official Website';
+  box.innerHTML = `
+  <div class="udt-crumb"><a onclick="showPage('page-home')">Home</a> / <a onclick="showPage('page-updates')">Latest Updates</a> / ${_ue(a.title)}</div>
+  <div class="udt-frame"><div class="udt-grid">
+    <div class="udt-main">
+      <span class="udt-badge"><i class="fas fa-thumbtack"></i> ${_ue(t.label)}</span>
+      <h1>${_ue(a.title)}</h1>
+      <div class="udt-mid">
+        ${updThumbHtml(a, false)}
+        <div>
+          <div class="udt-sum"><h4>Quick Summary</h4><p>${_ue(a.desc || '')}</p></div>
+          ${points.length ? `<div class="udt-kp"><h4><i class="fas fa-circle-info"></i> Key Points</h4><ul style="padding:0">${points.map(p => `<li><i class="fas fa-circle-check"></i><span>${_ue(p)}</span></li>`).join('')}</ul></div>` : ''}
+        </div>
+      </div>
+      ${a.source ? `<div class="udt-src"><div class="ic"><i class="fas fa-shield-halved"></i></div><div style="min-width:0"><b>Official Source</b><a class="u" href="${_ue(a.source)}" target="_blank" rel="noopener">${_ue(a.source)}</a></div><a class="upd-btn" href="${_ue(a.source)}" target="_blank" rel="noopener">${_ue(btn)} <i class="fas fa-arrow-right"></i></a></div>` : ''}
+    </div>
+    <div class="udt-side">
+      <div class="card"><h4>Related Updates</h4>${related.length ? related.map(r => updRow(r, 'side')).join('') : '<div class="upd-empty" style="padding:8px">No other updates yet.</div>'}<button class="upd-btn" onclick="showPage('page-updates')">View All Updates <i class="fas fa-arrow-right"></i></button></div>
+      <div class="card"><h4>Share This Update</h4><div class="udt-share">
+        <a style="background:#0A4174" href="https://wa.me/?text=${et}%20${eu}" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a style="background:#1877f2" href="https://www.facebook.com/sharer/sharer.php?u=${eu}" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a style="background:#000" href="https://twitter.com/intent/tweet?url=${eu}&text=${et}" target="_blank" rel="noopener" title="X">${_XSVG}</a>
+        <a style="background:#0a66c2" href="https://www.linkedin.com/sharing/share-offsite/?url=${eu}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a style="background:#2aabee" href="https://t.me/share/url?url=${eu}&text=${et}" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      </div></div>
+    </div>
+  </div></div>`;
+  document.title = a.title + ' | Althea Scholar';
 }
 
+// ---------- Admin: Add / Edit / All updates ----------
+let editingAnnouncementId = null;
+let _updImg = '';
+function updSetType(v) {
+  document.getElementById('up_type').value = v;
+  document.querySelectorAll('#upChips button').forEach(b => b.classList.toggle('on', b.dataset.t === v));
+}
+function initUpdChips() {
+  const c = document.getElementById('upChips'), s = document.getElementById('up_type');
+  if (!c || c.dataset.ready) return;
+  c.dataset.ready = 1;
+  c.innerHTML = UPD_CHIP_KEYS.map(k => `<button type="button" data-t="${k}" style="background:${UPD_TYPES[k].solid}" onclick="updSetType('${k}')">${UPD_TYPES[k].label}</button>`).join('');
+  s.innerHTML = UPD_CHIP_KEYS.map(k => `<option value="${k}">${UPD_TYPES[k].label}</option>`).join('');
+  s.onchange = () => updSetType(s.value);
+  updSetType('cbse');
+}
+function onUpdImg(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showToast('⚠️ Image must be under 2MB.', 'error'); input.value = ''; return; }
+  compressImageToDataUrl(file, 1200, 0.78).then(url => { _updImg = url; refreshUpdImgPrev(); });
+}
+function refreshUpdImgPrev() {
+  const p = document.getElementById('up_img_prev');
+  p.src = _updImg || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+  document.getElementById('up_img_del').style.display = _updImg ? 'inline-flex' : 'none';
+}
+function clearUpdImg() { _updImg = ''; document.getElementById('up_img_file').value = ''; refreshUpdImgPrev(); }
+function resetUpdForm() {
+  editingAnnouncementId = null; _updImg = '';
+  ['up_title','up_desc','up_source','up_btn','up_points','up_caption'].forEach(id => document.getElementById(id).value = '');
+  const d = new Date(); document.getElementById('up_date').value = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  document.getElementById('up_visible').checked = true; document.getElementById('up_pin').checked = false;
+  initUpdChips(); updSetType('cbse'); refreshUpdImgPrev();
+  document.getElementById('upPublishBtn').innerHTML = '<i class="fas fa-paper-plane"></i> Publish Update';
+  document.getElementById('upFormTitle').textContent = 'Add New Update';
+}
+function addAnnouncement() {
+  const g = id => document.getElementById(id).value.trim();
+  if (!g('up_title')) { showToast('⚠️ Title is required!', 'error'); return; }
+  if (!g('up_desc')) { showToast('⚠️ Short description is required!', 'error'); return; }
+  const dv = g('up_date');
+  const data = {
+    type: document.getElementById('up_type').value, title: g('up_title'), desc: g('up_desc'),
+    date: dv ? new Date(dv + 'T12:00:00').toISOString() : new Date().toISOString(),
+    source: g('up_source'), btnText: g('up_btn'), caption: g('up_caption'),
+    points: g('up_points').split('\n').map(s => s.trim()).filter(Boolean),
+    image: _updImg, visible: document.getElementById('up_visible').checked, pinned: document.getElementById('up_pin').checked
+  };
+  if (editingAnnouncementId !== null) { updateData('announcements', editingAnnouncementId, data); showToast('✅ Update saved!'); }
+  else { addData('announcements', data); showToast('✅ Update published!'); }
+  resetUpdForm();
+  showAdminTab('update-all');
+}
 function renderAdminAnnouncements() {
-  const items = getData('announcements');
   const tbody = document.getElementById('adminAnnouncementsTable');
   if (!tbody) return;
-  tbody.innerHTML = items.length ? items.slice().reverse().map(a => `
-    <tr>
-      <td>${ANNOUNCEMENT_ICONS[a.type] || '📢'} ${a.type}</td>
-      <td><strong>${a.title}</strong></td>
-      <td>${a.desc || '-'}</td>
-      <td>${new Date(a.date).toLocaleDateString()}</td>
-      <td><label class="mini-toggle-row"><input type="checkbox" ${getPendingOrActual('announcements', a.id, a.visible) ? 'checked' : ''} onchange="stageVisibilityChange('announcements', ${a.id}, this.checked, renderAdminAnnouncements)"> ${getPendingOrActual('announcements', a.id, a.visible) ? 'Visible' : 'Hidden'}</label></td>
-      <td><button class="btn btn-outline btn-sm" onclick="editAnnouncement(${a.id})"><i class="fas fa-edit"></i></button>
-      <button class="btn btn-danger btn-sm" onclick="deleteData('announcements', ${a.id})"><i class="fas fa-trash"></i></button></td>
-    </tr>
-  `).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--gray);">No announcements yet.</td></tr>';
+  const items = getData('announcements').slice().sort((x, y) => (new Date(y.date) - new Date(x.date)) || (y.id - x.id));
+  tbody.innerHTML = items.length ? items.map(a => {
+    const vis = getPendingOrActual('announcements', a.id, a.visible);
+    return `<tr>
+      <td>${a.image ? `<img src="${a.image}" style="width:64px;height:38px;object-fit:cover;border-radius:6px">` : `<span style="font-size:20px;color:var(--u-blue)"><i class="fas ${updT(a.type).icon}"></i></span>`}</td>
+      <td><strong>${_ue(a.title)}</strong><br>${updChip(a)}</td>
+      <td>${updDate(a)}</td>
+      <td><button class="btn btn-outline btn-sm" onclick="toggleUpdPin(${a.id})" title="Pin to top (Featured)">${a.pinned ? '📌 Pinned' : 'Pin'}</button></td>
+      <td><label class="mini-toggle-row"><input type="checkbox" ${vis ? 'checked' : ''} onchange="stageVisibilityChange('announcements', ${a.id}, this.checked, renderAdminAnnouncements)"> ${vis ? 'Visible' : 'Hidden'}</label></td>
+      <td style="white-space:nowrap"><button class="btn btn-outline btn-sm" onclick="editAnnouncement(${a.id})"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-danger btn-sm" onclick="if(confirm('Delete this update?')) deleteData('announcements', ${a.id})"><i class="fas fa-trash"></i></button></td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--gray);">No updates yet. Use “Add New Update”.</td></tr>';
 }
-
-let editingAnnouncementId = null;
+function toggleUpdPin(id) {
+  const a = getData('announcements').find(x => x.id === id); if (!a) return;
+  updateData('announcements', id, { pinned: !a.pinned });
+  showToast(a.pinned ? '📌 Pinned to top' : 'Unpinned');
+}
 function editAnnouncement(id) {
-  const a = getData('announcements').find(x => x.id === id);
-  if (!a) return;
-  editingAnnouncementId = id;
-  document.getElementById('an_type').value = a.type;
-  document.getElementById('an_title').value = a.title;
-  document.getElementById('an_desc').value = a.desc || '';
-  document.getElementById('an_link').value = a.link || '';
-  const btn = document.querySelector('#admin-announcements .btn-green');
-  if (btn) btn.innerHTML = '<i class="fas fa-save"></i> Update Announcement';
-  document.getElementById('admin-announcements').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const a = getData('announcements').find(x => x.id === id); if (!a) return;
+  showAdminTab('update-add');
+  initUpdChips();
+  editingAnnouncementId = id; _updImg = a.image || '';
+  const set = (k, v) => document.getElementById(k).value = v || '';
+  set('up_title', a.title); set('up_desc', a.desc); set('up_source', a.source); set('up_btn', a.btnText || a.link); set('up_caption', a.caption);
+  set('up_points', (a.points || []).join('\n'));
+  const d = new Date(a.date); set('up_date', isNaN(d) ? '' : d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'));
+  const tp = UPD_CHIP_KEYS.includes(a.type) ? a.type : 'other';
+  updSetType(tp);
+  document.getElementById('up_visible').checked = !!a.visible; document.getElementById('up_pin').checked = !!a.pinned;
+  refreshUpdImgPrev();
+  document.getElementById('upPublishBtn').innerHTML = '<i class="fas fa-save"></i> Save Changes';
+  document.getElementById('upFormTitle').textContent = 'Edit Update';
 }
-function cancelEditAnnouncement() {
-  editingAnnouncementId = null;
-  document.getElementById('an_title').value = '';
-  document.getElementById('an_desc').value = '';
-  document.getElementById('an_link').value = '';
-  const btn = document.querySelector('#admin-announcements .btn-green');
-  if (btn) btn.innerHTML = '<i class="fas fa-plus"></i> Publish Announcement';
+function cancelEditAnnouncement() { resetUpdForm(); }
+
+// ================================================================
+// Admin side-menu helpers
+// ================================================================
+function toggleAdmDrawer(open) {
+  const bar = document.getElementById('adminTabBar'), bd = document.getElementById('admBackdrop');
+  if (!bar) return;
+  const o = open === undefined ? !bar.classList.contains('open') : open;
+  bar.classList.toggle('open', o); if (bd) bd.classList.toggle('show', o);
 }
+function toggleAdmGroup(btn) { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); }
+// Desktop-only collapse/hide for the admin sidebar (same pull-tab pattern
+// as the LEADS side panel) so admin can free up screen width when not
+// switching tabs.
+function toggleAdmSidebar() {
+  const bar = document.getElementById('adminTabBar'), tab = document.getElementById('admCollapseTab');
+  const collapsed = bar.classList.toggle('adm-collapsed');
+  try { localStorage.setItem('admSidebarCollapsed', collapsed ? '1' : '0'); } catch (e) {}
+  tab.innerHTML = collapsed ? '<i class="fas fa-bars"></i> MENU' : '<i class="fas fa-chevron-left"></i> HIDE';
+}
+(function () {
+  try { if (localStorage.getItem('admSidebarCollapsed') === '1') { document.addEventListener('DOMContentLoaded', () => { const bar = document.getElementById('adminTabBar'), tab = document.getElementById('admCollapseTab'); if (bar) bar.classList.add('adm-collapsed'); if (tab) tab.innerHTML = '<i class="fas fa-bars"></i> MENU'; }); } } catch (e) {}
+})();
+
+// ================================================================
+// Floating FAQ + Ask/Suggest/Share widgets (admin controlled)
+// ================================================================
+// Floating FAQ / Ask buttons — styled and behave just like the chatbot
+// bubble (always visible, no visitor-facing close button). Admin fully
+// controls them from Admin > Floating Widgets: show/hide, label (shown as
+// a tooltip), and which side of the screen they sit on.
+const FW_DEFAULTS = { side: 'right', faq: { on: true, label: 'FAQ' }, ask: { on: true, label: 'Ask / Suggest' } };
+function getFloatWidgets() {
+  const s = fsSettingsGet('floatWidgets') || {};
+  return { side: s.side || FW_DEFAULTS.side, faq: { ...FW_DEFAULTS.faq, ...(s.faq || {}) }, ask: { ...FW_DEFAULTS.ask, ...(s.ask || {}) } };
+}
+function renderFloatWidgets() {
+  const dock = document.getElementById('fwDock');
+  if (!dock) return;
+  const c = getFloatWidgets();
+  if (!fsSettingsLoaded('floatWidgets')) { dock.style.display = 'none'; return; }
+  const left = c.side === 'left';
+  dock.classList.toggle('left', left);
+  ['faq', 'ask'].forEach(k => {
+    const item = document.getElementById('fwItem-' + k), cfg = c[k];
+    item.style.display = cfg.on ? 'block' : 'none';
+    const btn = document.getElementById('fwBtn-' + k);
+    if (btn) btn.title = cfg.label || (k === 'faq' ? 'FAQ' : 'Ask / Suggest');
+    const p = document.getElementById('fwPanel-' + k);
+    p.classList.toggle('left', left);
+    if (!cfg.on) p.classList.remove('show');
+  });
+  const any = c.faq.on || c.ask.on;
+  dock.style.display = any ? 'flex' : 'none';
+}
+function openFw(k) {
+  const p = document.getElementById('fwPanel-' + k), was = p.classList.contains('show');
+  document.querySelectorAll('.fw-panel').forEach(x => x.classList.remove('show'));
+  if (!was) { p.classList.add('show'); if (typeof closeChatbot === 'function') { try { closeChatbot(); } catch (e) {} } }
+}
+function closeFw(k) { document.getElementById('fwPanel-' + k).classList.remove('show'); }
+function populateFloatWidgetsForm() {
+  const c = getFloatWidgets();
+  document.getElementById('fw_faq_on').checked = c.faq.on; document.getElementById('fw_faq_label').value = c.faq.label;
+  document.getElementById('fw_ask_on').checked = c.ask.on; document.getElementById('fw_ask_label').value = c.ask.label;
+  document.getElementById('fw_side').value = c.side;
+}
+function saveFloatWidgets() {
+  const g = id => document.getElementById(id);
+  fsSettingsSave('floatWidgets', {
+    side: g('fw_side').value,
+    faq: { on: g('fw_faq_on').checked, label: g('fw_faq_label').value.trim() || 'FAQ' },
+    ask: { on: g('fw_ask_on').checked, label: g('fw_ask_label').value.trim() || 'Ask / Suggest' }
+  });
+  renderFloatWidgets();
+  showToast('✅ Floating widgets saved!');
+}
+fsSettingsListen('floatWidgets', renderFloatWidgets);
 
 // ================================================================
 // Parent Feedback / Testimonials
@@ -5914,12 +6714,12 @@ function saveFestivalPopup() {
 // ================================================================
 // Default logo mark (used when no custom logo has been uploaded from the
 // Admin Panel) — an open book with a growing leafy tree, echoing the
-// brand's "Learn · Grow · Succeed" motif in green & gold.
+// brand's "Learn · Grow · Succeed" motif in blue & gold.
 const DEFAULT_LOGO_SVG = `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50 62 C 50 52, 42 50, 32 47 C 24 45, 20 40, 20 34" stroke="#3C8A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <path d="M50 62 C 50 52, 58 50, 68 47 C 76 45, 80 40, 80 34" stroke="#3C8A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <ellipse cx="20" cy="30" rx="9" ry="6" fill="#4CA85B" transform="rotate(-30 20 30)"/>
-  <ellipse cx="80" cy="30" rx="9" ry="6" fill="#4CA85B" transform="rotate(30 80 30)"/>
+  <path d="M50 62 C 50 52, 42 50, 32 47 C 24 45, 20 40, 20 34" stroke="#0A4174" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M50 62 C 50 52, 58 50, 68 47 C 76 45, 80 40, 80 34" stroke="#0A4174" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="20" cy="30" rx="9" ry="6" fill="#e0a83a" transform="rotate(-30 20 30)"/>
+  <ellipse cx="80" cy="30" rx="9" ry="6" fill="#e0a83a" transform="rotate(30 80 30)"/>
   <path d="M50 60 L50 24" stroke="#F5B942" stroke-width="4" stroke-linecap="round"/>
   <path d="M50 24 L44 34 L56 34 Z" fill="#F5B942"/>
   <path d="M12 78 C 12 70, 28 66, 50 66 C 72 66, 88 70, 88 78 L88 84 C 88 84, 72 80, 50 80 C 28 80, 12 84, 12 84 Z" fill="#0A4174"/>
@@ -5951,7 +6751,7 @@ function renderNcertBooksPublic() {
   if (!grid) return;
   const links = getNcertBooks();
   grid.innerHTML = NCERT_CLASSES.map(cls => `
-    <a class="study-tile ncert-tile" href="${links[cls] || NCERT_DEFAULT_LINK}" target="_blank" rel="noopener">
+    <a class="study-tile ncert-tile${cls === studySelClass ? ' active' : ''}" data-cls="${cls}" href="${links[cls] || NCERT_DEFAULT_LINK}" target="_blank" rel="noopener">
       <i class="fas fa-book"></i>
       <span>${cls}</span>
       <small>View Book <i class="fas fa-external-link-alt"></i></small>
@@ -6444,7 +7244,7 @@ function renderAdminVisitorPosts() {
   const tbody = document.getElementById('adminCommunityTable');
   if (!tbody) return;
   const posts = getVisitorPosts().sort((a, b) => (b.submittedAt || 0) - (a.submittedAt || 0));
-  const statusColor = { pending: '#8a5300', published: '#1a7a3c', reviewed: '#1a7a3c' };
+  const statusColor = { pending: '#8a5300', published: '#1451b8', reviewed: '#1451b8' };
   const destLabel = { question: '→ FAQ', feedback: '→ Testimonials', blog: '→ Blog tab', suggestion: '(internal only)' };
   tbody.innerHTML = posts.length ? posts.map(p => `
     <tr>
@@ -6676,6 +7476,74 @@ function getFormFieldRows(formId) {
     return { id: control.id, labelEl: label, control };
   }).filter(Boolean);
 }
+// ================================================================
+// Registration side cards (Teacher "Why Join Us?" / Student "Benefits
+// for You") — title, 4 benefit lines, quote & an image, all admin-editable.
+// ================================================================
+const REG_SIDE_DEFAULTS = {
+  teacher: { title: 'Why Join Us?', quote: 'Share your knowledge, shape the future.', items: [
+    { icon: 'fa-user-check', bg: '#E4EFF9', fg: '#0A4174', text: 'Get verified &amp; trusted students' },
+    { icon: 'fa-laptop-house', bg: '#dcebf6', fg: '#49769F', text: 'Flexible online &amp; offline teaching' },
+    { icon: 'fa-shield-halved', bg: '#e8eef5', fg: '#001D39', text: 'Secure and transparent platform' },
+    { icon: 'fa-headset', bg: '#fdf1e0', fg: '#c97f1f', text: 'Dedicated support team' }
+  ], art: '<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" rx="16" fill="#E4EFF9"/><ellipse cx="200" cy="270" rx="160" ry="14" fill="#d3e4f4"/><rect x="60" y="60" width="180" height="120" rx="8" fill="#001D39"/><rect x="60" y="180" width="180" height="10" fill="#49769F"/><path d="M90 100 h60 M90 120 h100 M90 140 h80" stroke="#E4EFF9" stroke-width="4" stroke-linecap="round"/><rect x="270" y="205" width="80" height="14" rx="3" fill="#0A4174"/><rect x="278" y="191" width="64" height="14" rx="3" fill="#49769F"/><rect x="286" y="177" width="48" height="14" rx="3" fill="#c97f1f"/><path d="M235 260 C235 210,320 210,320 260 L305 260 C305 225,250 225,250 260 Z" fill="#0A4174"/><circle cx="277" cy="200" r="24" fill="#F4C79E"/><path d="M254 196 C254 172,300 172,300 196 C300 180,277 170,254 196 Z" fill="#001D39"/><path d="M250 240 Q220 225 190 210" stroke="#F4C79E" stroke-width="9" fill="none" stroke-linecap="round"/><circle cx="188" cy="208" r="5" fill="#F4C79E"/></svg>' },
+  student: { title: 'Benefits for You', quote: 'Better Learning, Brighter Future', items: [
+    { icon: 'fa-user-graduate', bg: '#E4EFF9', fg: '#0A4174', text: 'Find the right tutor for your child' },
+    { icon: 'fa-lightbulb', bg: '#dcebf6', fg: '#49769F', text: 'Personalized learning experience' },
+    { icon: 'fa-chart-line', bg: '#e8eef5', fg: '#001D39', text: 'Regular progress updates' },
+    { icon: 'fa-circle-check', bg: '#fdf1e0', fg: '#c97f1f', text: 'Trusted &amp; verified teachers' }
+  ], art: '<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" rx="16" fill="#E4EFF9"/><ellipse cx="200" cy="270" rx="160" ry="14" fill="#d3e4f4"/><rect x="40" y="220" width="46" height="40" rx="6" fill="#c97f1f"/><path d="M63 220 C40 190,40 160,63 140 C86 160,86 190,63 220 Z" fill="#49769F"/><path d="M63 220 C50 200,50 175,63 155" stroke="#001D39" stroke-width="3" fill="none"/><rect x="110" y="200" width="230" height="14" rx="4" fill="#0A4174"/><rect x="120" y="214" width="10" height="46" fill="#0A4174"/><rect x="320" y="214" width="10" height="46" fill="#0A4174"/><rect x="185" y="165" width="90" height="38" rx="4" fill="#001D39"/><rect x="190" y="169" width="80" height="30" rx="2" fill="#49769F"/><path d="M180 203 L280 203 L290 213 L170 213 Z" fill="#0A4174"/><rect x="150" y="120" width="70" height="90" rx="18" fill="#C7DAF0"/><path d="M155 210 C155 165,245 165,245 210 L235 210 C235 180,165 180,165 210 Z" fill="#0A4174"/><circle cx="200" cy="140" r="26" fill="#F4C79E"/><path d="M174 132 C174 105,226 105,226 132 C226 118,200 108,174 132 Z" fill="#001D39"/><path d="M170 190 Q190 200 205 195" stroke="#F4C79E" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="330" cy="70" r="16" fill="#ffffff"/><circle cx="348" cy="76" r="12" fill="#ffffff"/><circle cx="315" cy="78" r="10" fill="#ffffff"/></svg>' }
+};
+function getRegSide(kind) {
+  fsSettingsListen('regSide', () => { renderRegSide('teacher'); renderRegSide('student'); });
+  const all = fsSettingsGet('regSide') || {};
+  const d = REG_SIDE_DEFAULTS[kind];
+  const s = all[kind] || {};
+  const items = d.items.map((it, i) => ({ ...it, text: (s.items && s.items[i]) ? s.items[i] : it.text }));
+  return { title: s.title || d.title, quote: s.quote || d.quote, image: s.image || '', items };
+}
+function renderRegSide(kind) {
+  const el = document.getElementById(kind === 'teacher' ? 'regSideTeacher' : 'regSideStudent');
+  if (!el) return;
+  const c = getRegSide(kind);
+  const d = REG_SIDE_DEFAULTS[kind];
+  el.innerHTML = `<div class="card"><h3>${c.title}</h3>${c.items.map(it => `<div class="it"><i class="fas ${it.icon}" style="background:${it.bg};color:${it.fg}"></i>${it.text}</div>`).join('')}</div>
+  <div class="card reg-quote">${c.image ? `<img class="reg-side-img" src="${c.image}" alt="">` : ''}<q>${c.quote}</q>${c.image ? '' : `<div class="art">${d.art}</div>`}</div>`;
+}
+let _regSideImg = { teacher: null, student: null };
+function onRegSideImg(input, kind) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  compressImageToDataUrl(file, 900, 0.78).then(url => { _regSideImg[kind] = url; document.getElementById('rs_' + (kind === 'teacher' ? 't' : 's') + '_img_prev').src = url; });
+}
+function clearRegSideImg(kind) {
+  _regSideImg[kind] = '';
+  const p = kind === 'teacher' ? 't' : 's';
+  document.getElementById('rs_' + p + '_img_file').value = '';
+  document.getElementById('rs_' + p + '_img_prev').src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+}
+function populateRegSideForm(kind) {
+  const c = getRegSide(kind), p = kind === 'teacher' ? 't' : 's';
+  document.getElementById('rs_' + p + '_title').value = c.title;
+  c.items.forEach((it, i) => document.getElementById('rs_' + p + '_b' + i).value = it.text);
+  document.getElementById('rs_' + p + '_quote').value = c.quote;
+  _regSideImg[kind] = c.image || null;
+  document.getElementById('rs_' + p + '_img_prev').src = c.image || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+}
+function saveRegSide(kind) {
+  const p = kind === 'teacher' ? 't' : 's';
+  const g = id => document.getElementById('rs_' + p + '_' + id).value.trim();
+  const all = fsSettingsGet('regSide') || {};
+  all[kind] = {
+    title: g('title'), quote: g('quote'),
+    items: [g('b0'), g('b1'), g('b2'), g('b3')],
+    image: _regSideImg[kind] === null ? (getRegSide(kind).image || '') : (_regSideImg[kind] || '')
+  };
+  fsSettingsSave('regSide', all);
+  renderRegSide(kind);
+  showToast('✅ ' + (kind === 'teacher' ? 'Teacher' : 'Student') + ' side card saved!');
+}
+
 function renderFormEditor() {
   fsSettingsListen('formFieldSettings');
   const settings = fsSettingsGet('formFieldSettings') || {};
@@ -7062,46 +7930,6 @@ function renderHomepageTeacherPreview() {
   grid.innerHTML = items.map(teacherProfileCardHtml).join('');
 }
 
-function renderHomepageAnnouncements() {
-  const wrap = document.getElementById('noticeSection');
-  const strip = document.getElementById('noticeStrip');
-  if (!wrap || !strip) return;
-  fsStartListener('announcements');
-  if (fsDataFailed('announcements')) { wrap.style.display = 'none'; return; }
-  if (!fsDataHasLoaded('announcements')) {
-    wrap.style.display = 'block';
-    strip.innerHTML = Array(3).fill('<div class="skel-card" style="min-width:220px;"><div class="skel skel-line" style="width:60%;"></div><div class="skel skel-line" style="width:90%;"></div><div class="skel skel-line" style="width:40%;"></div></div>').join('');
-    return;
-  }
-  const items = getData('announcements').filter(a => a.visible).slice().reverse();
-  if (!items.length) { wrap.style.display = 'none'; strip.innerHTML = ''; return; }
-  wrap.style.display = 'block';
-  strip.innerHTML = items.map(a => `
-    <div class="notice-card" onclick="openAnnouncementDetail(${a.id})">
-      <div class="emoji">${ANNOUNCEMENT_ICONS[a.type] || '📢'}</div>
-      <div>
-        <div class="title">${a.title}</div>
-        ${a.desc ? `<div class="desc">${a.desc}</div>` : ''}
-        <div class="date">${new Date(a.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
-        <span class="notice-link">Read more →</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-function openAnnouncementDetail(id) {
-  const item = getData('announcements').find(a => a.id === id);
-  if (!item) return;
-  document.getElementById('announcementDetailEmoji').textContent = ANNOUNCEMENT_ICONS[item.type] || '📢';
-  document.getElementById('announcementDetailTitle').textContent = item.title || '';
-  document.getElementById('announcementDetailDate').textContent = new Date(item.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('announcementDetailBody').textContent = item.desc || '';
-  document.getElementById('announcementDetailOverlay').classList.add('show');
-}
-function closeAnnouncementDetail() {
-  document.getElementById('announcementDetailOverlay').classList.remove('show');
-}
-
 function renderHomepageTestimonials() {
   const wrap = document.getElementById('testimonialsSection');
   const grid = document.getElementById('testimonialGrid');
@@ -7161,65 +7989,24 @@ function incrementLeadApplication(id) {
 const studyClassesList = ['Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
 let studySelClass = '', studySelSub = '', studySelCh = '';
 
-function renderStudyStepGrid(items, emptyMsg, icon) {
-  const grid = document.getElementById('study-step-grid');
-  if (!grid) return;
-  grid.innerHTML = items.length
-    ? items.map(v => `<div class="study-tile" data-value="${v}"><i class="fas ${icon}"></i><span>${v}</span></div>`).join('')
-    : `<p class="study-empty-msg">${emptyMsg}</p>`;
+function smInitClassDropdown() {
+  const sel = document.getElementById('sm_class');
+  if (!sel || sel.dataset.ready) return;
+  sel.dataset.ready = '1';
+  sel.innerHTML = '<option value="">Choose class</option>' + studyClassesList.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 
-function renderStudyBreadcrumb() {
-  const bc = document.getElementById('study-breadcrumb');
-  if (!bc) return;
-  let html = `<a data-step="class"><i class="fas fa-book-open"></i> Class</a>`;
-  if (studySelClass) html += `<i class="fas fa-chevron-right"></i><a data-step="subject">${studySelClass}</a>`;
-  if (studySelSub) html += `<i class="fas fa-chevron-right"></i><a data-step="chapter">${studySelSub}</a>`;
-  if (studySelCh) html += `<i class="fas fa-chevron-right"></i><span>${studySelCh}</span>`;
-  bc.innerHTML = html;
-  const backBtn = document.getElementById('study-back-btn');
-  if (backBtn) backBtn.style.display = studySelClass ? 'inline-flex' : 'none';
-}
-// One tap always goes back exactly one level: Chapter -> Subject -> Class -> Class list.
-function goStudyBack() {
-  if (studySelCh) selectStudySubject(studySelSub);
-  else if (studySelSub) selectStudyClass(studySelClass);
-  else if (studySelClass) renderStudyClasses();
-}
-
-// One delegated listener handles every step button + breadcrumb link, so
-// re-rendering the grid (new class/subject/chapter buttons each step)
-// never loses its click handling.
-document.addEventListener('click', function(e) {
-  const pickBtn = e.target.closest('.study-tile');
-  if (pickBtn && document.getElementById('study-step-grid')?.contains(pickBtn)) {
-    const value = pickBtn.dataset.value;
-    if (!studySelClass) selectStudyClass(value);
-    else if (!studySelSub) selectStudySubject(value);
-    else selectStudyChapterDropdown(value);
-    return;
-  }
-  const bcLink = e.target.closest('#study-breadcrumb a');
-  if (bcLink) {
-    const step = bcLink.dataset.step;
-    if (step === 'class') renderStudyClasses();
-    else if (step === 'subject') selectStudyClass(studySelClass);
-    else if (step === 'chapter') selectStudySubject(studySelSub);
-  }
-});
-
-function renderStudyClasses() {
-  studySelClass = ''; studySelSub = ''; studySelCh = '';
-  const section = document.getElementById('study-chapter-section');
-  if (section) section.style.display = 'none';
-  renderStudyBreadcrumb();
-  renderStudyStepGrid(studyClassesList, 'No classes available.', 'fa-layer-group');
-}
-
-function selectStudyClass(cls) {
+// Class/Subject are picked from the two dropdowns above the chapter grid
+// (always visible, so switching class/subject never needs a "back" tap);
+// the Chapter grid below them is always shown together once a subject is
+// picked, rather than one tile-click-through step at a time.
+function smSelectClass(cls) {
   studySelClass = cls; studySelSub = ''; studySelCh = '';
   document.getElementById('study-chapter-section').style.display = 'none';
-  renderStudyBreadcrumb();
+  document.getElementById('sm-chapters-wrap').style.display = 'none';
+  document.querySelectorAll('#ncert-books-grid .ncert-tile').forEach(el => el.classList.toggle('active', el.dataset.cls === cls));
+  const subSel = document.getElementById('sm_subject');
+  if (!cls) { subSel.innerHTML = '<option value="">Choose subject</option>'; subSel.disabled = true; return; }
   // Subject list always comes from the fixed CBSE syllabus (DEFAULT_STUDY_DATA)
   // plus any extra subjects admin has added resources for — so the
   // Class/Subject/Chapter structure is always visible, even before any
@@ -7227,38 +8014,63 @@ function selectStudyClass(cls) {
   const defaultSubjects = Object.keys(DEFAULT_STUDY_DATA[cls] || {});
   const savedSubjects = [...new Set(getData('studyContent').filter(c => c.class === cls).map(c => c.subject))];
   const subjects = [...new Set([...defaultSubjects, ...savedSubjects])];
-  renderStudyStepGrid(subjects, 'No subjects yet for this class.', 'fa-atom');
+  subSel.disabled = false;
+  subSel.innerHTML = '<option value="">Choose subject</option>' + subjects.map(s => `<option value="${s}">${s}</option>`).join('');
 }
 
-function selectStudySubject(sub) {
+function smSelectSubject(sub) {
   studySelSub = sub; studySelCh = '';
   document.getElementById('study-chapter-section').style.display = 'none';
-  renderStudyBreadcrumb();
+  const wrap = document.getElementById('sm-chapters-wrap');
+  if (!sub) { wrap.style.display = 'none'; return; }
   const defaultChaptersRaw = (DEFAULT_STUDY_DATA[studySelClass] && DEFAULT_STUDY_DATA[studySelClass][sub]) ? DEFAULT_STUDY_DATA[studySelClass][sub] : [];
   const defaultChapters = defaultChaptersRaw.map(raw => displayChapterName(studySelClass, sub, raw));
   const savedChapters = [...new Set(getData('studyContent').filter(c => c.class === studySelClass && c.subject === sub).map(c => c.chapter))];
   const chapters = [...new Set([...defaultChapters, ...savedChapters])];
-  renderStudyStepGrid(chapters, 'No chapters yet for this subject.', 'fa-bookmark');
+  document.getElementById('sm-chap-title').innerHTML = `<i class="fas fa-book"></i> ${studySelSub} <small>${studySelClass}</small>`;
+  const grid = document.getElementById('study-chapter-grid');
+  grid.innerHTML = chapters.length
+    ? chapters.map(c => `<div class="study-tile" data-value="${String(c).replace(/"/g, '&quot;')}"><i class="fas fa-bookmark"></i><span>${c}</span></div>`).join('')
+    : '<p class="study-empty-msg">No chapters yet for this subject.</p>';
+  wrap.style.display = 'block';
 }
 
-// Two clear, distinctly-coloured resource tabs per chapter (the official
+// One delegated listener handles chapter-tile clicks even after the grid
+// is re-rendered for a new subject.
+document.addEventListener('click', function(e) {
+  const pickBtn = e.target.closest('.study-tile');
+  if (pickBtn && document.getElementById('study-chapter-grid')?.contains(pickBtn)) {
+    selectStudyChapterDropdown(pickBtn.dataset.value);
+  }
+});
+function goStudyBackToChapters() {
+  document.getElementById('study-chapter-section').style.display = 'none';
+  document.getElementById('sm-chapters-wrap').style.display = 'block';
+}
+
+// Two clear, distinctly-coloured resource cards per chapter (the official
 // Book is handled separately above — it isn't chapter-uploaded content).
 const STUDY_RESOURCE_TYPES = [
-  ['notes', 'fa-sticky-note', 'Notes & Exercises'],
-  ['practice', 'fa-file-pdf', 'Practice & PYQs']
+  ['notes', 'fa-sticky-note', 'Notes, Exercise Solutions, Question Answer & Extra Questions', 'Get chapter-wise notes, textbook exercise solutions, question answers and extra questions for better preparation.'],
+  ['practice', 'fa-file-pdf', 'Practice Question Papers', 'Download chapter-wise practice question papers to test your preparation.']
 ];
 
 function selectStudyChapterDropdown(chapterName) {
   studySelCh = chapterName;
   const section = document.getElementById('study-chapter-section');
-  renderStudyBreadcrumb();
-  renderStudyStepGrid([], '', 'fa-bookmark'); // chapter tiles make way for the resource panel below
+  document.getElementById('sm-chapters-wrap').style.display = 'none';
   document.getElementById('study-chapter-title').textContent = `${studySelClass} — ${studySelSub} — ${chapterName}`;
-  document.getElementById('study-restypes').innerHTML = STUDY_RESOURCE_TYPES.map(([type, icon, label]) =>
-    `<div class="study-restype-btn" data-type="${type}" onclick="loadStudyContentInline('${type}')" id="study-restype-${type}"><i class="fas ${icon}"></i><span>${label}</span></div>`
+  document.getElementById('study-restypes').innerHTML = STUDY_RESOURCE_TYPES.map(([type, icon, title, desc]) =>
+    `<div class="study-restype-btn" data-type="${type}" onclick="loadStudyContentInline('${type}')" id="study-restype-${type}">
+      <div class="rt-ic"><i class="fas ${icon}"></i></div>
+      <h5>${title}</h5>
+      <p>${desc}</p>
+      <span class="rt-view">View <i class="fas fa-arrow-right"></i></span>
+    </div>`
   ).join('');
   section.style.display = 'block';
-  loadStudyContentInline('notes');
+  document.getElementById('study-content-display').innerHTML = '';
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // Resource "type" values used when a piece of content is uploaded are kept
@@ -7267,13 +8079,13 @@ function selectStudyChapterDropdown(chapterName) {
 // them into 2 clear categories.
 const STUDY_TYPE_GROUPS = { notes: ['notes', 'mindmap', 'extra', 'exercise'], practice: ['practice', 'pyq'] };
 
+// A chapter's two resource cards are themselves the "View" action — no
+// separate list-then-view-button step. Exactly one file per chapter/type is
+// the normal case, so clicking a card opens its PDF directly as a full
+// page (see openPageReader). Only the rare case of more than one file for
+// the same chapter+type falls back to a short pick list.
 function loadStudyContentInline(groupKey) {
-  document.querySelectorAll('#study-restypes .study-restype-btn').forEach(el => el.classList.remove('active'));
-  const activeBtn = document.getElementById(`study-restype-${groupKey}`);
-  if (activeBtn) activeBtn.classList.add('active');
-
   const display = document.getElementById('study-content-display');
-
   const typesInGroup = STUDY_TYPE_GROUPS[groupKey] || [groupKey];
   let contents = getData('studyContent').filter(c =>
     c.class === studySelClass && c.subject === studySelSub &&
@@ -7284,24 +8096,26 @@ function loadStudyContentInline(groupKey) {
   const hasRealContent = contents.some(c => !c.isDefault);
   if (hasRealContent) contents = contents.filter(c => !c.isDefault);
 
-  if (contents.length === 0) {
-    display.innerHTML = `<div style="padding:20px;text-align:center;color:var(--gray);border:2px dashed var(--border);border-radius:12px;">
+  const withFile = contents.filter(c => c.fileData);
+  if (withFile.length === 1) {
+    display.innerHTML = '';
+    openPageReader('studyContent', withFile[0].id);
+    return;
+  }
+  if (withFile.length > 1) {
+    display.innerHTML = withFile.map(c => `
+      <div class="content-file-chip">
+        <i class="fas fa-file-pdf" style="color:var(--primary);"></i>
+        <span>${c.title || c.file || 'Untitled'}</span>
+        <button class="btn btn-primary btn-sm" onclick="openPageReader('studyContent', ${c.id})"><i class="fas fa-eye"></i> View</button>
+      </div>`).join('');
+    return;
+  }
+  display.innerHTML = `<div style="padding:20px;text-align:center;color:var(--gray);border:2px dashed var(--border);border-radius:12px;">
       <i class="fas fa-file-alt" style="font-size:40px;display:block;margin-bottom:10px;color:var(--primary-light);"></i>
       <p>No resources available yet.</p>
       <p style="font-size:12px;color:#999;margin-top:4px;">Admin can upload from Admin Panel.</p>
     </div>`;
-    return;
-  }
-  display.innerHTML = contents.map(c => `
-    <div class="content-item">
-      <div class="title">
-        <span>${c.title || 'Untitled'}</span>
-        ${c.isDefault ? '<span style="font-size:10px;background:#e9ecef;padding:2px 8px;border-radius:10px;">Default</span>' : ''}
-      </div>
-      <div class="body">${c.body}</div>
-      ${c.fileData ? renderViewOnlyChip(c, 'studyContent') : ''}
-    </div>
-  `).join('');
 }
 
 function renderFilePreview(filename, fileData, uid) {
@@ -7350,40 +8164,40 @@ function renderViewOnlyChip(item, collection) {
   </div>`;
 }
 
-// Opens a document as a continuous, view-only reader — never serves a
-// downloadable file link, only JPG page images rendered inside the modal,
-// all stacked vertically so it reads/scrolls like a normal document
-// instead of one page at a time.
-window._pageReaderState = { url: '', pages: 1 };
+// Opens a document as a dedicated, full page (same pattern as the Latest
+// Update "Read Update" page) — never a popup, and never touches the
+// underlying Study Material page, so the Class/Subject/Chapter the admin
+// or visitor had picked is still there when they go back. Continuous,
+// view-only reader: JPG page images only, never a downloadable file link.
+window._pdfViewerState = null;
 function openPageReader(collection, id) {
   const item = getData(collection).find(c => c.id === id);
   if (!item || !item.fileData) return;
-  document.getElementById('fileViewModalTitle').innerHTML = `<i class="fas fa-file-pdf"></i> ${item.file || item.title || 'Document'}`;
-  window._pageReaderState = { url: item.fileData, pages: item.filePages || 1 };
-  renderPageReaderPage();
-  document.getElementById('fileViewModalOverlay').classList.add('show');
-  document.getElementById('fileViewModalBody').scrollTop = 0;
+  window._pdfViewerState = { collection, id };
+  history.pushState({ page: 'page-pdf-viewer', pdfCollection: collection, pdfId: id }, '', '#doc-' + id);
+  activatePage('page-pdf-viewer');
 }
-function renderPageReaderPage() {
-  const s = window._pageReaderState;
-  const body = document.getElementById('fileViewModalBody');
-  const pager = document.getElementById('fileViewModalPager');
+function renderPdfViewerPage() {
+  const s = window._pdfViewerState;
+  const box = document.getElementById('pdfViewerBody');
+  if (!box) return;
+  if (!s) { box.innerHTML = '<div class="upd-empty">This document is not available.</div>'; return; }
+  const item = getData(s.collection).find(c => c.id === s.id);
+  if (!item || !item.fileData) { box.innerHTML = '<div class="upd-empty">This document is not available.</div>'; return; }
+  const pages = item.filePages || 1;
   const watermark = pageReaderWatermarkHtml();
-  let html = '';
-  for (let p = 1; p <= s.pages; p++) {
-    const imgUrl = s.pages > 1 ? cloudinaryPageUrl(s.url, p) : s.url;
-    html += `<div class="view-only-wrap">
-      <img src="${imgUrl}" style="user-select:none;pointer-events:none;" draggable="false" alt="Page ${p}" loading="${p <= 2 ? 'eager' : 'lazy'}">
-      <div class="view-only-watermark">${watermark}</div>
-    </div>`;
+  let pagesHtml = '';
+  for (let p = 1; p <= pages; p++) {
+    const imgUrl = pages > 1 ? cloudinaryPageUrl(item.fileData, p) : item.fileData;
+    pagesHtml += `<div class="view-only-wrap" oncontextmenu="return false;"><img src="${imgUrl}" style="user-select:none;pointer-events:none;" draggable="false" alt="Page ${p}" loading="${p <= 2 ? 'eager' : 'lazy'}"><div class="view-only-watermark">${watermark}</div>${pages > 1 ? `<span class="pdfv-page-num">Page ${p} of ${pages}</span>` : ''}</div>`;
   }
-  body.innerHTML = html;
-  if (s.pages > 1) {
-    pager.style.display = 'flex';
-    document.getElementById('fileViewModalPageLabel').textContent = `${s.pages} pages`;
-  } else {
-    pager.style.display = 'none';
-  }
+  const title = item.title || item.file || 'Document';
+  box.innerHTML = `
+    <div class="udt-crumb"><a onclick="showPage('page-home')">Home</a> / <a onclick="history.back()">Back</a></div>
+    <div class="pdfv-head"><h1><i class="fas fa-file-pdf"></i> ${title}</h1>${pages > 1 ? `<span class="pdfv-pages">${pages} pages</span>` : ''}</div>
+    <div class="pdfv-pages-wrap">${pagesHtml}</div>
+  `;
+  document.title = title + ' | Althea Scholar';
 }
 // Tiled watermark shown over every viewed page — deterrent + traceability if
 // a screenshot does leak out. Uses the admin's brand text; nothing here can
@@ -7394,7 +8208,7 @@ function renderPageReaderPage() {
 function pageReaderWatermarkHtml() {
   const label = 'Althea Scholar — View Only';
   let tiles = '';
-  for (let i = 0; i < 24; i++) tiles += `<span>${label}</span>`;
+  for (let i = 0; i < 10; i++) tiles += `<span>${label}</span>`;
   return tiles;
 }
 // Opens the file ON the site as a small popup — not a new browser tab/page.
@@ -7492,6 +8306,7 @@ function exportAllData() {
     students: getData('students'),
     leads: getData('leads'),
     studyContent: getData('studyContent'),
+    studyExtras: getData('studyExtras'),
     entranceContent: getData('entranceContent'),
     exportedAt: new Date().toISOString()
   };
@@ -7506,7 +8321,7 @@ function exportAllData() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderStudyClasses();
+  smInitClassDropdown();
   renderEntranceExamGrid();
   renderAll();
   renderLeadSidebar();
@@ -7538,6 +8353,8 @@ deleteData = function(key, id) {
   renderAdminSubjectDropdown();
   showToast('🗑️ Deleted');
 };
+
+(function(){ const m = /^#update-(\d+)/.exec(location.hash); if (m) { _curUpdId = Number(m[1]); history.replaceState({ page: 'page-update-detail', uid: _curUpdId }, '', location.hash); activatePage('page-update-detail'); } })();
 
 // Gentle scroll-reveal animation for cards as they enter the viewport —
 // re-observes periodically since many cards are added dynamically after
