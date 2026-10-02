@@ -1,3 +1,5 @@
+# Althea Scholar — all public pages may be crawled.
+# There are no separate admin/private URLs: the admin panel lives inside the app behind a login.
 User-agent: *
 Allow: /
 
