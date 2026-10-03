@@ -68,12 +68,12 @@
 
 /* Narrow-desktop nav fit: a 1024px-wide browser window (not a phone — those
    are locked to the desktop viewport via index.html's fixed viewport meta,
-   so they land in the >=1280px rule above) doesn't have room for all 10 nav
+   so they land in the >=1280px rule above) doesn't have room for all 9 nav
    items at the normal comfortable size without the overflow-x scrollbar
    kicking in. This tightens spacing/size just enough that it still doesn't
    need to scroll, while >=1280px keeps the larger, more readable sizing. */
 @media (min-width: 901px) and (max-width: 1279px) {
-  nav ul { font-size: 10px; gap: 0; }
-  nav ul li a { padding: 6px 5px; gap: 3px; }
-  nav ul li a i { font-size: 11px; }
+  nav ul { font-size: 11px; gap: 1px; }
+  nav ul li a { padding: 7px 8px; gap: 4px; }
+  nav ul li a i { font-size: 12px; }
 }
