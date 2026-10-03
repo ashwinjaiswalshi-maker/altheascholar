@@ -5,7 +5,23 @@
   <!-- Deliberately a FIXED width, not "width=device-width" — per an explicit
        site-owner request, phones should render this same desktop layout
        (auto-zoomed to fit) rather than switching to a native mobile layout. -->
-  <meta name="viewport" content="width=1280">
+  <meta name="viewport" id="vp" content="width=1280">
+  <script>
+  /* Always show the 1280px desktop layout, scaled to fit the phone screen
+     (same as Chrome's "Desktop site"). Computed from the real screen width
+     so it fits exactly — no cut-off on the right, no sideways scroll. */
+  (function(){
+    var W=1280, vp=document.getElementById('vp');
+    function fit(){
+      var sw=screen.width||W;
+      var isPhone=('ontouchstart' in window||navigator.maxTouchPoints>0) && sw<W;
+      if(!isPhone){ vp.setAttribute('content','width='+W); return; }
+      var sc=(sw/W).toFixed(4);
+      vp.setAttribute('content','width='+W+', initial-scale='+sc+', minimum-scale='+sc+', maximum-scale=5, user-scalable=yes');
+    }
+    fit(); window.addEventListener('orientationchange',function(){setTimeout(fit,300)});
+  })();
+  </script>
   <meta name="theme-color" content="#0A4174">
   <!-- Fixed (non-device-width) viewport: the browser always lays the page
        out as if the screen were 980px wide and then zooms the whole thing
