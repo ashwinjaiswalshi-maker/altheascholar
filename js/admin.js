@@ -186,7 +186,6 @@ async function adminLogin() {
   }
 }
 function openAdminLogin() {
-  closeMobileNav();
   if (isAdminLoggedIn) {
     showPage('page-admin'); renderAll();
     if (!document.querySelector('.admin-tab.active')) showAdminTab('teachers');

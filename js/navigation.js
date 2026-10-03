@@ -6,46 +6,6 @@ let isAdminLoggedIn = false;
 // Mobile hamburger menu — the nav links are hidden below 900px width and
 // live inside this collapsible panel instead, opened/closed with the
 // button next to the logo. Every nav link (via showPage) closes it again.
-function toggleMobileNav() {
-  const nav = document.getElementById('mainNav');
-  const btn = document.getElementById('navToggleBtn');
-  if (!nav || !btn) return;
-  const isOpen = nav.classList.toggle('mobile-open');
-  btn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-}
-function closeMobileNav() {
-  const nav = document.getElementById('mainNav');
-  const btn = document.getElementById('navToggleBtn');
-  if (!nav || !btn) return;
-  nav.classList.remove('mobile-open');
-  btn.innerHTML = '<i class="fas fa-bars"></i>';
-}
-function toggleNavMore(e) {
-  e.stopPropagation();
-  const li = document.getElementById('navMoreLi');
-  const menu = document.getElementById('navMoreMenu');
-  if (!li || !menu) return;
-  const opening = !li.classList.contains('open');
-  li.classList.toggle('open', opening);
-  // On desktop the menu is position:fixed (so it isn't clipped by the pill
-  // nav's overflow-x:auto scroller), so its screen position has to be set
-  // from JS relative to the "More" trigger. On the <=900px hamburger panel
-  // it's forced back to position:static by CSS and this is a no-op.
-  if (opening && window.innerWidth > 900) {
-    const rect = li.querySelector('.nav-more-toggle').getBoundingClientRect();
-    const menuWidth = menu.offsetWidth || 208;
-    let left = rect.right - menuWidth;
-    if (left < 8) left = 8;
-    menu.style.top = (rect.bottom + 6) + 'px';
-    menu.style.left = left + 'px';
-  }
-}
-function closeNavMore() {
-  const li = document.getElementById('navMoreLi');
-  const menu = document.getElementById('navMoreMenu');
-  if (li) li.classList.remove('open');
-  if (menu) { menu.style.top = ''; menu.style.left = ''; }
-}
 // "Hobby & Language Classes" in the More menu jumps straight to Our Teachers
 // pre-filtered to that category, reusing the page's own existing filter —
 // no separate page/content to maintain.
@@ -81,8 +41,6 @@ function activatePage(id) {
   const map = { 'page-home': 'nav-home', 'page-study': 'nav-study', 'page-student-form': 'nav-find-tutor', 'page-updates': 'nav-updates', 'page-teacher-form': 'nav-teacher-form', 'page-entrance': 'nav-entrance', 'page-teachers': 'nav-teachers', 'page-blog': 'nav-blog' };
   if (map[id]) { const el = document.getElementById(map[id]); if (el) el.classList.add('active'); }
   window.scrollTo(0, 0);
-  closeMobileNav();
-  closeNavMore();
   if (id !== 'page-update-detail' && id !== 'page-blog-detail') resetPageSeo();
   if (id === 'page-admin' && !isAdminLoggedIn) { openAdminLogin(); return; }
   if (id === 'page-admin' && isAdminLoggedIn) renderAll();

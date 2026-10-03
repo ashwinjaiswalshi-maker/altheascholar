@@ -1001,17 +1001,6 @@ fsAuth.onAuthStateChanged(user => {
   }
 });
 document.addEventListener('keydown', function(e) { if (e.key === 'Enter' && document.getElementById('loginOverlay').classList.contains('show')) { adminLogin(); } });
-// Close the "More" dropdown on any click outside it (desktop) — the mobile
-// hamburger panel itself is closed separately, by activatePage()/showPage().
-document.addEventListener('click', (e) => {
-  const li = document.getElementById('navMoreLi');
-  if (li && li.classList.contains('open') && !li.contains(e.target)) closeNavMore();
-});
-// Keep the fixed-position dropdown from drifting away from its trigger if
-// the page is scrolled or resized while it's open — simplest safe fix is to
-// just close it, same as clicking outside.
-window.addEventListener('scroll', () => { if (document.getElementById('navMoreLi')?.classList.contains('open')) closeNavMore(); }, true);
-window.addEventListener('resize', () => { if (document.getElementById('navMoreLi')?.classList.contains('open')) closeNavMore(); });
 window.addEventListener('load', () => setTimeout(openPageFromHash, 0));
 window.addEventListener('hashchange', openPageFromHash);
 // Phone/browser Back (and Forward) button support: restore whichever page
