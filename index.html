@@ -2085,17 +2085,18 @@
 <!-- AI Chat Widget -->
 <div class="chatbot-greet" id="chatbotGreet" onclick="openChatbot()" style="display:none;">
   <button onclick="event.stopPropagation(); dismissChatbotGreet();"><i class="fas fa-times"></i></button>
-  Hi 👋 Hello! Need help? Ask me anything.
+  Hi 👋 I'm Alti! Need help? Ask me anything.
 </div>
-<button class="chatbot-fab" id="chatbotFab" onclick="openChatbot()"><i class="fas fa-comment-dots"></i></button>
+<button class="chatbot-fab" id="chatbotFab" onclick="openChatbot()" aria-label="Chat with Alti"><i class="fas fa-comment-dots"></i></button>
 <div class="chatbot-panel" id="chatbotPanel">
   <div class="chatbot-head">
-    <span><i class="fas fa-robot"></i> Althea Assistant</span>
-    <button onclick="closeChatbot()"><i class="fas fa-times"></i></button>
+    <span class="cb-head-left"><span class="cb-head-avatar" id="chatbotHeadAvatar"></span>
+      <span class="cb-head-text"><b>Alti · Althea Assistant</b><small id="chatbotStatus"><i class="cb-online"></i> Online · replies instantly</small></span></span>
+    <button onclick="closeChatbot()" aria-label="Close chat"><i class="fas fa-times"></i></button>
   </div>
   <div class="chatbot-body" id="chatbotBody"></div>
   <div class="chatbot-input-row">
-    <input type="text" id="chatbotInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter') sendChatbotMessage();">
+    <input type="text" id="chatbotInput" placeholder="Ask me anything… (English / Hinglish)" autocomplete="off" onkeydown="if(event.key==='Enter') sendChatbotMessage();">
     <button onclick="sendChatbotMessage()"><i class="fas fa-paper-plane"></i></button>
   </div>
 </div>
@@ -2110,6 +2111,7 @@
 <script src="js/news-checker.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
 <!-- Heavy PDF-export libraries — only needed when the admin downloads a
      registration summary as PDF, so they're loaded last (after everything
      visitors actually see) instead of blocking the page at the top. -->
