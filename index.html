@@ -5,23 +5,7 @@
   <!-- Deliberately a FIXED width, not "width=device-width" — per an explicit
        site-owner request, phones should render this same desktop layout
        (auto-zoomed to fit) rather than switching to a native mobile layout. -->
-  <meta name="viewport" id="vp" content="width=980">
-  <script>
-  /* Always show the 980px desktop layout, scaled to fit the phone screen
-     (same as Chrome's "Desktop site"). Computed from the real screen width
-     so it fits exactly — no cut-off on the right, no sideways scroll. */
-  (function(){
-    var W=980, vp=document.getElementById('vp');
-    function fit(){
-      var sw=screen.width||W;
-      var isPhone=('ontouchstart' in window||navigator.maxTouchPoints>0) && sw<W;
-      if(!isPhone){ vp.setAttribute('content','width='+W); return; }
-      var sc=(sw/W).toFixed(4);
-      vp.setAttribute('content','width='+W+', initial-scale='+sc+', minimum-scale='+sc+', maximum-scale=5, user-scalable=yes');
-    }
-    fit(); window.addEventListener('orientationchange',function(){setTimeout(fit,300)});
-  })();
-  </script>
+  <meta name="viewport" content="width=980">
   <meta name="theme-color" content="#0A4174">
   <!-- Fixed (non-device-width) viewport: the browser always lays the page
        out as if the screen were 980px wide and then zooms the whole thing
@@ -113,10 +97,11 @@
     const CLOUDINARY_CLOUD_NAME = 'zcumhdql';
     const CLOUDINARY_UPLOAD_PRESET = 'althea_uploads';
   </script>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/study-material.css">
-  <link rel="stylesheet" href="css/admin.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/main.css?v=3">
+  <link rel="stylesheet" href="css/alti-chatbot.css?v=3">
+  <link rel="stylesheet" href="css/study-material.css?v=3">
+  <link rel="stylesheet" href="css/admin.css?v=3">
+  <link rel="stylesheet" href="css/responsive.css?v=3">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
@@ -778,6 +763,7 @@
       <div class="adm-grp">Forms &amp; help</div>
       <button class="adm-item admin-tab-btn" data-tab="formeditor" onclick="showAdminTab('formeditor')"><i class="fas fa-edit"></i> Registration Form Editor</button>
       <button class="adm-item admin-tab-btn" data-tab="chatbot" onclick="showAdminTab('chatbot')"><i class="fas fa-robot"></i> Chatbot FAQs</button>
+      <button class="adm-item admin-tab-btn" data-tab="alti" onclick="showAdminTab('alti')"><i class="fas fa-brain"></i> Alti Knowledge</button>
       <button class="adm-item admin-tab-btn" data-tab="site-faq" onclick="showAdminTab('site-faq')"><i class="fas fa-circle-question"></i> Website FAQs (SEO)</button>
       <button class="adm-item admin-tab-btn" data-tab="community" onclick="showAdminTab('community')"><i class="fas fa-comments"></i> Community</button>
       <button class="adm-item admin-tab-btn" data-tab="floatwidgets" onclick="showAdminTab('floatwidgets')"><i class="fas fa-layer-group"></i> Floating Widgets</button>
@@ -1472,6 +1458,34 @@
       </div>
     </div>
 
+    <!-- Alti Knowledge Tab -->
+    <div class="admin-tab" id="admin-alti">
+      <h3>🧠 Alti Knowledge <small id="alti_count" style="font-weight:500;color:var(--gray);font-size:13px;"></small></h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:14px;">Yahan jo sawal-jawab add karoge, Alti turant seekh leta hai (built-in knowledge se pehle yahi dikhega). Ek concept ke <b>kai tareeke ke sawal</b> (Hindi / English / Hinglish) alag-alag line mein likho.</p>
+      <div id="alti_edit_banner" style="display:none;background:#fff3e0;border:1px solid #f6c98a;color:#8a5300;padding:10px 14px;border-radius:10px;margin-bottom:14px;font-size:13px;font-weight:600;"><i class="fas fa-edit"></i> Editing — update karke "Update entry" dabao. <button type="button" class="btn btn-outline btn-sm" style="margin-left:10px;" onclick="altiAdminReset()">Cancel</button></div>
+      <div class="admin-form">
+        <input type="text" id="alti_title" placeholder="Title (e.g. Class 10 Maths Study Material)">
+        <select id="alti_cat" style="margin-top:10px;"></select>
+        <textarea id="alti_q" placeholder="Question variations — ek line mein ek&#10;class 10 maths notes kaha milenge&#10;10th maths study material&#10;maths ka material chahiye" style="width:100%;margin-top:10px;min-height:90px;"></textarea>
+        <input type="text" id="alti_kw" placeholder="Keywords, comma separated (e.g. class 10 maths, 10th maths, maths notes)" style="margin-top:10px;">
+        <textarea id="alti_a" placeholder="Answer (Hinglish/Hindi) — **bold**, naya line, • bullets chalte hain" style="width:100%;margin-top:10px;min-height:80px;"></textarea>
+        <textarea id="alti_a_en" placeholder="English answer (optional — English mein poochne walon ko ye dikhega)" style="width:100%;margin-top:10px;min-height:60px;"></textarea>
+        <input type="text" id="alti_rel" placeholder="Related entry ids, comma separated (optional)" style="margin-top:10px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+          <select id="alti_act_type" style="flex:1;min-width:160px;"><option value="">Button: none</option><option value="page">Open site page (page-study, page-blog…)</option><option value="link">Open link (https://…)</option><option value="wa">WhatsApp</option><option value="exam">Open entrance exam (exact name)</option><option value="study">Open study material (Class 10|Mathematics)</option></select>
+          <input type="text" id="alti_act_val" placeholder="Value for the button" style="flex:2;min-width:180px;">
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;"><input type="checkbox" id="alti_enabled" checked> Enabled</label>
+        <button class="btn btn-green" id="alti_submit" onclick="altiAdminSave()" style="margin-top:12px;"><i class="fas fa-plus"></i> Add to Alti</button>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0 8px;">
+        <input type="text" id="alti_search" placeholder="Search entries…" oninput="renderAdminAlti()" style="flex:1;min-width:180px;">
+        <button class="btn btn-outline btn-sm" onclick="altiAdminExport()"><i class="fas fa-download"></i> Export JSON</button>
+        <label class="btn btn-outline btn-sm" style="cursor:pointer;margin:0;"><i class="fas fa-upload"></i> Import JSON<input type="file" accept="application/json,.json" style="display:none" onchange="altiAdminImport(this)"></label>
+      </div>
+      <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Title</th><th>Questions</th><th>Answer</th><th>Action</th></tr></thead><tbody id="altiAdminTable"></tbody></table></div>
+    </div>
+
     <!-- Website FAQs (visible on homepage, SEO) Tab -->
     <div class="admin-tab" id="admin-site-faq">
       <h3>❓ Website FAQs (shown on homepage for visitors &amp; Google)</h3>
@@ -2082,36 +2096,22 @@
   </div>
 </div>
 
-<!-- AI Chat Widget -->
-<div class="chatbot-greet" id="chatbotGreet" onclick="openChatbot()" style="display:none;">
-  <button onclick="event.stopPropagation(); dismissChatbotGreet();"><i class="fas fa-times"></i></button>
-  Hi 👋 I'm Alti! Need help? Ask me anything.
-</div>
-<button class="chatbot-fab" id="chatbotFab" onclick="openChatbot()" aria-label="Chat with Alti"><i class="fas fa-comment-dots"></i></button>
-<div class="chatbot-panel" id="chatbotPanel">
-  <div class="chatbot-head">
-    <span class="cb-head-left"><span class="cb-head-avatar" id="chatbotHeadAvatar"></span>
-      <span class="cb-head-text"><b>Alti · Althea Assistant</b><small id="chatbotStatus"><i class="cb-online"></i> Online · replies instantly</small></span></span>
-    <button onclick="closeChatbot()" aria-label="Close chat"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="chatbot-body" id="chatbotBody"></div>
-  <div class="chatbot-input-row">
-    <input type="text" id="chatbotInput" placeholder="Ask me anything… (English / Hinglish)" autocomplete="off" onkeydown="if(event.key==='Enter') sendChatbotMessage();">
-    <button onclick="sendChatbotMessage()"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
+<!-- Alti chatbot mounts itself (js/alti-chatbot.js) -->
 
-<script src="js/firebase.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/cloudinary.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/study-material.js"></script>
-<script src="js/education-updates.js"></script>
-<script src="js/blog.js"></script>
-<script src="js/news-checker.js"></script>
-<script src="js/admin.js"></script>
-<script src="js/main.js"></script>
-<script src="js/chatbot.js"></script>
+<script src="js/firebase.js?v=3"></script>
+<script src="js/utils.js?v=3"></script>
+<script src="js/cloudinary.js?v=3"></script>
+<script src="js/navigation.js?v=3"></script>
+<script src="js/study-material.js?v=3"></script>
+<script src="js/education-updates.js?v=3"></script>
+<script src="js/blog.js?v=3"></script>
+<script src="js/news-checker.js?v=3"></script>
+<script src="js/admin.js?v=3"></script>
+<script src="js/main.js?v=3"></script>
+<script>window.ALTI_CONFIG = { version: '1', knowledgeUrl: 'data/alti-knowledge.json', aiEndpoint: '' /* optional: your own secure proxy URL — never put an API key here */ };</script>
+<script src="js/alti-admin.js?v=3"></script>
+<script src="js/alti-engine.js?v=3"></script>
+<script src="js/alti-chatbot.js?v=3"></script>
 <!-- Heavy PDF-export libraries — only needed when the admin downloads a
      registration summary as PDF, so they're loaded last (after everything
      visitors actually see) instead of blocking the page at the top. -->
