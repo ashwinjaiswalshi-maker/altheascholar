@@ -246,7 +246,8 @@ function fsStartListener(key) {
     _fsDataError[key] = true;
     if (typeof renderAll === 'function') renderAll();
     if (typeof renderPublicAll === 'function') renderPublicAll();
-    if (!PROTECTED_READ_COLLECTIONS.includes(key)) {
+    // 'altiKnowledge' is optional (chatbot extras) — never show visitors an error if its rule isn't published yet
+    if (!PROTECTED_READ_COLLECTIONS.includes(key) && key !== 'altiKnowledge') {
       showToast('⚠️ Could not connect to the online database. Check your internet connection.', 'error');
     }
   });

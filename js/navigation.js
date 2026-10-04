@@ -77,6 +77,7 @@ function showAdminTab(tab) {
   if (tab === 'blog') renderAdminBlog();
   if (tab === 'formeditor') { renderFormEditor(); populatePolicyEditor(); populateStudentFormNoticeEditor(); populateRegSideForm('teacher'); populateRegSideForm('student'); }
   if (tab === 'chatbot') renderAdminChatbotFaqs();
+  if (tab === 'alti' && typeof renderAdminAlti === 'function') renderAdminAlti();
   if (tab === 'site-faq') renderAdminSiteFaqs();
   if (tab === 'seo-pages') { loadSeoPageIntoForm(); populateSeoCitiesForm(); }
   if (tab === 'festival') populateFestivalPopupForm();

@@ -942,12 +942,7 @@ fsSettingsListen('studyHero', renderSmHeroArt);
   try { if (localStorage.getItem('admSidebarCollapsed') === '1') { document.addEventListener('DOMContentLoaded', () => { const bar = document.getElementById('adminTabBar'), tab = document.getElementById('admCollapseTab'); if (bar) bar.classList.add('adm-collapsed'); if (tab) tab.innerHTML = '<i class="fas fa-bars"></i> MENU'; }); } } catch (e) {}
 })();
 fsSettingsListen('floatWidgets', renderFloatWidgets);
-// Show the greeting bubble a few seconds after page load (once per browser)
-setTimeout(() => {
-  let seen = false;
-  try { seen = localStorage.getItem('chatbotGreetSeen') === '1'; } catch (e) {}
-  if (!seen) document.getElementById('chatbotGreet').style.display = 'block';
-}, 3500);
+// (Alti shows its own greeting bubble — see js/alti-chatbot.js)
 // One delegated listener handles chapter-tile clicks even after the grid
 // is re-rendered for a new subject.
 document.addEventListener('click', function(e) {
