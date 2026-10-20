@@ -648,7 +648,102 @@ function getStudentFormNotice() {
   const saved = fsSettingsGet('studentFormNotice');
   return saved || STUDENT_NOTICE_DEFAULT;
 }
-// Chatbot ("Alti") logic now lives in js/chatbot.js
+function getChatbotFaqs() {
+  return getData('chatbotFaqs');
+}
+function chatbotNormalize(s) {
+  return s.toLowerCase().replace(/[^\w\s]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function chatbotDetectGreeting(q) {
+  const greet = /^(hi|hii|hiii|hello|hey|heya|namaste|yo)\b/;
+  const thanks = /\b(thanks|thank you|thnx|ty)\b/;
+  const bye = /\b(bye|goodbye|see you)\b/;
+  if (thanks.test(q)) return "You're welcome! 😊 Anything else I can help with?";
+  if (bye.test(q)) return "Take care! Feel free to come back anytime you have a question. 👋";
+  if (greet.test(q)) return "Hello! 👋 I can help with registration, fees, subjects, study material, entrance exams and more — what would you like to know?";
+  return null;
+}
+// Scores every FAQ against the question using both whole-phrase matches
+// (strong signal) and individual word overlap (weaker signal), then picks
+// the best match — this is far more reliable than simple substring checks
+// and avoids answering confidently on a single loosely-related word.
+function chatbotMatch(question) {
+  const q = chatbotNormalize(question);
+  const qWords = q.split(' ').filter(w => w.length > 2);
+  const faqs = getChatbotFaqs();
+  let best = null, bestScore = 0;
+  faqs.forEach(f => {
+    let score = 0;
+    (f.keywords || []).forEach(kRaw => {
+      const k = chatbotNormalize(kRaw);
+      if (!k) return;
+      if (q.includes(k)) {
+        score += 3 + k.split(' ').length; // full phrase match — strong signal
+      } else {
+        k.split(' ').forEach(kw => { if (kw.length > 2 && qWords.includes(kw)) score += 1; });
+      }
+    });
+    if (score > bestScore) { bestScore = score; best = f; }
+  });
+  return bestScore >= 2 ? best.answer : null;
+}
+function chatbotWhatsAppLink(question) {
+  const c = getHomepageContent();
+  const text = encodeURIComponent(`Hi Althea Scholar, I have a question: ${question}`);
+  return `https://wa.me/${c.whatsapp || '918287771882'}?text=${text}`;
+}
+function chatbotAddMsg(text, sender, extraHtml) {
+  const body = document.getElementById('chatbotBody');
+  const div = document.createElement('div');
+  div.className = `chatbot-msg ${sender}`;
+  div.innerHTML = text + (extraHtml || '');
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function openChatbot() {
+  dismissChatbotGreet();
+  const panel = document.getElementById('chatbotPanel');
+  panel.classList.add('show');
+  if (!panel.dataset.opened) {
+    panel.dataset.opened = '1';
+    chatbotAddMsg("Hi 👋 I'm the Althea Assistant. Ask me about registration, fees, subjects, study material or anything else!", 'bot');
+    const quickBox = document.createElement('div');
+    quickBox.className = 'chatbot-quick';
+    quickBox.innerHTML = ['How to register?', 'Premium Membership?', 'Study Material?', 'Fees?'].map(q => `<button onclick="chatbotAsk('${q.replace(/'/g, "\\'")}')">${q}</button>`).join('');
+    document.getElementById('chatbotBody').appendChild(quickBox);
+  }
+  document.getElementById('chatbotInput').focus();
+}
+function closeChatbot() { document.getElementById('chatbotPanel').classList.remove('show'); }
+function dismissChatbotGreet() {
+  document.getElementById('chatbotGreet').style.display = 'none';
+  try { localStorage.setItem('chatbotGreetSeen', '1'); } catch (e) {}
+}
+function chatbotAsk(question) {
+  document.getElementById('chatbotInput').value = question;
+  sendChatbotMessage();
+}
+function sendChatbotMessage() {
+  const input = document.getElementById('chatbotInput');
+  const question = input.value.trim();
+  if (!question) return;
+  chatbotAddMsg(question, 'user');
+  input.value = '';
+  setTimeout(() => {
+    const greeting = chatbotDetectGreeting(chatbotNormalize(question));
+    if (greeting) { chatbotAddMsg(greeting, 'bot'); return; }
+    const answer = chatbotMatch(question);
+    if (answer) {
+      chatbotAddMsg(answer, 'bot');
+    } else {
+      chatbotAddMsg(
+        "I'm not fully sure about that one — let's get you a real answer on WhatsApp! Tap below and our team will reply personally. 💬",
+        'bot',
+        `<br><a class="chatbot-wa-btn" href="${chatbotWhatsAppLink(question)}" target="_blank"><i class="fab fa-whatsapp"></i> Continue on WhatsApp</a>`
+      );
+    }
+  }, 400);
+}
 function getSiteFaqs() {
   return getData('siteFaqs');
 }
@@ -942,7 +1037,12 @@ fsSettingsListen('studyHero', renderSmHeroArt);
   try { if (localStorage.getItem('admSidebarCollapsed') === '1') { document.addEventListener('DOMContentLoaded', () => { const bar = document.getElementById('adminTabBar'), tab = document.getElementById('admCollapseTab'); if (bar) bar.classList.add('adm-collapsed'); if (tab) tab.innerHTML = '<i class="fas fa-bars"></i> MENU'; }); } } catch (e) {}
 })();
 fsSettingsListen('floatWidgets', renderFloatWidgets);
-// (Alti shows its own greeting bubble — see js/alti-chatbot.js)
+// Show the greeting bubble a few seconds after page load (once per browser)
+setTimeout(() => {
+  let seen = false;
+  try { seen = localStorage.getItem('chatbotGreetSeen') === '1'; } catch (e) {}
+  if (!seen) document.getElementById('chatbotGreet').style.display = 'block';
+}, 3500);
 // One delegated listener handles chapter-tile clicks even after the grid
 // is re-rendered for a new subject.
 document.addEventListener('click', function(e) {

@@ -68,7 +68,16 @@ function nscExtractText(html) {
   return html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 20000);
 }
-async function nscFetchOne(url) {
+// Free Cloudflare Worker (the site owner's own, scoped to only accept
+// requests whose Origin is this site — see its source for the allow-list)
+// that fetches a source URL server-side and relays it back with CORS
+// headers, so sources that block direct browser fetches can often still be
+// checked. Leave this blank ('') to disable proxy use entirely and fall
+// back to direct-fetch-only behavior (everything blocked by CORS will then
+// show "Unable to Check Automatically", as before).
+const NEWS_PROXY_URL = 'https://althea-news-proxy.altheascholarsupport.workers.dev/';
+
+async function _nscFetchDirect(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 12000);
   try {
@@ -79,12 +88,35 @@ async function nscFetchOne(url) {
     return { ok: true, hash: nscHash(nscExtractText(text)) };
   } catch (err) {
     clearTimeout(timer);
-    // A CORS block and a real network/timeout failure throw the exact same
-    // generic error in a browser — there is no reliable way to tell them
-    // apart here, so both are reported as "Unable to Check Automatically"
-    // rather than guessing which one it was.
     return { ok: false, httpError: false };
   }
+}
+async function _nscFetchViaProxy(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 18000);
+  try {
+    const proxied = NEWS_PROXY_URL + '?url=' + encodeURIComponent(url);
+    const res = await fetch(proxied, { mode: 'cors', cache: 'no-store', signal: ctrl.signal });
+    clearTimeout(timer);
+    // The worker relays the real upstream site's HTTP status as its own
+    // response status, so res.ok here reflects the ACTUAL source site,
+    // not just whether the proxy itself was reachable.
+    if (!res.ok) return { ok: false, httpError: true };
+    const text = await res.text();
+    return { ok: true, hash: nscHash(nscExtractText(text)) };
+  } catch (err) {
+    clearTimeout(timer);
+    return { ok: false, httpError: false };
+  }
+}
+async function nscFetchOne(url) {
+  // Try a plain direct fetch first — free, fast, and works for the rare
+  // source that does allow cross-origin requests. Only go through the
+  // proxy (slower, routes through a third hop) when that fails, and only
+  // if a proxy URL is actually configured.
+  const direct = await _nscFetchDirect(url);
+  if (direct.ok || direct.httpError || !NEWS_PROXY_URL) return direct;
+  return _nscFetchViaProxy(url);
 }
 async function checkOneNewsSource(src, silent) {
   const result = await nscFetchOne(src.url);
